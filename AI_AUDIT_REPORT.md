@@ -526,3 +526,11 @@ B-FR07 có nguồn FR-07/FR-06, lớp giỏ/quantity, ca gộp dòng/điều ch�
 ### Giới hạn, sai sót harness và cách xử lý
 
 Lượt UI ban đầu nằm trong API run folder nhưng bị nhiễm token giữa các ca và có một số input không đúng ca; mọi UI output/screenshot của lượt đó bị loại khỏi kết luận. Phát hiện qua token tồn tại ở ca âm và redirect sai format, sau đó chạy lại toàn bộ phần UI trong profile sạch Run 004. API evidence của Run 003 độc lập và vẫn được dùng. UI timing status được ghép từ raw request/response monotonic event trong `timing-analysis.md`; trường status/bounds tự sinh trong checkpoint không được dùng do lỗi mapping của harness. Không công khai mật khẩu/token; không cleanup các tài khoản test hay thay đổi database.
+
+## Interaction AI-018 — Chụp ảnh UI bổ sung cho bug A-FR02
+
+- **Prompt:** “thay tôi chụp ảnh đi”.
+- **Thực hiện:** dùng Chrome headless/profile riêng để chụp lại ba tình huống A-BUG-001/002/003, log HTTP đã che dữ liệu nhạy cảm, và kiểm tra DB ở chế độ chỉ đọc. Không restart SUT, không sửa SUT, không đăng GitHub Issue.
+- **Run ID:** `20261014T183925Z-fa22ee4e`; ảnh và `capture.jsonl` tại [evidence/A-FR02/issue-evidence/20261014T183925Z-fa22ee4e](evidence/A-FR02/issue-evidence/20261014T183925Z-fa22ee4e/).
+- **Giới hạn/sửa sai:** lượt chụp sơ bộ `20261014T183651Z-e51253b3` phát hiện form khai báo cả hai input là `type=text`, nên ảnh có thể lộ password test. Đã xóa toàn bộ lượt đó trước khi lưu evidence; chụp lại sau khi xóa ô thứ hai trước screenshot. Ảnh Run 005 đã mở kiểm tra, không chứa mật khẩu/token; không dùng ảnh sơ bộ làm bằng chứng.
+- **Output:** `features/A-FR02/06-execution.md` và `07-bugs-and-ai-gaps.md` được bổ sung link ảnh/log cho từng bug. Issue chưa tạo; đăng issue là bước riêng.

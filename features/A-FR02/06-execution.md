@@ -122,3 +122,12 @@ Run 003 JSONL cũng chứa một lượt UI ban đầu bị nhiễm state: profi
 ## Tài khoản và dữ liệu test
 
 Run 003/004 đã tạo 46 tài khoản test mới với tiền tố email `a-fr02-`; tài khoản user ID 3 từ Run 002 cũng còn trong SQLite local. Không xóa tài khoản hoặc database. Tài khoản test được ghi trong các JSONL. Backend vẫn chạy; không restart.
+
+## Run 005 — Chụp bổ sung bằng chứng giao diện cho bug
+
+- **Run ID:** `20261014T183925Z-fa22ee4e`; Chrome 154.0.8037.57 trong profile riêng, màn hình 1280×1100; backend/Web đang chạy, không restart.
+- **Mục đích:** chụp lại UI cho A-DT-002/A-BV-002 (A-BUG-001), A-DT-013/A-BV-008 (A-BUG-002) và A-DT-004 (A-BUG-003), kèm log riêng trong [capture.jsonl](../../evidence/A-FR02/issue-evidence/20261014T183925Z-fa22ee4e/capture.jsonl). Đây là bằng chứng bổ sung cho Run 003/004, không thay đổi verdict.
+- **A-BUG-001:** một lần nhập sai trên UI trả 401; ảnh cho thấy thông báo từ chối. SQLite chỉ đọc ghi counter `0→2`, chưa khóa. Ảnh: [A-BUG-001](../../evidence/A-FR02/issue-evidence/20261014T183925Z-fa22ee4e/A-BUG-001-counter-after-one-wrong.png).
+- **A-BUG-002:** hai lần sai qua API kích hoạt khóa; sau khoảng 40 giây, nhập mật khẩu đúng trên UI vẫn bị từ chối, request trả 403. Ảnh: [A-BUG-002](../../evidence/A-FR02/issue-evidence/20261014T183925Z-fa22ee4e/A-BUG-002-correct-after-40s.png). Phép đo thời gian chi tiết lấy từ các Run trước trong [timing analysis](timing-analysis.md).
+- **A-BUG-003:** email `not-an-email` được gửi từ form Web; validity của input `type=text` là true và POST login trả 401. Ảnh: [A-BUG-003](../../evidence/A-FR02/issue-evidence/20261014T183925Z-fa22ee4e/A-BUG-003-invalid-email-submitted.png).
+- Ảnh chỉ giữ email test và kết quả giao diện; ô mật khẩu được xóa trước khi chụp. Không có token/mật khẩu trong ảnh hoặc log. Một lượt chụp sơ bộ trước đó bị hủy vì ô mật khẩu của SUT thực tế là `type=text`; ảnh lượt đó đã xóa và không được dùng làm bằng chứng.
