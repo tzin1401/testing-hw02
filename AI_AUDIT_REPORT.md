@@ -601,3 +601,24 @@ Tạo `features/B-FR07/04-boundary-cases.md` theo slide. Chọn biên có căn c
 - **Output:** sáu ca `B-BV-001`–`B-BV-006` trong [`features/B-FR07/04-boundary-cases.md`](features/B-FR07/04-boundary-cases.md), snapshot tại [`audit/AI-023-bfr07-boundary-cases-output.md`](audit/AI-023-bfr07-boundary-cases-output.md). Tiến độ cập nhật trong [`reports/work-progress.md`](reports/work-progress.md).
 - Quantity nhập trực tiếp dùng LB=1, δ=1 và các điểm 0/1/2. Không có UB được nêu; không đặt biên số dòng giỏ. Nút +/- được xử lý như state transition riêng; delta click và giảm tại q=1 vẫn là điểm chưa có oracle.
 - Không ghi actual/status, không chạy SUT, không ghi nhận human review/phê duyệt.
+
+## Interaction AI-024 — Review và coverage B-FR07
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi log:** 2026-10-15T02:03:57+07:00 (2026-10-14T19:03:57Z); thời điểm ghi log, không phải thời điểm người dùng gửi phản hồi chính xác.
+- **Phản hồi review nguyên văn:** “Tôi đã hiểu hết tất cả các ca kiểm thử rồi.”
+- **Phạm vi:** ghi mức độ hiểu do người dùng báo, truy vết B-R → B-EC/điểm biên → B-DT/B-BV, xác định lỗ hổng liên kết và expected còn cần làm rõ.
+
+### Prompt nguyên văn
+
+```text
+Tôi đã hiểu hết tất cả các ca kiểm thử rồi.
+Dựa trên review thực tế của tôi, cập nhật `features/B-FR07/05-review-coverage.md`: truy vết từng B-R → B-EC/điểm biên → B-DT/B-BV; ghi phần tôi hiểu/chưa hiểu và mọi sửa đổi cần thiết. Không ghi tôi duyệt phần chưa nói. Ghi audit và commit riêng.
+```
+
+### Đầu ra và giới hạn
+
+- **Output:** [`features/B-FR07/05-review-coverage.md`](features/B-FR07/05-review-coverage.md); snapshot tại [`audit/AI-024-bfr07-review-coverage-output.md`](audit/AI-024-bfr07-review-coverage-output.md). `reports/work-progress.md` ghi rằng người dùng hiểu toàn bộ ca.
+- Phản hồi được ghi là hiểu 20 ca Domain `B-DT-001`–`B-DT-020` và 6 ca BVA `B-BV-001`–`B-BV-006`; không có ca nào được nêu là chưa hiểu. Không ghi đây là phê duyệt tính đúng của expected hoặc giả định.
+- Không có sửa đổi TC nào được người dùng yêu cầu. Các khoảng trống oracle (tổng giỏ, decrement tại 1, delta nút, hủy dialog, identity và API invalid) tiếp tục được đánh dấu cần xác nhận; không suy ra sự phê duyệt.
+- Không chạy SUT, không tạo actual/status/Pass/Fail và không ghi nhận phê duyệt test design.
