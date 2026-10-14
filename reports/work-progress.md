@@ -18,7 +18,7 @@
 
 | Chức năng | Yêu cầu/input-output | EC | Ca Domain | Ca BVA | Review sinh viên | Thực thi | Bug/AI gaps |
 |---|---|---|---|---|---|---|---|
-| A-FR02 — Đăng nhập/khóa Web | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
+| A-FR02 — Đăng nhập/khóa Web | Đã có bản nháp 01-requirements.md (AI-007) | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | B-FR07 — Giỏ hàng Web | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | C-FR14 — Danh mục Admin | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | D-MREG — Đăng ký Mobile | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
@@ -63,4 +63,6 @@ Các dấu hoàn thành ở đây chỉ ghi khả năng mở môi trường, kh�
 
 ## Việc tiếp theo
 
-Thực hiện **bước 5.1** của [LAM_HW02_TUNG_BUOC.md](../LAM_HW02_TUNG_BUOC.md): phân tích FR-02 và tạo `features/A-FR02/01-requirements.md`. Chưa bắt đầu test chức năng. Giữ các terminal đang chạy để tránh reset DB do khởi động lại backend.
+Đã có [bản nháp yêu cầu A-FR02](../features/A-FR02/01-requirements.md), gồm yêu cầu, input/output, trạng thái và điểm chưa rõ. Chưa ghi nhận review của sinh viên hoặc kết quả kiểm thử.
+
+Đọc mục 3 và 7 của bản nháp, nêu điểm chưa hiểu nếu có; sau đó thực hiện **bước 5.2** trong hướng dẫn: phân hoạch tương đương vào `02-domains.md`. Giữ các terminal đang chạy để tránh reset DB do khởi động lại backend.

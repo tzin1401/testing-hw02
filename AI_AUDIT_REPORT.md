@@ -281,3 +281,23 @@ Tiếp theo là **bước 5.1: phân tích yêu cầu đăng nhập**, chưa ch�
 Giữ các terminal đang chạy và chưa thêm/xóa dữ liệu trong Admin.
 
 Bổ sung environment từ kiểm tra Git chỉ đọc: SUT vẫn ở baseline; `backend/database.sqlite` đã thay đổi và `backend/node_modules/` untracked sau cài/chạy. Không đưa các mục này vào commit tài liệu.
+
+## Interaction AI-007 — Phân tích yêu cầu A-FR02
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi log:** 2026-10-14T23:31:47+07:00 (Asia/Ho_Chi_Minh); thời điểm ghi log, không phải thời điểm gửi prompt chính xác.
+- **Nguồn đọc:** SRS FR-02; API specification mục 1.2; slide VN trang 6–10, slide EN trang 13–16; phân công và hướng dẫn đã đọc trước đó.
+
+### Prompt nguyên văn
+
+```text
+Với A-FR02, đọc FR-02 trong SRS và slide. Tạo features/A-FR02/01-requirements.md bằng tiếng Việt đơn giản: từng yêu cầu, đầu vào, trạng thái cần theo dõi, đầu ra và nguồn expected result. Đánh dấu điểm chưa rõ. Ghi audit và commit riêng bước này. Chưa tạo kết quả kiểm thử.
+```
+
+### AI output nguyên văn
+
+[AI-007-requirements-output.md](audit/AI-007-requirements-output.md) lưu toàn văn requirements, work-progress đã cập nhật, thông báo tiến độ và phản hồi cuối. Giữ nguyên snapshot khi tài liệu làm việc được chỉnh sau này; chèn toàn văn khi xuất audit PDF.
+
+### Phạm vi và giới hạn
+
+Tạo bản nháp 11 yêu cầu, đầu vào/trạng thái/đầu ra, nguồn expected và 9 điểm chưa rõ. Phân biệt nội dung trực tiếp của đặc tả với diễn giải. Chưa tạo lớp tương đương/test case, chưa thực thi, chưa ghi nhận human review hoặc bug. Commit riêng requirements, work-progress, audit và snapshot; không gom SUT hoặc thay đổi khác.
