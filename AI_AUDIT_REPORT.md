@@ -301,3 +301,23 @@ Với A-FR02, đọc FR-02 trong SRS và slide. Tạo features/A-FR02/01-require
 ### Phạm vi và giới hạn
 
 Tạo bản nháp 11 yêu cầu, đầu vào/trạng thái/đầu ra, nguồn expected và 9 điểm chưa rõ. Phân biệt nội dung trực tiếp của đặc tả với diễn giải. Chưa tạo lớp tương đương/test case, chưa thực thi, chưa ghi nhận human review hoặc bug. Commit riêng requirements, work-progress, audit và snapshot; không gom SUT hoặc thay đổi khác.
+
+## Interaction AI-008 — Phân hoạch tương đương A-FR02
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi log:** 2026-10-14T23:36:27+07:00 (Asia/Ho_Chi_Minh); thời điểm ghi log, không phải timestamp gửi prompt chính xác.
+- **Nguồn:** 01-requirements.md hiện tại; quy tắc phân hoạch từ slide đã đọc ở các lượt trước.
+
+### Prompt nguyên văn
+
+```text
+Dựa trên requirements A-FR02, tạo 02-domains.md: chia từng đầu vào/trạng thái thành nhóm hợp lệ và không hợp lệ, gắn EC ID, ví dụ cụ thể và kết quả mong đợi. Giải thích ngắn vì sao chia như vậy. Ghi audit và commit riêng.
+```
+
+### AI output nguyên văn
+
+[AI-008-domains-output.md](audit/AI-008-domains-output.md) lưu đầy đủ 02-domains.md, work-progress đã cập nhật, thông báo tiến độ và phản hồi cuối. Giữ snapshot này khi sửa bản làm việc; chèn nội dung khi xuất audit PDF.
+
+### Phạm vi và giới hạn
+
+Thiết kế lớp email, password, đường gửi, bộ đếm, thời gian khóa, lịch sử thao tác, token và output. Phân biệt hợp lệ/không hợp lệ/chưa chốt; ví dụ là dữ liệu đề xuất, chưa tạo hoặc thực thi. Chưa có human review hoặc kết quả test. Commit riêng tài liệu domains, tiến độ, audit và snapshot; không gom SUT/thay đổi khác.
