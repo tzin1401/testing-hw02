@@ -201,13 +201,11 @@ Script tạo tài khoản test riêng và **để lại các tài khoản đó t
 - [ ] Với mỗi ca Fail, mở SRS để xác nhận expected đúng.
 - [ ] Gửi tôi:
 
-> Tổng hợp các lỗi A-FR02 có đủ bằng chứng thành 07-bugs-and-ai-gaps.md; gộp ca cùng lỗi và tách các lỗi độc lập. Chuẩn bị nội dung issue để tôi đăng, gồm bước tái hiện, expected/actual, severity có lý do, TC ID và ảnh cần đính kèm. Chỉ ghi AI gap có chứng cứ từ output trước và review/thực thi. Ghi audit và commit bước này.
+> Với mỗi bug A-FR02 đã xác nhận và đủ bằng chứng, tự tạo GitHub Issue trên `tzin1401/testing-hw02`; không chỉ soạn nháp và không yêu cầu tôi tự mở web/terminal. Trước khi đăng, đọc SRS và `features/A-FR02/07-bugs-and-ai-gaps.md`, đối chiếu actual/expected, steps, môi trường, Run ID/TC ID, severity có lý do và ảnh phù hợp; gộp ca cùng nguyên nhân thành một issue, không tạo trùng (kiểm tra issues đã mở/đóng trước). Dùng GitHub CLI `gh`; kiểm tra CLI đã cài và `gh auth status`, chỉ cài nếu thiếu, và xác nhận đúng repo. Theo slide `slide/03 - github_bug_management.pptx.pdf`, issue phải có title `[BUG][Module] ...`, các mục Mô tả lỗi, Môi trường, Steps to reproduce, Actual result, Expected result, Evidence; đính kèm ảnh trong chính issue. Gắn đủ labels `type: bug`, `status: new`, một `severity: blocker|critical|major|minor|trivial`, một `priority: P0|P1|P2|P3`, và module thích hợp (`module: login|cart|checkout|admin|api|ui`). Nếu label chưa có thì tạo theo đúng tên trước khi đăng. Dùng `gh issue create --body-file ... --attach ... --label ...` để upload ảnh và tạo issue; không chỉ chèn đường dẫn ảnh local. Không đăng bug chưa có expected rõ hoặc thiếu evidence bắt buộc: ghi lý do và việc cần bổ sung. Sau khi tạo, mở lại từng issue để xác nhận title/body/ảnh/labels, ghi URL vào bug report, execution và work-progress; thêm prompt/output/giới hạn vào AI Audit, cập nhật checkbox chỉ khi đúng, rồi commit riêng file bài làm/evidence liên quan. Không push SUT hoặc file ngoài phạm vi.
 
-- [ ] Mở `https://github.com/tzin1401/testing-hw02/issues` → **New issue**.
-- [ ] Dán tiêu đề và nội dung đã kiểm tra. Kéo ảnh bug từ thư mục `evidence/A-FR02` vào ô nội dung, chờ upload xong. Preview để chắc ảnh hiển thị.
-- [ ] Bấm tạo issue. Copy URL issue vào báo cáo bug cạnh TC liên quan.
-- [ ] Nếu ảnh chưa đủ thể hiện lỗi thời gian/API, thêm ảnh terminal/log và đính kèm log đầy đủ; không chỉ chụp code.
-- [ ] Nhờ tôi cập nhật các URL issue và commit phần bổ sung.
+- [ ] Copy và gửi nguyên prompt ở trên; Codex tự tạo từng issue đủ chuẩn và đính kèm ảnh.
+- [ ] Mở các URL trả về, kiểm tra ảnh hiển thị cùng labels và nội dung tái hiện.
+- [ ] Nếu bug còn thiếu bằng chứng/expected, bổ sung đúng phần Codex nêu trước khi yêu cầu đăng issue; không đánh dấu bước này hoàn tất khi còn bug đã xác nhận chưa có issue.
 
 **Đạt bước này:** A có đủ thiết kế, review, thực thi, bằng chứng, issue và phân tích AI. Bây giờ mới làm B.
 

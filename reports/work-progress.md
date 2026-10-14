@@ -18,7 +18,7 @@
 
 | Chức năng | Yêu cầu/input-output | EC | Ca Domain | Ca BVA | Review sinh viên | Thực thi | Bug/AI gaps |
 |---|---|---|---|---|---|---|---|
-| A-FR02 — Đăng nhập/khóa Web | Requirements A-R01–A-R11 (AI-007) | Các EC đã ghi (AI-008) | 24 ca thiết kế (AI-009) | 12 ca thiết kế (AI-010) | Sinh viên nói đã đọc/hiểu (AI-011); chưa xác nhận phê duyệt thiết kế | Run 001 user-reported; Run 003 API và Run 004 UI; 33/36 TC có actual/checkpoint, 3 mốc clock Not run; xem 06-execution | 3 bug draft có bằng chứng; 2 AI gaps trong harness được ghi ở 07 (AI-017) |
+| A-FR02 — Đăng nhập/khóa Web | Requirements A-R01–A-R11 (AI-007) | Các EC đã ghi (AI-008) | 24 ca thiết kế (AI-009) | 12 ca thiết kế (AI-010) | Sinh viên nói đã đọc/hiểu (AI-011); chưa xác nhận phê duyệt thiết kế | Run 001 user-reported; Run 003 API, Run 004 UI, Run 005 ảnh bổ sung; 33/36 TC có actual/checkpoint, 3 mốc clock Not run; xem 06-execution | 3 bug đã đăng Issue #1–#3 có ảnh/labels; AI gaps trong harness ở 07 |
 | B-FR07 — Giỏ hàng Web | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | C-FR14 — Danh mục Admin | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | D-MREG — Đăng ký Mobile | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
@@ -45,7 +45,7 @@ Tạo commit sau từng bước thực sự hoàn thành của từng chức nă
 
 - [ ] Skill Domain/BVA tái sử dụng và video demo YouTube.
 - [ ] Báo cáo chính Markdown + PDF cho đủ bốn chức năng.
-- [ ] Bug report, GitHub Issues và ảnh trên từng issue.
+- [ ] Bug report, GitHub Issues và ảnh trên từng issue cho đủ bốn chức năng (A-FR02 Issues #1–#3 đã hoàn thành).
 - [ ] AI Audit đầy đủ và PDF; xử lý các phần lịch sử còn thiếu bằng dữ liệu thật.
 - [ ] AI Critique 200–300 từ, Markdown + PDF.
 - [ ] Test summary thực tế và bảng tự chấm.
@@ -76,7 +76,7 @@ Phản hồi “đã hiểu” không được coi là phê duyệt tính đúng
 - [x] Giữ Run 001 theo lời người chạy; không dùng thay bằng chứng mới.
 - [x] Run 004 có screenshot UI, login response, token local và request Bearer 200 cho A-DT-001.
 - [x] Ghi status/actual/evidence cho cả 24 Domain và 12 BVA; giữ rõ observation-only, Fail/Blocked và 3 Not run trong 06-execution.md.
-- [ ] Chụp/gom ảnh thể hiện rõ network/state counter để đính kèm các issue draft.
+- [x] Run 005 chụp UI bổ sung; ảnh A-BUG-001/002/003 được đính kèm trực tiếp trên GitHub Issues #1–#3.
 
 Phản hồi “mọi thứ đều pass” ở Run 001 vẫn được giữ như lời người chạy và tách khỏi các run có log tự động. Xem [execution log](../features/A-FR02/06-execution.md).
 
@@ -92,4 +92,4 @@ Script tạo tài khoản mới bằng API đăng ký cho mỗi lần chạy. Te
 
 ## Việc tiếp theo
 
-A-FR02 đã có execution table; bước còn lại là review bug drafts, chuẩn bị ảnh network/state phù hợp nếu đăng issue, và quyết định có dựng harness clock riêng cho ba mốc chưa chạy hay để Not run. Không xóa 46 tài khoản test hoặc restart backend khi chưa cần và chưa bảo toàn bằng chứng.
+A-FR02 đã có execution table và GitHub Issues #1–#3 có ảnh. Còn review kỹ thuật, quyết định về harness clock cho ba mốc chưa chạy, và tiếp tục chức năng B-FR07. Không xóa tài khoản test hoặc restart backend khi chưa cần và chưa bảo toàn bằng chứng.
