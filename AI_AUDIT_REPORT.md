@@ -582,3 +582,22 @@ Tạo `features/B-FR07/03-domain-cases.md` từ requirements và domains đã re
 - **Output:** 20 ca `B-DT-001`–`B-DT-020` trong [`features/B-FR07/03-domain-cases.md`](features/B-FR07/03-domain-cases.md); bản snapshot đầy đủ tại [`audit/AI-022-bfr07-domain-cases-output.md`](audit/AI-022-bfr07-domain-cases-output.md). Cập nhật tiến độ trong [`reports/work-progress.md`](reports/work-progress.md).
 - Ca bao gồm UI độc lập cho trạng thái giỏ, thêm/gộp, giá, +/- và các nhánh xóa; các giá trị invalid được nhập ở ô quantity thuộc FR-06 nếu control cho phép. Có một ca API exploratory không có oracle; không thay cho UI.
 - Giữ câu hỏi chưa được nguồn quy định thành expected cần review hoặc observation-only (ví dụ tổng giỏ, decrement tại 1, nhánh Hủy, delta nút +/- và validation API). Không ghi actual/status, không chạy SUT và không ghi nhận human review/phê duyệt.
+
+## Interaction AI-023 — Thiết kế BVA B-FR07
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi log:** 2026-10-15T02:02:10+07:00 (2026-10-14T19:02:10Z); thời điểm ghi log, không phải thời điểm gửi prompt chính xác.
+- **Phạm vi:** chọn điểm biên quantity có căn cứ, phân biệt nhập trực tiếp với thao tác nút, ghi các transition và expected chưa rõ; không chạy test.
+
+### Prompt nguyên văn
+
+```text
+Tạo `features/B-FR07/04-boundary-cases.md` theo slide. Chọn biên có căn cứ cho quantity: 0/1/2 tại trường nhập số lượng; nếu thao tác giảm từ 1 có ý nghĩa thì ghi state transition riêng. Phân biệt giá trị nhập trực tiếp với nút +/-: không gán số âm/thập phân cho control không nhận được các giá trị đó. Ghi δ, điểm biên, expected và B-R/B-EC/TC liên quan. Nếu SRS không định nghĩa upper bound, ghi “không có UB được nêu”, không bịa 99/100 hay giới hạn tồn kho. Có thể thêm biên số dòng giỏ chỉ khi có giới hạn được nêu; nếu không, dùng ca đại diện một/nhiều, không gọi là UB. Hướng dẫn reset giỏ độc lập và kiểm tra tiền bằng công thức giá × quantity; không tạo actual hay kết quả chạy. Ghi audit và commit riêng.
+```
+
+### Đối chiếu và đầu ra
+
+- **Đã đọc/đối chiếu:** FR-06/FR-07 trong `eshop-sut/README.md`; `features/B-FR07/01-requirements.md`, `02-domains.md`, `03-domain-cases.md`; phân công Thành viên 2; slide `slide/domain-testing-vn.pdf`, phần BVA và robustness testing.
+- **Output:** sáu ca `B-BV-001`–`B-BV-006` trong [`features/B-FR07/04-boundary-cases.md`](features/B-FR07/04-boundary-cases.md), snapshot tại [`audit/AI-023-bfr07-boundary-cases-output.md`](audit/AI-023-bfr07-boundary-cases-output.md). Tiến độ cập nhật trong [`reports/work-progress.md`](reports/work-progress.md).
+- Quantity nhập trực tiếp dùng LB=1, δ=1 và các điểm 0/1/2. Không có UB được nêu; không đặt biên số dòng giỏ. Nút +/- được xử lý như state transition riêng; delta click và giảm tại q=1 vẫn là điểm chưa có oracle.
+- Không ghi actual/status, không chạy SUT, không ghi nhận human review/phê duyệt.
