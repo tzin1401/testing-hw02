@@ -51,8 +51,16 @@ Tạo commit sau từng bước thực sự hoàn thành của từng chức nă
 - [ ] Test summary thực tế và bảng tự chấm.
 - [ ] Commit log, kiểm tra ZIP và nộp Moodle.
 
+## Kiểm tra mở môi trường
+
+- [x] Backend trả danh sách sản phẩm theo JSON sinh viên gửi (AI-004).
+- [x] Web hiển thị danh sách sản phẩm theo ảnh sinh viên gửi (AI-005).
+- [x] Admin hiển thị ba danh mục mẫu theo ảnh sinh viên gửi (AI-006).
+- [ ] Lưu bản ảnh gốc vào repo và bổ sung phiên bản trình duyệt.
+- [ ] Chuẩn bị môi trường Mobile.
+
+Các dấu hoàn thành ở đây chỉ ghi khả năng mở môi trường, không phải Pass test chức năng hay human review.
+
 ## Việc tiếp theo
 
-Thực hiện **bước 3–4** của [LAM_HW02_TUNG_BUOC.md](../LAM_HW02_TUNG_BUOC.md): chuẩn bị/chạy backend, Web, Admin và cung cấp kết quả thực tế để cập nhật environment. Lưu ý backend có hành vi seed lại DB khi khởi động.
-
-Sau khi môi trường được xác nhận, thực hiện **bước 5.1** cho A-FR02. Chưa bắt đầu test hay tạo kết quả ở lượt chuẩn bị này.
+Thực hiện **bước 5.1** của [LAM_HW02_TUNG_BUOC.md](../LAM_HW02_TUNG_BUOC.md): phân tích FR-02 và tạo `features/A-FR02/01-requirements.md`. Chưa bắt đầu test chức năng. Giữ các terminal đang chạy để tránh reset DB do khởi động lại backend.

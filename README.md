@@ -20,7 +20,7 @@ FR-14 có tên CRUD nhưng SRS chỉ bắt buộc Thêm/Xem/Xóa. “Mobile FR-0
 
 - SUT chính thức: https://github.com/ttbhanh/eshop-sut
 - Commit baseline: `85af3ba875c88283615e22cb108f13e2fccaf0e9`.
-- Working tree SUT sạch tại thời điểm ghi nhận ngày 14/10/2026; chưa xác nhận môi trường chạy. Chi tiết tại [environment.md](reports/environment.md).
+- Working tree SUT sạch tại thời điểm ghi nhận ngày 14/10/2026; Backend, Web và Admin đã có phản hồi/hiển thị theo dữ liệu và ảnh sinh viên gửi (AI-004–AI-006); Mobile chưa xác nhận. Chi tiết tại [environment.md](reports/environment.md).
 - [Đề HW02](2026.HW02.Domain%20Testing_En.pdf): mục 5–6 về phạm vi/kỹ thuật; mục 7 về skills; mục 9–10 về AI; mục 12, 14–15, 17 về commit, bài nộp và chấm điểm.
 - [Phân công nhóm](group_feature_assignment.md): thành viên 2; danh tính được người dùng xác nhận trong hội thoại.
 - [Slide tiếng Việt](slide/domain-testing-vn.pdf), trang 6–26; [slide tiếng Anh](slide/domain-testing-en.pdf), trang 12–37: phương pháp Domain Testing và BVA.
