@@ -2,7 +2,7 @@
 
 **Sinh viên:** Nguyễn Lê Thế Vinh — 23120190 — Thành viên 2.
 
-**Trạng thái chung: bản thiết kế, tất cả ca chưa chạy (Not run).** Chưa có human review, actual result hoặc bug xác nhận. Expected là yêu cầu để đối chiếu sau này, không phải kết quả đã quan sát.
+**Trạng thái chung: bản thiết kế, tất cả ca chưa chạy (Not run).** Ngày 15/10/2026, sinh viên phản hồi đã đọc và hiểu các ca kiểm thử. Chưa có xác nhận sinh viên phê duyệt expected/độ phủ, actual result hoặc bug. Expected là yêu cầu để đối chiếu sau này, không phải kết quả đã quan sát.
 
 Nguồn: [01-requirements.md](01-requirements.md), [02-domains.md](02-domains.md), SRS FR-02 và API specification mục 1.2 được dẫn trong requirements. Baseline SUT: `85af3ba875c88283615e22cb108f13e2fccaf0e9`. Cách chọn ca theo slide VN trang 15/EN trang 31: phủ các lớp hợp lệ bằng ca kết hợp; mỗi ca âm cơ bản chỉ sai một điều kiện.
 

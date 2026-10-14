@@ -361,3 +361,24 @@ Tạo 04-boundary-cases.md cho A-FR02 theo slide: số lần sai 2/3/4 và thờ
 ### Phạm vi và giới hạn
 
 Thiết kế 12 ca, có setup riêng, cách tính khoảng elapsed từ timestamp request/response với điều kiện áp dụng, và kế hoạch clock kiểm soát tại server cho đúng 30s. Phân biệt baseline tự nhiên với fixture kiểm toán tử; không có harness hay độ chính xác ms đã được kiểm chứng. Không chạy SUT, sửa code/DB, tạo kết quả test hoặc human review. Commit riêng BVA, tiến độ, audit và snapshot.
+
+## Interaction AI-011 — Ghi nhận review và ma trận coverage A-FR02
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi log:** 2026-10-15T00:08:28+07:00 (Asia/Ho_Chi_Minh); thời điểm ghi log, không phải thời điểm người dùng gửi chính xác.
+
+### Prompt/nhận xét nguyên văn
+
+```text
+Tôi đã đọc từng ca và hiểu hết các ca kiểm thử.
+
+Dựa trên review thực tế của tôi ở trên, cập nhật 05-review-coverage.md cho A-FR02, sửa các file cần thiết, đối chiếu yêu cầu → nhóm dữ liệu/biên → test case. Không ghi tôi đã duyệt phần chưa duyệt. Ghi audit và commit riêng bước review.
+```
+
+### AI output nguyên văn
+
+[AI-011-review-coverage-output.md](audit/AI-011-review-coverage-output.md) lưu bản review/coverage, trạng thái trong ba tài liệu A-FR02 liên quan, work-progress và phản hồi cuối. Giữ snapshot nguyên gốc khi các file làm việc được cập nhật; chèn nội dung đầy đủ khi xuất audit PDF.
+
+### Phạm vi và giới hạn
+
+Phản hồi của sinh viên được ghi chính xác là đã đọc và hiểu mọi ca kiểm thử. Không suy diễn thành phê duyệt tính đúng đắn, tính đầy đủ hoặc cách đo thời gian. Tạo ma trận 11 requirement tới EC/biên/TC và ghi các khoảng còn thiếu/đang có expected chưa rõ. Chưa chạy test, chưa ghi actual/bug. Không thay đổi expected hoặc TC do sinh viên chưa yêu cầu sửa cụ thể. Commit riêng review, cập nhật trạng thái, tiến độ, audit và snapshot.

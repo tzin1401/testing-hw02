@@ -18,7 +18,7 @@
 
 | Chức năng | Yêu cầu/input-output | EC | Ca Domain | Ca BVA | Review sinh viên | Thực thi | Bug/AI gaps |
 |---|---|---|---|---|---|---|---|
-| A-FR02 — Đăng nhập/khóa Web | Đã có bản nháp 01-requirements.md (AI-007) | Đã có bản nháp 02-domains.md (AI-008) | Đã có 24 ca nháp 03-domain-cases.md (AI-009) | Đã có 12 ca nháp 04-boundary-cases.md (AI-010) | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
+| A-FR02 — Đăng nhập/khóa Web | Đã có bản nháp 01-requirements.md (AI-007) | Đã có bản nháp 02-domains.md (AI-008) | Đã có 24 ca nháp 03-domain-cases.md (AI-009) | Đã có 12 ca nháp 04-boundary-cases.md (AI-010) | Đã đọc và hiểu ca (AI-011); chưa xác nhận phê duyệt thiết kế | Chưa ghi nhận | Chưa ghi nhận |
 | B-FR07 — Giỏ hàng Web | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | C-FR14 — Danh mục Admin | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | D-MREG — Đăng ký Mobile | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
@@ -61,8 +61,16 @@ Tạo commit sau từng bước thực sự hoàn thành của từng chức nă
 
 Các dấu hoàn thành ở đây chỉ ghi khả năng mở môi trường, không phải Pass test chức năng hay human review.
 
+## Review A-FR02
+
+- [x] Sinh viên xác nhận đã đọc và hiểu các ca kiểm thử Domain/BVA (AI-011).
+- [x] Tạo ma trận review/truy vết `features/A-FR02/05-review-coverage.md`.
+- [ ] Review kỹ thuật expected, lớp chưa rõ và protocol đo đúng 30 giây.
+- [ ] Chốt harness/fixture thời gian hoặc ghi giới hạn nếu không khả thi.
+- [ ] Thực thi ca và ghi actual/bằng chứng; hiện chưa có ca nào chạy.
+
+Phản hồi “đã hiểu” không được coi là phê duyệt tính đúng đắn của toàn bộ thiết kế hoặc xác nhận đã chạy test.
+
 ## Việc tiếp theo
 
-Đã có [12 ca BVA nháp A-FR02](../features/A-FR02/04-boundary-cases.md), gồm 2/3/4 request sai và 29/30/31 giây, cùng ca bổ sung. Có hướng dẫn setup độc lập và giới hạn đo; đúng 30s/sát biên 1ms phụ thuộc harness chưa xây dựng. Chưa có kết quả test hoặc human review.
-
-Tiếp theo: **bước 6 — sinh viên review** bốn file 01–04 của A-FR02. Dùng phản hồi thật để sửa thiết kế và tạo `05-review-coverage.md`; không ghi đã duyệt trước khi nhận phản hồi. Chưa chạy ca kiểm thử.
+Đọc [ma trận review](../features/A-FR02/05-review-coverage.md), đặc biệt mục 4 về năm điểm cần chú ý. Nếu bạn có nhận xét về expected hay phép đo, gửi nội dung cụ thể; nếu không, bước kế tiếp là chốt phương án đo thời gian/harness rồi chuẩn bị thực thi.

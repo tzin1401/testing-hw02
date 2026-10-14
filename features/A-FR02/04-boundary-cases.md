@@ -2,7 +2,7 @@
 
 **Sinh viên:** Nguyễn Lê Thế Vinh — 23120190 — Thành viên 2.
 
-**Trạng thái:** Thiết kế ở bước 5.4, toàn bộ ca **Not run**. Chưa có actual, Pass/Fail, human review hoặc bug xác nhận. Không chạy hoặc chỉnh SUT trong lượt tạo tài liệu này.
+**Trạng thái:** Thiết kế ở bước 5.4, toàn bộ ca **Not run**. Ngày 15/10/2026, sinh viên phản hồi đã đọc và hiểu các ca kiểm thử. Chưa có xác nhận phê duyệt phép đo/expected, actual, Pass/Fail hoặc bug. Không chạy hoặc chỉnh SUT trong lượt tạo tài liệu này.
 
 ## 1. Nguồn và cách chọn biên
 
