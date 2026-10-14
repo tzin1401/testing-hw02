@@ -321,3 +321,23 @@ Dựa trên requirements A-FR02, tạo 02-domains.md: chia từng đầu vào/tr
 ### Phạm vi và giới hạn
 
 Thiết kế lớp email, password, đường gửi, bộ đếm, thời gian khóa, lịch sử thao tác, token và output. Phân biệt hợp lệ/không hợp lệ/chưa chốt; ví dụ là dữ liệu đề xuất, chưa tạo hoặc thực thi. Chưa có human review hoặc kết quả test. Commit riêng tài liệu domains, tiến độ, audit và snapshot; không gom SUT/thay đổi khác.
+
+## Interaction AI-009 — Thiết kế test case Domain A-FR02
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi log:** 2026-10-14T23:41:06+07:00 (Asia/Ho_Chi_Minh); thời điểm ghi log, không phải thời điểm gửi prompt chính xác.
+- **Nguồn:** 02-domains.md; 01-requirements.md và slide đã đọc trong các lượt trước. Đọc Login.jsx/AuthContext.jsx để nhận diện control và điểm quan sát token, không dùng hành vi triển khai làm oracle.
+
+### Prompt nguyên văn
+
+```text
+Tạo 03-domain-cases.md cho A-FR02. Mỗi ca có ID, điều kiện chuẩn bị, dữ liệu nhập, từng thao tác click/nhập, expected result, EC ID và requirement liên quan. Mỗi ca âm cơ bản chỉ sai một điều kiện. Ghi audit và commit riêng.
+```
+
+### AI output nguyên văn
+
+[AI-009-domain-cases-output.md](audit/AI-009-domain-cases-output.md) lưu toàn văn file ca, tiến độ đã cập nhật, thông báo tiến độ và phản hồi cuối. Giữ bản snapshot; khi xuất audit PDF cần chèn toàn văn.
+
+### Phạm vi và giới hạn
+
+Thiết kế 24 ca Web/API, state và thăm dò; mỗi ca âm cơ bản thay một điều kiện. Có thủ tục chung để setup, quan sát state chỉ đọc, thao tác UI/API và kiểm soát ảnh hưởng giữa ca. 38 EC có liên kết ca dự kiến (một số chỉ có oracle một phần); L03 dành cho BVA, không tuyên bố đã thực thi/độ phủ 100%. Không chạy các lệnh test trong tài liệu, không tạo kết quả test hay human review. Commit riêng ca, tiến độ, audit và snapshot.

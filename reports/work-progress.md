@@ -18,7 +18,7 @@
 
 | Chức năng | Yêu cầu/input-output | EC | Ca Domain | Ca BVA | Review sinh viên | Thực thi | Bug/AI gaps |
 |---|---|---|---|---|---|---|---|
-| A-FR02 — Đăng nhập/khóa Web | Đã có bản nháp 01-requirements.md (AI-007) | Đã có bản nháp 02-domains.md (AI-008) | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
+| A-FR02 — Đăng nhập/khóa Web | Đã có bản nháp 01-requirements.md (AI-007) | Đã có bản nháp 02-domains.md (AI-008) | Đã có 24 ca nháp 03-domain-cases.md (AI-009) | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | B-FR07 — Giỏ hàng Web | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | C-FR14 — Danh mục Admin | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | D-MREG — Đăng ký Mobile | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
@@ -63,6 +63,6 @@ Các dấu hoàn thành ở đây chỉ ghi khả năng mở môi trường, kh�
 
 ## Việc tiếp theo
 
-Đã có bản nháp [yêu cầu](../features/A-FR02/01-requirements.md) và [lớp tương đương A-FR02](../features/A-FR02/02-domains.md). Các lớp chưa chốt expected được đánh dấu C, liên kết câu hỏi Q1–Q9; chưa ghi nhận review của sinh viên hoặc kết quả kiểm thử.
+Đã có [24 ca Domain nháp A-FR02](../features/A-FR02/03-domain-cases.md), gồm ca Web/API, chuỗi trạng thái và ca thăm dò chưa chốt đầy đủ expected. Mỗi ca có dữ liệu, chuẩn bị, thao tác, expected, EC và requirement. EC L03 (đúng mốc 30s) được chuyển công khai sang BVA; chưa có kết quả thực thi hoặc human review.
 
-Tiếp theo là **bước 5.3**: tạo `03-domain-cases.md` với tiền điều kiện, dữ liệu, thao tác cụ thể và expected theo lớp đã xác định. Không chuyển nhóm C thành expected chắc chắn khi chưa có căn cứ.
+Tiếp theo: **bước 5.4** — tạo `04-boundary-cases.md`, sau đó review toàn bộ thiết kế trước khi chạy. Không coi các ca thăm dò hoặc checkpoint phụ thuộc state chưa đạt là kết quả đã kiểm chứng.
