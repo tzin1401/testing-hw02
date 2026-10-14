@@ -480,3 +480,23 @@ Kết quả mâu thuẫn với `A-R04`/`A-R05` và expected của `A-BV-003`: sa
 ### Phạm vi và giới hạn
 
 Bước 8 được viết lại để người dùng gửi một prompt, Codex tự chạy toàn bộ test case A-FR02 khả thi qua API/UI, cập nhật mọi TC bằng evidence hoặc lý do chưa chạy, và chỉ yêu cầu người dùng thao tác UI khi Codex không điều khiển được trình duyệt. Lệnh script được xác định là công cụ nội bộ Codex; hướng dẫn script giải thích người dùng không cần tự chạy. Cũng ghi lại Run 002 đã thực sự xảy ra ở lượt trước để work-progress không còn khẳng định “chưa chạy”. Không chạy test mới trong lượt sửa tài liệu này.
+
+
+## Interaction AI-016 — Viết đầy đủ quy trình cho B-FR07, C-FR14 và D-MREG
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi log:** 2026-10-15T00:54:46+07:00 (Asia/Ho_Chi_Minh), thời điểm cập nhật audit.
+
+### Yêu cầu nguyên văn
+
+```text
+Ở các fr khác bạn chỉ ghi lặp lại cho giống giống này kia thì tôi yêu cầu bạn ghi ra đầy đủ như fr-02
+```
+
+### AI output nguyên văn
+
+[audit/AI-016-other-features-guide-output.md](audit/AI-016-other-features-guide-output.md) lưu toàn văn các bước 10–13 mới trong `LAM_HW02_TUNG_BUOC.md`. Phần này thay chỉ dẫn chung “lặp lại bước 5–6” bằng prompt thực hiện theo từng giai đoạn và tiêu chí riêng cho từng chức năng. `HUONG_DAN_HW02_23120190.md` cũng được cập nhật để trỏ rõ sang quy trình chi tiết tương ứng.
+
+### Phạm vi và giới hạn
+
+B-FR07 có nguồn FR-07/FR-06, lớp giỏ/quantity, ca gộp dòng/điều chỉnh/xóa/tính tiền và giới hạn state UI. C-FR14 có FR-14/FR-12, CRUD thực sự được yêu cầu (Thêm/Xem/Xóa), role/token và bảo vệ dữ liệu test. D-MREG có FR-20/FR-01, mật khẩu/email/confirm, biên 7/8/9 và yêu cầu chạy trên Mobile UI. Mỗi phần có prompt requirements → domains → Domain cases → BVA → review/coverage → execution/bug, cùng các điểm expected chưa rõ. Chỉ sửa hướng dẫn và audit/snapshot; không tạo test case tính năng mới, không chạy test SUT, không điền actual/review.
