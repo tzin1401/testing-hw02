@@ -18,7 +18,7 @@
 
 | Chức năng | Yêu cầu/input-output | EC | Ca Domain | Ca BVA | Review sinh viên | Thực thi | Bug/AI gaps |
 |---|---|---|---|---|---|---|---|
-| A-FR02 — Đăng nhập/khóa Web | Đã có bản nháp 01-requirements.md (AI-007) | Đã có bản nháp 02-domains.md (AI-008) | Đã có 24 ca nháp 03-domain-cases.md (AI-009) | Đã có 12 ca nháp 04-boundary-cases.md (AI-010) | Đã đọc và hiểu ca (AI-011); chưa xác nhận phê duyệt thiết kế | A-DT-001 UI được báo thành công; toàn TC còn checkpoint token và bằng chứng (AI-012) | Chưa ghi nhận |
+| A-FR02 — Đăng nhập/khóa Web | Đã có bản nháp 01-requirements.md (AI-007) | Đã có bản nháp 02-domains.md (AI-008) | Đã có 24 ca nháp 03-domain-cases.md (AI-009) | Đã có 12 ca nháp 04-boundary-cases.md (AI-010) | Đã đọc và hiểu ca (AI-011); chưa xác nhận phê duyệt thiết kế | A-DT-001 UI được báo thành công; toàn TC còn checkpoint token và bằng chứng (AI-012) | Chưa ghi nhận | Script hỗ trợ/API chưa chạy (AI-013) |
 | B-FR07 — Giỏ hàng Web | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | C-FR14 — Danh mục Admin | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | D-MREG — Đăng ký Mobile | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
@@ -80,6 +80,16 @@ Phản hồi “đã hiểu” không được coi là phê duyệt tính đúng
 
 Phản hồi “mọi thứ đều pass” được giữ kèm phạm vi chi tiết thực tế đã mô tả. A-DT-001 kiểm tra cả token, nên toàn TC chưa đóng chỉ từ chuyển trang UI. Xem [execution log](../features/A-FR02/06-execution.md).
 
+## Script hỗ trợ A-FR02
+
+- [x] Tạo `scripts/A-FR02-login-sequence.py` và hướng dẫn `scripts/README-A-FR02.md`.
+- [x] Đọc cú pháp Python tĩnh; **không chạy script và không gọi API** ở lượt chuẩn bị.
+- [ ] Sinh viên chạy từng chuỗi bằng `--attempts 2`, `3` hoặc `4`; xem JSONL tại đường dẫn script in ra.
+- [ ] Thực hiện ca UI riêng, lưu screenshot và Network evidence.
+- [ ] Gửi log/ảnh/nhận xét để cập nhật execution.
+
+Script tạo tài khoản mới bằng API đăng ký cho mỗi lần chạy. Terminal output không lưu password/token; state DB đọc-only là quan sát bổ trợ. Đo monotonic là ở client và không chứng minh thời điểm server so sánh đúng 30 giây.
+
 ## Việc tiếp theo
 
-Hoàn tất các checkpoint còn thiếu của A-DT-001 bằng DevTools và screenshot. Sau đó tiếp tục những ca thiết kế đã review; không reset/restart backend khi cần giữ trạng thái khóa.
+Chạy một chuỗi API theo hướng dẫn và lưu log JSONL. Tiếp tục thực hiện ca UI riêng; không dùng kết quả API thay cho UI hoặc restart backend khi cần giữ state khóa.

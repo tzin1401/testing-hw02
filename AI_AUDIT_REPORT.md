@@ -415,3 +415,28 @@ Tôi test rồi và mọi thứ đều pass. Điền giúp tôi
 ### Giới hạn và phân loại
 
 Ghi theo lời người dùng: thao tác login UI thành công, chuyển về trang chủ, thấy user đăng nhập. Người dùng chưa đưa response/network log, kết quả storage/header hoặc screenshot login. TC A-DT-001 gồm các checkpoint token nên đánh dấu toàn TC chưa hoàn tất, không đổi thành Pass từ câu “mọi thứ đều pass” khi phạm vi chi tiết chưa chứng minh các checkpoint còn lại. Không chạy test trong lượt này.
+
+## Interaction AI-013 — Chuẩn bị script API A-FR02
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi log:** 2026-10-15T00:22:32+07:00 (Asia/Ho_Chi_Minh), thời điểm ghi log.
+
+### Prompt và checklist nguyên văn
+
+```text
+> Chuẩn bị hỗ trợ chạy A-FR02 theo các ca đã review. Tạo script Python 3 dùng thư viện chuẩn để tạo tài khoản test riêng từng chuỗi, gửi login tuần tự và lưu request/response cùng timestamp; theo dõi state DB chỉ đọc nếu cần. Không import database.js vì sẽ reset dữ liệu. Dùng monotonic clock đo khoảng thời gian; không ghi Pass tại đúng 30 giây nếu phép đo không đủ chính xác. Chỉ tạo script và hướng dẫn lệnh chạy ở thư mục gốc, chưa tự chạy test. Ghi audit và commit riêng phần chuẩn bị script.
+
+- [ ] Chạy đúng lệnh được hướng dẫn sau khi script được tạo; lưu terminal output vào vị trí script chỉ định.
+- [ ] Với mỗi ca UI trong bảng, vào trang login và làm đúng từng bước. Chụp lỗi/đầu ra.
+- [ ] Gửi tôi log cùng đường dẫn ảnh và nhận xét của bạn:
+
+> Đọc bằng chứng A-FR02 tôi vừa chạy, đối chiếu với expected đã review. Điền 06-execution.md, đánh dấu rõ ca UI/API, ca chưa chạy và ca bị chặn. Không suy ra kết quả UI từ API. Hỏi lại nếu bằng chứng chưa đủ. Ghi audit và commit phần thực thi sau khi đối chiếu xong.
+```
+
+### AI output nguyên văn
+
+[audit/AI-013-runner-output.md](audit/AI-013-runner-output.md) lưu toàn văn script, hướng dẫn chạy, work-progress và phản hồi. Giữ snapshot này; đưa nội dung đầy đủ vào audit PDF khi nộp.
+
+### Nội dung và giới hạn
+
+Script dùng thư viện chuẩn Python (`urllib`, `sqlite3` chỉ đọc, `time.monotonic`), tạo email test riêng qua endpoint đăng ký, gửi số lần login sai tuần tự, ghi JSONL và che password/token cả trong request lẫn response. Hướng dẫn nêu lệnh chạy và giới hạn đo thời gian client. Chỉ parse cú pháp tĩnh; không thực thi script, không gọi endpoint, không tạo tài khoản hoặc chạy test.
