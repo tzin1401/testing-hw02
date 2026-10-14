@@ -563,3 +563,22 @@ Lượt UI ban đầu nằm trong API run folder nhưng bị nhiễm token giữ
 - **Đã đọc/đối chiếu:** `features/B-FR07/01-requirements.md`; SRS FR-06/FR-07 trong `eshop-sut/README.md`; API spec mục 4.1–4.2; slide `domain-testing-en.pdf`/`domain-testing-vn.pdf`; phân công Thành viên 2. SUT đang ở baseline `85af3ba875c88283615e22cb108f13e2fccaf0e9`. Không lấy source code làm oracle.
 - **Output:** [`features/B-FR07/02-domains.md`](features/B-FR07/02-domains.md), B-EC-01–B-EC-41; snapshot tại [`audit/AI-021-bfr07-domains-output.md`](audit/AI-021-bfr07-domains-output.md). Tiến độ ghi trong `reports/work-progress.md`.
 - **Giới hạn:** Chưa có human review; chưa tạo test case, chưa chạy SUT. Input API invalid, ID không tồn tại, giá thay đổi, decrement tại 1, cancel delete, persistence, tổng hợp tổng giỏ và badge count được giữ là thăm dò/câu hỏi nếu nguồn không đủ; không gán Pass/Fail. Phân hoạch là thiết kế EC theo slide, các giá trị minh họa không phải kết quả chạy.
+
+## Interaction AI-022 — Thiết kế ca Domain B-FR07
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi log:** 2026-10-15T02:00:10+07:00 (2026-10-14T19:00:10Z); thời điểm ghi log, không phải thời điểm gửi prompt chính xác.
+- **Phạm vi:** tạo các ca Domain UI cho B-FR07 từ requirements và domains; ghi rõ một ca thăm dò API không có expected oracle.
+
+### Prompt nguyên văn
+
+```text
+Tạo `features/B-FR07/03-domain-cases.md` từ requirements và domains đã review. Mỗi ca ghi TC ID `B-DT-nnn`, mục tiêu, loại UI/API, điều kiện chuẩn bị và trạng thái giỏ ban đầu, dữ liệu cụ thể (tên/ID/giá sản phẩm, số lượng), từng bước click/nhập, expected theo từng requirement, EC ID, cách quan sát và bằng chứng cần lưu. Phải có ca độc lập cho: giỏ rỗng; một sản phẩm; hai sản phẩm khác nhau; thêm cùng sản phẩm lần hai và xác nhận gộp dòng/tăng quantity; kiểm tra đơn giá × quantity và tổng; tăng/giảm bằng +/-; giảm khi đang là 1; mở dialog xóa rồi hủy; xác nhận xóa đúng dòng; xóa dòng cuối; tiếp tục mua sắm; nhãn “Tổng cộng”; số lượng sai miền nếu UI cho nhập. Ca âm cơ bản chỉ sai một điều kiện. Dùng sản phẩm test có giá biết trước; không xóa dữ liệu mẫu. Ghi reset giỏ bằng thao tác UI, vì reload chỉ được dùng khi bắt đầu ca độc lập và state giỏ có thể mất. Nếu control không tồn tại, thiết kế ca kiểm tra sự hiện diện và đánh dấu ca tương tác phụ thuộc; không giả định có nút để click. Không tạo actual/status. Ghi audit và commit riêng.
+```
+
+### Đối chiếu và đầu ra
+
+- **Đã đọc/đối chiếu:** `features/B-FR07/01-requirements.md`; `features/B-FR07/02-domains.md`; FR-06/FR-07, API specification, slide Domain/BVA và phân công Thành viên 2. Baseline SUT được ghi trong các tài liệu trước; không dùng mã nguồn SUT làm oracle.
+- **Output:** 20 ca `B-DT-001`–`B-DT-020` trong [`features/B-FR07/03-domain-cases.md`](features/B-FR07/03-domain-cases.md); bản snapshot đầy đủ tại [`audit/AI-022-bfr07-domain-cases-output.md`](audit/AI-022-bfr07-domain-cases-output.md). Cập nhật tiến độ trong [`reports/work-progress.md`](reports/work-progress.md).
+- Ca bao gồm UI độc lập cho trạng thái giỏ, thêm/gộp, giá, +/- và các nhánh xóa; các giá trị invalid được nhập ở ô quantity thuộc FR-06 nếu control cho phép. Có một ca API exploratory không có oracle; không thay cho UI.
+- Giữ câu hỏi chưa được nguồn quy định thành expected cần review hoặc observation-only (ví dụ tổng giỏ, decrement tại 1, nhánh Hủy, delta nút +/- và validation API). Không ghi actual/status, không chạy SUT và không ghi nhận human review/phê duyệt.
