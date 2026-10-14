@@ -4,7 +4,7 @@
 
 **Declaration:** “I use AI tools for the following tasks,” — đọc và đối chiếu yêu cầu bài tập, bài giảng, phân công nhóm và tài liệu/mã nguồn SUT; xây dựng hướng dẫn thực hiện và ghi audit. Các công việc khác được bổ sung khi thực sự thực hiện.
 
-Đây là log đang phát triển, chưa phải phụ lục hoàn chỉnh để nộp. Chưa có test execution hay bug runtime được xác nhận trong lượt tạo hướng dẫn. Phản hồi review của sinh viên được cập nhật bên dưới. Các lượt trước về upload PDF/tóm tắt yêu cầu chưa được nhập lại vào log; cần bổ sung từ lịch sử thật cùng ngày giờ nếu lấy được. Không tự điền timestamp ước đoán. Bản nộp cuối cần Markdown + PDF, bao gồm nội dung đầy đủ của các output đính kèm.
+Đây là log đang phát triển, chưa phải phụ lục hoàn chỉnh để nộp. Các kết quả thực thi và bug được ghi theo từng interaction bên dưới; lượt tạo hướng dẫn ban đầu không chạy test. Phản hồi review của sinh viên được cập nhật bên dưới. Các lượt trước về upload PDF/tóm tắt yêu cầu chưa được nhập lại vào log; cần bổ sung từ lịch sử thật cùng ngày giờ nếu lấy được. Không tự điền timestamp ước đoán. Bản nộp cuối cần Markdown + PDF, bao gồm nội dung đầy đủ của các output đính kèm.
 
 ## Interaction AI-001 — Tạo hướng dẫn cá nhân
 
@@ -622,3 +622,24 @@ Dựa trên review thực tế của tôi, cập nhật `features/B-FR07/05-revi
 - Phản hồi được ghi là hiểu 20 ca Domain `B-DT-001`–`B-DT-020` và 6 ca BVA `B-BV-001`–`B-BV-006`; không có ca nào được nêu là chưa hiểu. Không ghi đây là phê duyệt tính đúng của expected hoặc giả định.
 - Không có sửa đổi TC nào được người dùng yêu cầu. Các khoảng trống oracle (tổng giỏ, decrement tại 1, delta nút, hủy dialog, identity và API invalid) tiếp tục được đánh dấu cần xác nhận; không suy ra sự phê duyệt.
 - Không chạy SUT, không tạo actual/status/Pass/Fail và không ghi nhận phê duyệt test design.
+
+
+## Interaction AI-025 — Thực thi Domain/BVA B-FR07
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại; Chrome headless/CDP để thao tác Web.
+- **Thời gian run:** 2026-10-14T19:16:46.195Z–2026-10-14T19:18:04.924Z (UTC+07:00: 15/10/2026 02:16:46–02:18:04). Thời điểm bắt đầu/kết thúc lấy từ run metadata.
+- **Repo/SUT baseline:** `e00b2938de12fe6ce12b947354f3dff3a2455f16` / `85af3ba875c88283615e22cb108f13e2fccaf0e9`.
+- **Prompt nguyên văn:**
+
+```text
+Thực thi toàn bộ ca Domain và BVA B-FR07 trong `features/B-FR07/03-domain-cases.md` và `04-boundary-cases.md`. Đọc SRS/oracle và kiểm tra Web/backend đang chạy trước khi bắt đầu. Tự chạy những gì có thể; không yêu cầu tôi chạy lệnh terminal. Giỏ hàng là state phía Web: không coi gọi riêng API hoặc đọc code là test UI. Mỗi ca bắt đầu từ trạng thái giỏ được nêu; reset chỉ bằng thao tác phù hợp và ghi rõ, không reload giữa chuỗi đang cần giữ state. Chỉ dùng sản phẩm test và không xóa sản phẩm/dữ liệu mẫu. Chụp ảnh hoặc video cho từng checkpoint UI; ghi giá, quantity, thành tiền và phép tính tổng; nếu trình duyệt không điều khiển được thì chạy hết phần có thể trước rồi gửi thao tác UI cụ thể còn thiếu. Đánh dấu từng TC Pass/Fail/Blocked/Not run theo bằng chứng; ca phụ thuộc nút +/- không tồn tại phải Blocked sau khi ghi Fail riêng cho yêu cầu sự hiện diện. Không tự đặt expected cho giới hạn chưa có trong SRS. Cập nhật `06-execution.md`, `07-bugs-and-ai-gaps.md`, `reports/work-progress.md`, evidence và AI Audit. Chuẩn bị nội dung GitHub Issue nhưng chưa đăng issue nếu thiếu ảnh yêu cầu. Commit riêng phần thực thi, chỉ stage file B và evidence liên quan.
+```
+
+- **Nguồn đã đọc:** `eshop-sut/README.md` FR-06/FR-07; `eshop-sut/api_specification.md` mục cart; `features/B-FR07/01-requirements.md` đến `05-review-coverage.md`; phân công Thành viên 2; quy tắc Domain/BVA trong slide đã lưu. SRS là oracle chính; không dùng code SUT để tạo expected.
+- **Kiểm tra trước run:** backend `:3000`, Web `:5173`, Admin `:5174` đang lắng nghe; `GET /api/products` và trang Web trả HTTP 200; catalog có 5 sản phẩm, P1/P2 tên/ID/giá khớp fixture. Không restart service.
+- **Đầu vào:** account test `test@eshop.com` (không lưu password/token); P1 ID 1 giá 30.000.000 VND; P2 ID 2 giá 28.000.000 VND.
+- **Output:** [`features/B-FR07/06-execution.md`](features/B-FR07/06-execution.md), [`features/B-FR07/07-bugs-and-ai-gaps.md`](features/B-FR07/07-bugs-and-ai-gaps.md), [`reports/work-progress.md`](reports/work-progress.md), và snapshot [`audit/AI-025-bfr07-execution-output.md`](audit/AI-025-bfr07-execution-output.md). Run evidence ở `evidence/B-FR07/full-runs/20261014T191645Z-BFR07-UI/` với 107 screenshots, checkpoint timestamps, case result JSON, metadata, request observation và notes.
+- **Kết quả:** 26 ca: Pass 1, Fail 2, Blocked 23, Not run 0. B-DT-001 Fail vì empty state có thông báo nhưng thiếu hình minh họa. B-DT-002 Fail vì click thêm P1 q=1 không tạo dòng, Web cart vẫn rỗng và không thấy UI POST. B-DT-019 Pass theo expected của ca: input `type=number` không giữ chuỗi `abc` (giá trị sau nhập rỗng). Không quan sát được giá/quantity/thành tiền/tổng của dòng giỏ vì không thêm được sản phẩm qua UI; không tự suy diễn actual. Các ca phụ thuộc giỏ populated đều Blocked. Nút +/- chưa được quan sát nên không ghi nhận Fail presence.
+- **Issue:** soạn hai draft (B-BUG-001 Add không cập nhật giỏ; B-BUG-002 empty state thiếu illustration), có reproduction, expected/actual, labels đề xuất và ảnh cần đính kèm. Chưa đăng GitHub.
+- **AI/harness gap và side effect:** trial `20261014T191002Z-BFR07` bị loại vì harness append giá trị làm `1` thành `11`; mọi kết quả UI từ trial không dùng. Trial này đã gửi exploratory API POST quantity 1.5 trước khi loại. Run qualified cũng gửi API POST quantity 1.5 trong B-DT-020, nhận HTTP 200 `Added to cart`; API spec/SRS không định nghĩa expected invalid input nên đây chỉ là observation. GET chỉ đọc sau đó trả hai entry P1 q=1.5, nhưng không có baseline cart trước các POST nên không thể quy thuộc từng entry. UI không hiển thị dòng để dọn; không gọi API delete, không sửa database, không restart backend. State API cục bộ này còn lại và cần được biết trước lần kiểm thử sau.
+- **An toàn dữ liệu:** không sửa/xóa sản phẩm mẫu, không thay đổi SUT, không reset backend. Ca độc lập được xác nhận/reset bằng Web UI; không seed cart bằng API.

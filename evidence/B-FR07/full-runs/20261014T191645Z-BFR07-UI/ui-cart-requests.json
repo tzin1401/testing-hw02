@@ -1,0 +1,5 @@
+{
+  "instrumentation": "Chrome DevTools Protocol Network events filtered to /api/cart during Web UI actions",
+  "observedRequests": [],
+  "interpretation": "No UI cart request observed while clicking Add for valid q=1; direct exploratory API call is separately logged in cases.json and api-cart-followup.json."
+}

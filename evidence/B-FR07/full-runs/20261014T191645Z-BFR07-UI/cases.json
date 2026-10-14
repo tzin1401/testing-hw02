@@ -1,0 +1,616 @@
+[
+  {
+    "tc": "B-DT-001",
+    "title": "Giỏ rỗng",
+    "status": "Fail",
+    "actual": {
+      "messageVisible": true,
+      "illustrationVisible": false,
+      "visibleText": "Giỏ hàng của bạn đang trống",
+      "screenshot": "screenshots/B-DT-001_empty-state.png"
+    },
+    "expected": "SRS FR-07 requires both an illustration and clear empty-cart message; observed message only.",
+    "evidence": [
+      "screenshots/B-DT-001_start-empty.png",
+      "screenshots/B-DT-001_empty-state.png"
+    ]
+  },
+  {
+    "tc": "B-DT-002",
+    "title": "Một sản phẩm",
+    "status": "Fail",
+    "actual": {
+      "add": {
+        "input": {
+          "found": true,
+          "value": "1",
+          "type": "number",
+          "valid": true
+        },
+        "clicked": true,
+        "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+      },
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử.",
+      "cartNetwork": []
+    },
+    "expected": "Valid P1 q=1 is added and shown in one cart line",
+    "evidence": [
+      "screenshots/B-DT-002_start-empty.png",
+      "screenshots/B-DT-002_input-p1-default.png",
+      "screenshots/B-DT-002_after-add-p1.png",
+      "screenshots/B-DT-002_cart-after-add.png"
+    ]
+  },
+  {
+    "tc": "B-DT-003",
+    "title": "Two different products",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        },
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nSamsung Galaxy S24 Ultra\n\n28,000,000 ₫\n\nMàn hình hiển thị xuất sắc, camera siêu zoom\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-004",
+    "title": "Add same product again",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        },
+        {
+          "input": {
+            "found": true,
+            "value": "2",
+            "type": "number",
+            "valid": true,
+            "validation": ""
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-005",
+    "title": "Line amount and total",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "2",
+            "type": "number",
+            "valid": true,
+            "validation": ""
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        },
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nSamsung Galaxy S24 Ultra\n\n28,000,000 ₫\n\nMàn hình hiển thị xuất sắc, camera siêu zoom\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-006",
+    "title": "Plus control presence",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-007",
+    "title": "Click plus",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-008",
+    "title": "Minus control presence",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "2",
+            "type": "number",
+            "valid": true,
+            "validation": ""
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-009",
+    "title": "Click minus from 2",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "2",
+            "type": "number",
+            "valid": true,
+            "validation": ""
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-010",
+    "title": "Click minus at 1",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-011",
+    "title": "Open delete dialog and cancel",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-012",
+    "title": "Confirm delete selected row",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        },
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nSamsung Galaxy S24 Ultra\n\n28,000,000 ₫\n\nMàn hình hiển thị xuất sắc, camera siêu zoom\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-013",
+    "title": "Delete last line",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-014",
+    "title": "Continue shopping with line",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-015",
+    "title": "Total label",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-BV-002",
+    "title": "Boundary input q=1",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-BV-003",
+    "title": "Boundary input q=2",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "2",
+            "type": "number",
+            "valid": true,
+            "validation": ""
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-BV-004",
+    "title": "Decrease from q=2",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "2",
+            "type": "number",
+            "valid": true,
+            "validation": ""
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-BV-005",
+    "title": "Decrease at q=1",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-BV-006",
+    "title": "Increase from q=1",
+    "status": "Blocked",
+    "reason": "Could not establish the required cart state through UI: valid Add q=1 also fails in B-DT-002. Dependent operation cannot be tested; no API seeding used.",
+    "actual": {
+      "attempts": [
+        {
+          "input": {
+            "found": true,
+            "value": "1",
+            "type": "number",
+            "valid": true
+          },
+          "clicked": true,
+          "body": "EShop\nGiỏ hàng\nChào, Test User\nThoát\niPhone 15 Pro Max\n\n30,000,000 ₫\n\nĐiện thoại cao cấp của Apple\n\nSố lượng:\nThêm vào giỏ hàng\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+        }
+      ],
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-016",
+    "title": "Domain quantity 0",
+    "status": "Blocked",
+    "reason": "Value observation captured, but the valid Add control fails; cannot determine whether this invalid quantity would be accepted into cart.",
+    "actual": {
+      "input": {
+        "found": true,
+        "value": "0",
+        "type": "number",
+        "valid": true,
+        "validation": ""
+      },
+      "clicked": true,
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-017",
+    "title": "Domain negative quantity",
+    "status": "Blocked",
+    "reason": "Value observation captured, but the valid Add control fails; cannot determine whether this invalid quantity would be accepted into cart.",
+    "actual": {
+      "input": {
+        "found": true,
+        "value": "-1",
+        "type": "number",
+        "valid": true,
+        "validation": ""
+      },
+      "clicked": true,
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-018",
+    "title": "Domain decimal quantity",
+    "status": "Blocked",
+    "reason": "Value observation captured, but the valid Add control fails; cannot determine whether this invalid quantity would be accepted into cart.",
+    "actual": {
+      "input": {
+        "found": true,
+        "value": "1.5",
+        "type": "number",
+        "valid": false,
+        "validation": "Please enter a valid value. The two nearest valid values are 1 and 2."
+      },
+      "clicked": true,
+      "rows": [],
+      "text": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử."
+    }
+  },
+  {
+    "tc": "B-DT-019",
+    "title": "Domain nonnumeric quantity",
+    "status": "Pass",
+    "actual": {
+      "input": {
+        "found": true,
+        "value": "",
+        "type": "number",
+        "valid": true,
+        "validation": ""
+      },
+      "rows": []
+    },
+    "expected": "Non-numeric text is rejected by quantity field",
+    "evidence": [
+      "screenshots/B-DT-019_start-empty.png",
+      "screenshots/B-DT-019_quantity-input.png",
+      "screenshots/B-DT-019_cart-after-input.png"
+    ]
+  },
+  {
+    "tc": "B-DT-020",
+    "title": "API exploratory decimal with Web observation",
+    "status": "Blocked",
+    "reason": "Exploratory API quantity has no defined expected result; response and resulting UI state recorded without verdict.",
+    "actual": {
+      "request": {
+        "id": 1,
+        "name": "iPhone 15 Pro Max",
+        "price": 30000000,
+        "quantity": 1.5
+      },
+      "responseStatus": 200,
+      "responseBody": "{\"message\":\"Added to cart\"}",
+      "authorization": "[REDACTED]",
+      "webRows": [],
+      "webText": "EShop\nGiỏ hàng\nChào, Test User\nThoát\nGiỏ hàng của bạn đang trống\nTiếp tục mua sắm\n© 2026 EShop SUT. Dành cho mục đích kiểm thử.",
+      "followupApiGet": {
+        "responseStatus": 200,
+        "responseBody": [
+          {
+            "id": 1,
+            "name": "iPhone 15 Pro Max",
+            "price": 30000000,
+            "quantity": 1.5
+          },
+          {
+            "id": 1,
+            "name": "iPhone 15 Pro Max",
+            "price": 30000000,
+            "quantity": 1.5
+          }
+        ],
+        "note": "No pre-run API-cart baseline; may include request from discarded harness. Web UI remained empty. No API cleanup attempted."
+      }
+    }
+  },
+  {
+    "tc": "B-BV-001",
+    "title": "Boundary input q=0",
+    "status": "Blocked",
+    "reason": "Observed field value; cannot evaluate cart rejection because valid Add flow fails at q=1.",
+    "actual": {
+      "input": {
+        "found": true,
+        "value": "0",
+        "type": "number",
+        "valid": true,
+        "validation": ""
+      },
+      "clicked": true,
+      "rows": []
+    }
+  }
+]

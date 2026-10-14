@@ -1,0 +1,21 @@
+{
+  "runId": "20261014T191645Z-BFR07-UI",
+  "startedUtc": "2026-10-14T19:16:46.195Z",
+  "sutCommit": "85af3ba875c88283615e22cb108f13e2fccaf0e9",
+  "repoCommit": "e00b2938de12fe6ce12b947354f3dff3a2455f16",
+  "browser": "Chrome/154.0.8037.57",
+  "account": "test@eshop.com (known test account; credentials omitted)",
+  "fixtures": [
+    {
+      "id": 1,
+      "name": "iPhone 15 Pro Max",
+      "price": 30000000
+    },
+    {
+      "id": 2,
+      "name": "Samsung Galaxy S24 Ultra",
+      "price": 28000000
+    }
+  ],
+  "method": "Chrome headless; rendered Web interactions by pointer/keyboard; UI-only cart resets"
+}

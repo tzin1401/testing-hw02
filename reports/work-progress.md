@@ -19,7 +19,7 @@
 | Chức năng | Yêu cầu/input-output | EC | Ca Domain | Ca BVA | Review sinh viên | Thực thi | Bug/AI gaps |
 |---|---|---|---|---|---|---|---|
 | A-FR02 — Đăng nhập/khóa Web | Requirements A-R01–A-R11 (AI-007) | Các EC đã ghi (AI-008) | 24 ca thiết kế (AI-009) | 12 ca thiết kế (AI-010) | Sinh viên nói đã đọc/hiểu (AI-011); chưa xác nhận phê duyệt thiết kế | Run 001 user-reported; Run 003 API, Run 004 UI, Run 005 ảnh bổ sung; 33/36 TC có actual/checkpoint, 3 mốc clock Not run; xem 06-execution | 3 bug đã đăng Issue #1–#3 có ảnh/labels; AI gaps trong harness ở 07 |
-| B-FR07 — Giỏ hàng Web | Requirements B-R01–B-R13 (AI-020); câu hỏi mở được đánh dấu | EC B-EC-01–B-EC-41 (AI-021); các lớp chưa rõ giữ dạng thăm dò | 20 ca B-DT-001–020 (AI-022); chưa có actual/status | 6 ca B-BV-001–006 (AI-023); chưa có actual/status | Người dùng xác nhận đã hiểu toàn bộ ca (AI-024); chưa phê duyệt expected | Chưa chạy | Chưa ghi nhận |
+| B-FR07 — Giỏ hàng Web | Requirements B-R01–B-R13 (AI-020); câu hỏi mở được đánh dấu | EC B-EC-01–B-EC-41 (AI-021); các lớp chưa rõ giữ dạng thăm dò | 20 ca B-DT-001–020 (AI-022) | 6 ca B-BV-001–006 (AI-023) | Người dùng xác nhận đã hiểu toàn bộ ca (AI-024); chưa phê duyệt expected | Run `20261014T191645Z-BFR07-UI`: 1 Pass / 2 Fail / 23 Blocked / 0 Not run; xem `features/B-FR07/06-execution.md` | 2 issue draft chưa đăng; AI gaps và side effect API ghi ở `07-bugs-and-ai-gaps.md` (AI-025) |
 | C-FR14 — Danh mục Admin | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | D-MREG — Đăng ký Mobile | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 
@@ -93,3 +93,15 @@ Script tạo tài khoản mới bằng API đăng ký cho mỗi lần chạy. Te
 ## Việc tiếp theo
 
 A-FR02 đã có execution table và GitHub Issues #1–#3 có ảnh. Còn review kỹ thuật, quyết định về harness clock cho ba mốc chưa chạy, và tiếp tục chức năng B-FR07. Không xóa tài khoản test hoặc restart backend khi chưa cần và chưa bảo toàn bằng chứng.
+
+
+## Thực thi B-FR07 — AI-025
+
+- [x] Đọc lại FR-06/FR-07, API spec, requirements, EC, Domain/BVA cases và review coverage; xác minh Web/backend/API đang phản hồi trước run.
+- [x] Chạy Web UI bằng Chrome headless riêng; 26 ca, 107 screenshot checkpoint có timestamp UTC/monotonic.
+- [x] Ghi từng TC: **1 Pass, 2 Fail, 23 Blocked, 0 Not run**. Hai Fail là empty state thiếu illustration và Add hợp lệ không thêm hàng. Không coi API request/code là test UI.
+- [x] Không sửa/xóa sản phẩm, không restart backend, không seed cart qua API; reset các ca bằng UI.
+- [x] Tạo `features/B-FR07/06-execution.md`, `07-bugs-and-ai-gaps.md`; hai issue draft có nội dung và ảnh nhưng chưa đăng.
+- [x] Cập nhật audit và tiến độ.
+
+**Giới hạn/side effect:** Run thử đầu bị loại do harness nhập quantity sai (1 thành 11), nhưng đã gửi một API POST exploratory quantity 1.5. Qualified run cũng gửi API POST exploratory 1.5; response HTTP 200. GET chỉ đọc cho thấy hai entry, nhưng không có API cart baseline nên không thể phân bổ; UI không hiển thị entry để dọn. Không gọi API delete hoặc sửa DB. Chi tiết trong execution notes và AI Audit AI-025.

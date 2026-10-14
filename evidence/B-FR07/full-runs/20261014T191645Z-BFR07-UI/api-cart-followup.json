@@ -1,0 +1,9 @@
+{
+  "checkedAtUtc": "2026-10-14T19:20:55.199Z",
+  "method": "GET",
+  "endpoint": "/api/cart",
+  "responseStatus": 200,
+  "responseBody": "[{\"id\":1,\"name\":\"iPhone 15 Pro Max\",\"price\":30000000,\"quantity\":1.5},{\"id\":1,\"name\":\"iPhone 15 Pro Max\",\"price\":30000000,\"quantity\":1.5}]",
+  "authorization": "[REDACTED]",
+  "purpose": "Read-only follow-up to record API state; does not represent Web UI state or test oracle. No API pre-run baseline was captured."
+}
