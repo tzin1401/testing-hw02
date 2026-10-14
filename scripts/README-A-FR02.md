@@ -1,6 +1,6 @@
 # Chạy chuỗi đăng nhập API A-FR02
 
-Script này tạo một tài khoản riêng qua API đăng ký, sau đó gửi 1–4 lần đăng nhập sai **tuần tự**. Mỗi lần gọi script sinh email/run ID mới. Script chỉ ghi request/response và counter/lock state nếu đọc được DB; script không tự kết luận Pass/Fail.
+Script này là công cụ hỗ trợ để **Codex chạy các chuỗi API** khi bạn gửi prompt ở bước 8 của `LAM_HW02_TUNG_BUOC.md`. Bạn không cần tự gọi script nếu muốn tôi thực hiện test. Mỗi lần gọi tạo một tài khoản riêng qua API đăng ký, sau đó gửi 1–4 lần đăng nhập sai **tuần tự** với email/run ID mới. Script chỉ ghi request/response và counter/lock state nếu đọc được DB; script không tự kết luận Pass/Fail.
 
 ## Trước khi chạy
 
@@ -8,16 +8,16 @@ Script này tạo một tài khoản riêng qua API đăng ký, sau đó gửi 1
 2. Mở terminal mới ở thư mục gốc bài làm. Không chạy `node database.js` và không restart backend giữa một chuỗi test.
 3. Chọn số lần theo ca: `2` để khảo sát dưới ngưỡng, `3` để kiểm tra ngưỡng, `4` để gửi request thứ tư khi tài khoản có thể đã khóa. Mỗi lựa chọn tạo tài khoản mới.
 
-## Lệnh chạy
+## Lệnh chạy (tham khảo)
 
-Chạy **một lệnh cho mỗi chuỗi cần thu thập**:
+Nếu bạn chủ động muốn tự chạy, dùng **một lệnh cho mỗi chuỗi cần thu thập**. Với quy trình hiện tại, chỉ cần gửi prompt ở bước 8 để Codex tự chạy:
 
 ```bash
 cd /home/zinn/zinn/test/hw02
 python3 scripts/A-FR02-login-sequence.py --attempts 2
 ```
 
-Đổi `2` thành `3` hoặc `4` cho chuỗi độc lập khác. Lưu toàn bộ terminal output nếu cần:
+Đổi `2` thành `3` hoặc `4` cho chuỗi độc lập khác. Codex sẽ chạy các biến thể phù hợp với test plan khi bạn giao thực thi toàn bộ. Lưu terminal output nếu bạn tự chạy:
 
 ```bash
 python3 scripts/A-FR02-login-sequence.py --attempts 3 | tee /tmp/a-fr02-attempts-3.txt
@@ -37,4 +37,4 @@ python3 scripts/A-FR02-login-sequence.py --attempts 3 | tee /tmp/a-fr02-attempts
 
 ## Bước tiếp theo sau mỗi lần chạy
 
-Mở JSONL, xác nhận run ID/email, trạng thái tạo tài khoản và số request đã gửi. Gửi nguyên log cùng các ảnh UI liên quan và nhận xét của bạn để cập nhật `features/A-FR02/06-execution.md`. Nếu số lần/counter không như expected, ghi đúng actual; không sửa log để làm khớp thiết kế.
+Theo quy trình hiện tại, bạn gửi prompt ở bước 8 để Codex chạy và đối chiếu toàn bộ các ca. Không cần tự chạy lệnh, mở từng JSONL hay gửi lại log Codex vừa tạo. Nếu Codex yêu cầu thao tác UI vì không thể điều khiển trình duyệt, hãy làm đúng các bước UI được chỉ định, chụp bằng chứng rồi gửi ảnh/quan sát đó trong cùng cuộc trò chuyện. Nếu bạn đã tự chạy script, gửi Run ID và log để Codex ghép kết quả vào execution log. Nếu số lần/counter không như expected, ghi đúng actual; không sửa log để làm khớp thiết kế.

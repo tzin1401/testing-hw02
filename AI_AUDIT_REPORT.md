@@ -440,3 +440,43 @@ Ghi theo lời người dùng: thao tác login UI thành công, chuyển về tr
 ### Nội dung và giới hạn
 
 Script dùng thư viện chuẩn Python (`urllib`, `sqlite3` chỉ đọc, `time.monotonic`), tạo email test riêng qua endpoint đăng ký, gửi số lần login sai tuần tự, ghi JSONL và che password/token cả trong request lẫn response. Hướng dẫn nêu lệnh chạy và giới hạn đo thời gian client. Chỉ parse cú pháp tĩnh; không thực thi script, không gọi endpoint, không tạo tài khoản hoặc chạy test.
+
+## Interaction AI-014 — Chạy thử API theo yêu cầu người dùng
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Thời điểm chạy:** 2026-10-14 17:37:55 UTC, theo JSONL.
+
+### Yêu cầu nguyên văn
+
+```text
+ủa vậy cái này tôi phải chạy thủ công bằng tay hả? Chạy giúp tôi đi
+```
+
+### Hành động và bằng chứng
+
+Theo yêu cầu chạy test, Codex đã chạy `scripts/A-FR02-login-sequence.py --attempts 2` khi backend local sẵn sàng. Script tạo tài khoản riêng `a-fr02-20261014t173755z-47a40399@example.test` (user id 3), đăng ký HTTP 200, rồi gửi hai request login sai tuần tự. Cả hai trả HTTP 401. DB read-only quan sát `login_attempts=2` sau request sai thứ nhất và `login_attempts=4`, `locked_until=2026-10-14T17:40:55.185Z` sau request thứ hai.
+
+JSONL gốc: `evidence/A-FR02/api-runs/20261014T173755Z-47a40399/login-sequence.jsonl`. Password đã che. Không gửi request thứ ba, không chạy các TC khác trong lượt đó, không kiểm tra UI hay mốc thời gian.
+
+### Phân loại và giới hạn
+
+Kết quả mâu thuẫn với `A-R04`/`A-R05` và expected của `A-BV-003`: sau hai lần sai, counter dự kiến lần lượt 1 rồi 2 và chưa khóa. Vì vậy Run 002 ghi Fail cho checkpoint counter sau hai request. Đây mới là phần đầu của A-BV-003 và A-DT-011; không đánh dấu hai TC hoàn tất. Tài khoản test user id 3 còn trong database local. Lượt chạy không sửa SUT hoặc DB bằng tay. Nội dung ghi nhận nằm trong `features/A-FR02/06-execution.md`.
+
+## Interaction AI-015 — Sửa hướng dẫn bước 8 thành prompt Codex chạy toàn bộ
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi log:** 2026-10-15 00:49:39+07:00 (Asia/Ho_Chi_Minh), thời điểm cập nhật audit.
+
+### Yêu cầu nguyên văn
+
+```text
+ý là xong bước số 8 là phải chạy đủ hết tc rồi và tôi không hiểu là bạn tạo ra 2 cái file đó chi là để tôi tự chạy từng lần hay sao nếu vậy thì sửa lại nếu có chạy test case thì sửa trong file hướng dẫn lại làm sao để tôi gửi prompt cho bạn làm á
+```
+
+### AI output
+
+[audit/AI-015-step8-prompt-output.md](audit/AI-015-step8-prompt-output.md) lưu snapshot đầy đủ các file đã sửa và phản hồi cuối.
+
+### Phạm vi và giới hạn
+
+Bước 8 được viết lại để người dùng gửi một prompt, Codex tự chạy toàn bộ test case A-FR02 khả thi qua API/UI, cập nhật mọi TC bằng evidence hoặc lý do chưa chạy, và chỉ yêu cầu người dùng thao tác UI khi Codex không điều khiển được trình duyệt. Lệnh script được xác định là công cụ nội bộ Codex; hướng dẫn script giải thích người dùng không cần tự chạy. Cũng ghi lại Run 002 đã thực sự xảy ra ở lượt trước để work-progress không còn khẳng định “chưa chạy”. Không chạy test mới trong lượt sửa tài liệu này.
