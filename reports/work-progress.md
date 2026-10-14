@@ -18,7 +18,7 @@
 
 | Chức năng | Yêu cầu/input-output | EC | Ca Domain | Ca BVA | Review sinh viên | Thực thi | Bug/AI gaps |
 |---|---|---|---|---|---|---|---|
-| A-FR02 — Đăng nhập/khóa Web | Đã có bản nháp 01-requirements.md (AI-007) | Đã có bản nháp 02-domains.md (AI-008) | Đã có 24 ca nháp 03-domain-cases.md (AI-009) | Đã có 12 ca nháp 04-boundary-cases.md (AI-010) | Đã đọc và hiểu ca (AI-011); chưa xác nhận phê duyệt thiết kế | Chưa ghi nhận | Chưa ghi nhận |
+| A-FR02 — Đăng nhập/khóa Web | Đã có bản nháp 01-requirements.md (AI-007) | Đã có bản nháp 02-domains.md (AI-008) | Đã có 24 ca nháp 03-domain-cases.md (AI-009) | Đã có 12 ca nháp 04-boundary-cases.md (AI-010) | Đã đọc và hiểu ca (AI-011); chưa xác nhận phê duyệt thiết kế | A-DT-001 UI được báo thành công; toàn TC còn checkpoint token và bằng chứng (AI-012) | Chưa ghi nhận |
 | B-FR07 — Giỏ hàng Web | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | C-FR14 — Danh mục Admin | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | D-MREG — Đăng ký Mobile | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
@@ -71,6 +71,15 @@ Các dấu hoàn thành ở đây chỉ ghi khả năng mở môi trường, kh�
 
 Phản hồi “đã hiểu” không được coi là phê duyệt tính đúng đắn của toàn bộ thiết kế hoặc xác nhận đã chạy test.
 
+## Thực thi A-FR02
+
+- [x] Ghi nhận Run 001 cho A-DT-001 theo báo cáo người chạy: login UI thành công, chuyển về trang chủ và thấy tài khoản đăng nhập.
+- [ ] Lưu screenshot login vào `evidence/A-FR02/`.
+- [ ] Xác nhận response/token, lưu token phía client và Bearer header do client gửi. Chưa ghi nhận các checkpoint này.
+- [ ] Hoàn tất Status cho toàn TC sau khi có đủ bằng chứng.
+
+Phản hồi “mọi thứ đều pass” được giữ kèm phạm vi chi tiết thực tế đã mô tả. A-DT-001 kiểm tra cả token, nên toàn TC chưa đóng chỉ từ chuyển trang UI. Xem [execution log](../features/A-FR02/06-execution.md).
+
 ## Việc tiếp theo
 
-Đọc [ma trận review](../features/A-FR02/05-review-coverage.md), đặc biệt mục 4 về năm điểm cần chú ý. Nếu bạn có nhận xét về expected hay phép đo, gửi nội dung cụ thể; nếu không, bước kế tiếp là chốt phương án đo thời gian/harness rồi chuẩn bị thực thi.
+Hoàn tất các checkpoint còn thiếu của A-DT-001 bằng DevTools và screenshot. Sau đó tiếp tục những ca thiết kế đã review; không reset/restart backend khi cần giữ trạng thái khóa.

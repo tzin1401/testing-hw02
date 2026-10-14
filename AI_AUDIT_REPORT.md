@@ -382,3 +382,36 @@ Dựa trên review thực tế của tôi ở trên, cập nhật 05-review-cove
 ### Phạm vi và giới hạn
 
 Phản hồi của sinh viên được ghi chính xác là đã đọc và hiểu mọi ca kiểm thử. Không suy diễn thành phê duyệt tính đúng đắn, tính đầy đủ hoặc cách đo thời gian. Tạo ma trận 11 requirement tới EC/biên/TC và ghi các khoảng còn thiếu/đang có expected chưa rõ. Chưa chạy test, chưa ghi actual/bug. Không thay đổi expected hoặc TC do sinh viên chưa yêu cầu sửa cụ thể. Commit riêng review, cập nhật trạng thái, tiến độ, audit và snapshot.
+
+## Interaction AI-012 — Ghi Run 001 theo báo cáo người chạy
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi log:** 2026-10-15T00:17:53+07:00 (Asia/Ho_Chi_Minh); đây là thời điểm ghi log, không phải lúc test thực sự diễn ra. Ngày 15/10/2026 lấy từ ngữ cảnh phiên; giờ test chưa cung cấp.
+
+### Prompt/nguyên văn người dùng gửi
+
+```text
+```markdown
+### Run 001
+- TC ID: [ID trong bảng thiết kế]
+- Thời điểm: [ngày giờ thực tế]
+- Môi trường: [trình duyệt, OS, SUT commit]
+- Tiền điều kiện: [tài khoản chưa khóa, trạng thái đăng nhập...]
+- Dữ liệu: [email, mật khẩu test]
+- Thao tác đã làm: [các bước thực sự thực hiện]
+- Expected: [chép từ ca đã review]
+- Actual: [mô tả kết quả thực tế]
+- Status: [Pass / Fail / Blocked]
+- Bằng chứng: [đường dẫn tương đối tới ảnh/log]
+
+Tôi test rồi và mọi thứ đều pass. Điền giúp tôi
+```
+```
+
+### AI output nguyên văn
+
+[AI-012-run001-output.md](audit/AI-012-run001-output.md) lưu execution log, cập nhật tiến độ, thông báo và phản hồi cuối. Giữ snapshot khi cập nhật execution; chèn toàn văn khi xuất audit PDF.
+
+### Giới hạn và phân loại
+
+Ghi theo lời người dùng: thao tác login UI thành công, chuyển về trang chủ, thấy user đăng nhập. Người dùng chưa đưa response/network log, kết quả storage/header hoặc screenshot login. TC A-DT-001 gồm các checkpoint token nên đánh dấu toàn TC chưa hoàn tất, không đổi thành Pass từ câu “mọi thứ đều pass” khi phạm vi chi tiết chưa chứng minh các checkpoint còn lại. Không chạy test trong lượt này.
