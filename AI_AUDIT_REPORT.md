@@ -341,3 +341,23 @@ Tạo 03-domain-cases.md cho A-FR02. Mỗi ca có ID, điều kiện chuẩn b�
 ### Phạm vi và giới hạn
 
 Thiết kế 24 ca Web/API, state và thăm dò; mỗi ca âm cơ bản thay một điều kiện. Có thủ tục chung để setup, quan sát state chỉ đọc, thao tác UI/API và kiểm soát ảnh hưởng giữa ca. 38 EC có liên kết ca dự kiến (một số chỉ có oracle một phần); L03 dành cho BVA, không tuyên bố đã thực thi/độ phủ 100%. Không chạy các lệnh test trong tài liệu, không tạo kết quả test hay human review. Commit riêng ca, tiến độ, audit và snapshot.
+
+## Interaction AI-010 — Thiết kế BVA A-FR02
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi log:** 2026-10-14T23:45:22+07:00 (Asia/Ho_Chi_Minh); thời điểm ghi log, không phải thời điểm gửi prompt chính xác.
+- **Nguồn đọc:** thủ tục setup/đo trong Domain cases; slide VN trang 19–26; requirements/domains và slide EN đã đọc trước đó; đoạn login backend để xác định điểm kiểm tra thời gian, không dùng lỗi triển khai làm expected.
+
+### Prompt nguyên văn
+
+```text
+Tạo 04-boundary-cases.md cho A-FR02 theo slide: số lần sai 2/3/4 và thời gian khóa 29/30/31 giây, thêm các ca cần thiết. Hướng dẫn chuẩn bị trạng thái riêng và cách đo thời gian, không bịa độ chính xác. Ghi audit và commit riêng.
+```
+
+### AI output nguyên văn
+
+[AI-010-boundary-cases-output.md](audit/AI-010-boundary-cases-output.md) lưu toàn văn ca BVA, tiến độ, thông báo tiến độ và phản hồi cuối. Giữ nguyên snapshot khi sửa bản làm việc; chèn toàn văn khi xuất audit PDF.
+
+### Phạm vi và giới hạn
+
+Thiết kế 12 ca, có setup riêng, cách tính khoảng elapsed từ timestamp request/response với điều kiện áp dụng, và kế hoạch clock kiểm soát tại server cho đúng 30s. Phân biệt baseline tự nhiên với fixture kiểm toán tử; không có harness hay độ chính xác ms đã được kiểm chứng. Không chạy SUT, sửa code/DB, tạo kết quả test hoặc human review. Commit riêng BVA, tiến độ, audit và snapshot.
