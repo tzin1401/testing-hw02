@@ -500,3 +500,29 @@ Bước 8 được viết lại để người dùng gửi một prompt, Codex t
 ### Phạm vi và giới hạn
 
 B-FR07 có nguồn FR-07/FR-06, lớp giỏ/quantity, ca gộp dòng/điều chỉnh/xóa/tính tiền và giới hạn state UI. C-FR14 có FR-14/FR-12, CRUD thực sự được yêu cầu (Thêm/Xem/Xóa), role/token và bảo vệ dữ liệu test. D-MREG có FR-20/FR-01, mật khẩu/email/confirm, biên 7/8/9 và yêu cầu chạy trên Mobile UI. Mỗi phần có prompt requirements → domains → Domain cases → BVA → review/coverage → execution/bug, cùng các điểm expected chưa rõ. Chỉ sửa hướng dẫn và audit/snapshot; không tạo test case tính năng mới, không chạy test SUT, không điền actual/review.
+
+
+## Interaction AI-017 — Thực thi toàn bộ A-FR02 Domain/BVA
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại; API harness dùng Node.js built-ins và SQLite read-only qua Python stdlib; UI harness dùng Chrome headless/Chrome DevTools Protocol trong profile tạm.
+- **Ngày giờ ghi log:** 2026-10-15T01:20:44+07:00 (Asia/Ho_Chi_Minh), thời điểm cập nhật audit.
+- **SUT baseline/runtime:** `85af3ba875c88283615e22cb108f13e2fccaf0e9`. Backend/Web/Admin ports đã kiểm tra; chỉ dùng backend/Web cho A-FR02. Không restart server, không chạy database.js, không sửa logic SUT.
+
+### Prompt nguyên văn
+
+```text
+> Hãy thực thi toàn bộ test case Domain và BVA của A-FR02 trong `features/A-FR02/03-domain-cases.md` và `features/A-FR02/04-boundary-cases.md`. Tôi đã review và hiểu các ca. Tự kiểm tra backend đang chạy, commit SUT, các script và tiền điều kiện; tận dụng `scripts/A-FR02-login-sequence.py` hoặc tạo mã hỗ trợ dùng thư viện sẵn có để chạy những ca API. Tự chạy lệnh cần thiết, không yêu cầu tôi tự chạy script. Dùng tài khoản test riêng cho từng chuỗi có trạng thái; không restart backend, không import `database.js`, không xóa DB/dữ liệu thật và không sửa logic SUT. Thực hiện cả ca Domain lẫn BVA, tránh bỏ qua ca chỉ vì đã chạy một lần tương tự; nếu cùng một lần chạy phủ nhiều TC ID thì ghi rõ bằng chứng và liên kết Run ID cho từng ca. Tự động hóa UI nếu môi trường cho phép. Nếu cần thao tác trên trình duyệt người dùng mà bạn không điều khiển được, hãy tiếp tục chạy tất cả ca API/tự động hóa còn lại rồi gửi tôi danh sách thao tác UI cụ thể cần làm, từng bước một; không yêu cầu tôi chạy lệnh terminal. Với từng ca, lưu request/response đã che password/token, ảnh UI nếu quan sát được, timestamp UTC/monotonic và state DB chỉ đọc khi hữu ích. Đánh dấu Pass/Fail chỉ khi expected đã rõ và có bằng chứng; ghi Blocked/Not run cùng lý do khi không thể chạy. Q chưa rõ thì ghi observation riêng, không tự đặt expected hoặc báo bug. Với mốc 29/30/31 giây, chỉ kết luận phía biên khi khoảng đo chứng minh request nằm hẳn trước/sau ngưỡng; đúng 30 giây chỉ kết luận nếu kiểm soát được clock tại điểm server so sánh, nếu không ghi Blocked/không đủ độ chính xác. Cập nhật `06-execution.md`, `07-bugs-and-ai-gaps.md` và `reports/work-progress.md` theo kết quả thật; chưa tạo GitHub Issue cho lỗi thiếu ảnh cần thiết. Ghi prompt/output và giới hạn vào AI Audit. Commit riêng phần thực thi, chỉ stage file bài làm và evidence liên quan.
+```
+
+### AI output
+
+[audit/AI-017-execution-output.md](audit/AI-017-execution-output.md) lưu toàn văn execution, bug/AI-gap draft, timing analysis và tiến độ. Harness là [scripts/A-FR02-full-execution.mjs](scripts/A-FR02-full-execution.mjs).
+
+- API Run `20261014T180523Z-fa50f52b`: 33 tài khoản test mới; request/response password/token đã che, timestamp UTC/monotonic và state DB read-only trong [execution.jsonl](evidence/A-FR02/full-runs/20261014T180523Z-fa50f52b/execution.jsonl).
+- UI Run `20261014T181147Z-0f7e1361`: 13 tài khoản test mới, Chrome 154.0.8037.57 headless profile tạm; log và 32 screenshot tại [run folder](evidence/A-FR02/full-runs/20261014T181147Z-0f7e1361/).
+- Counter thực tế tăng 2 mỗi lần sai và khóa từ lần thứ hai; đăng nhập đúng sau hơn 31/40 giây vẫn bị từ chối. Login Web dùng `type=text` cho email nên browser gửi sai format thay vì HTML5 chặn. Execution ghi từng TC, trạng thái, actual và giới hạn.
+- A-BV-007/011/012 chưa chạy vì không có clock/harness điều khiển tại điểm server so sánh. Q chưa rõ được giữ observation-only. Chưa tạo GitHub Issue.
+
+### Giới hạn, sai sót harness và cách xử lý
+
+Lượt UI ban đầu nằm trong API run folder nhưng bị nhiễm token giữa các ca và có một số input không đúng ca; mọi UI output/screenshot của lượt đó bị loại khỏi kết luận. Phát hiện qua token tồn tại ở ca âm và redirect sai format, sau đó chạy lại toàn bộ phần UI trong profile sạch Run 004. API evidence của Run 003 độc lập và vẫn được dùng. UI timing status được ghép từ raw request/response monotonic event trong `timing-analysis.md`; trường status/bounds tự sinh trong checkpoint không được dùng do lỗi mapping của harness. Không công khai mật khẩu/token; không cleanup các tài khoản test hay thay đổi database.

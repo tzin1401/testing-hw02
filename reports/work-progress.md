@@ -18,7 +18,7 @@
 
 | Chức năng | Yêu cầu/input-output | EC | Ca Domain | Ca BVA | Review sinh viên | Thực thi | Bug/AI gaps |
 |---|---|---|---|---|---|---|---|
-| A-FR02 — Đăng nhập/khóa Web | Đã có bản nháp 01-requirements.md (AI-007) | Đã có bản nháp 02-domains.md (AI-008) | Đã có 24 ca nháp 03-domain-cases.md (AI-009) | Đã có 12 ca nháp 04-boundary-cases.md (AI-010) | Đã đọc và hiểu ca (AI-011); chưa xác nhận phê duyệt thiết kế | A-DT-001 UI được báo thành công; toàn TC còn checkpoint token và bằng chứng (AI-012) | Chưa ghi nhận | API: Run 002 chạy 2 lần sai; counter thực tế +2/lần và khóa sau lần 2 (AI-014) |
+| A-FR02 — Đăng nhập/khóa Web | Requirements A-R01–A-R11 (AI-007) | Các EC đã ghi (AI-008) | 24 ca thiết kế (AI-009) | 12 ca thiết kế (AI-010) | Sinh viên nói đã đọc/hiểu (AI-011); chưa xác nhận phê duyệt thiết kế | Run 001 user-reported; Run 003 API và Run 004 UI; 33/36 TC có actual/checkpoint, 3 mốc clock Not run; xem 06-execution | 3 bug draft có bằng chứng; 2 AI gaps trong harness được ghi ở 07 (AI-017) |
 | B-FR07 — Giỏ hàng Web | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | C-FR14 — Danh mục Admin | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 | D-MREG — Đăng ký Mobile | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
@@ -66,30 +66,30 @@ Các dấu hoàn thành ở đây chỉ ghi khả năng mở môi trường, kh�
 - [x] Sinh viên xác nhận đã đọc và hiểu các ca kiểm thử Domain/BVA (AI-011).
 - [x] Tạo ma trận review/truy vết `features/A-FR02/05-review-coverage.md`.
 - [ ] Review kỹ thuật expected, lớp chưa rõ và protocol đo đúng 30 giây.
-- [ ] Chốt harness/fixture thời gian hoặc ghi giới hạn nếu không khả thi.
-- [x] Ghi Run 002: hai request API sai đã chạy, có JSONL; counter/threshold lệch expected.
-- [ ] Chạy các TC còn lại, ca UI và các mốc thời gian; không suy rộng Run 002 thành toàn bộ kiểm thử.
+- [x] Thực thi ca API/Web có thể chạy, ghi Run 003/004 cùng các trạng thái và giới hạn (AI-017).
+- [ ] Tạo harness đồng hồ tại server hoặc giữ A-BV-007/011/012 là Not run với lý do.
 
 Phản hồi “đã hiểu” không được coi là phê duyệt tính đúng đắn của toàn bộ thiết kế hoặc xác nhận đã chạy test.
 
 ## Thực thi A-FR02
 
-- [x] Ghi nhận Run 001 cho A-DT-001 theo báo cáo người chạy: login UI thành công, chuyển về trang chủ và thấy tài khoản đăng nhập.
-- [ ] Lưu screenshot login vào `evidence/A-FR02/`.
-- [ ] Xác nhận response/token, lưu token phía client và Bearer header do client gửi. Chưa ghi nhận các checkpoint này.
-- [ ] Hoàn tất Status cho toàn TC sau khi có đủ bằng chứng.
+- [x] Giữ Run 001 theo lời người chạy; không dùng thay bằng chứng mới.
+- [x] Run 004 có screenshot UI, login response, token local và request Bearer 200 cho A-DT-001.
+- [x] Ghi status/actual/evidence cho cả 24 Domain và 12 BVA; giữ rõ observation-only, Fail/Blocked và 3 Not run trong 06-execution.md.
+- [ ] Chụp/gom ảnh thể hiện rõ network/state counter để đính kèm các issue draft.
 
-Phản hồi “mọi thứ đều pass” được giữ kèm phạm vi chi tiết thực tế đã mô tả. A-DT-001 kiểm tra cả token, nên toàn TC chưa đóng chỉ từ chuyển trang UI. Xem [execution log](../features/A-FR02/06-execution.md).
+Phản hồi “mọi thứ đều pass” ở Run 001 vẫn được giữ như lời người chạy và tách khỏi các run có log tự động. Xem [execution log](../features/A-FR02/06-execution.md).
 
 ## Script hỗ trợ A-FR02
 
 - [x] Tạo `scripts/A-FR02-login-sequence.py` và hướng dẫn `scripts/README-A-FR02.md`.
-- [x] Đọc cú pháp Python tĩnh; **không chạy script và không gọi API** ở lượt chuẩn bị.
-- [x] Codex đã chạy một chuỗi `--attempts 2` theo yêu cầu người dùng; Run 002 lưu tại `evidence/A-FR02/api-runs/20261014T173755Z-47a40399/`.
-- [ ] Còn các ca Domain/BVA khác và các ca UI; prompt thực thi một lượt toàn bộ nằm ở bước 8 của `LAM_HW02_TUNG_BUOC.md`. Người dùng không phải tự chạy lệnh terminal.
+- [x] Script tuần tự trước đó đã tạo (AI-013); Run 002 `--attempts 2` lưu riêng.
+- [x] Tạo và chạy `scripts/A-FR02-full-execution.mjs`; ghi request/response redacted, monotonic, state SQLite read-only và test labels.
+- [x] API run 33 tài khoản; UI run 13 tài khoản trong Chrome headless profile cô lập; artifacts ở `evidence/A-FR02/full-runs/`.
+- [ ] Giữ nguyên 46 tài khoản test trong DB local cho tới khi bằng chứng được lưu và chủ sở hữu yêu cầu cleanup.
 
 Script tạo tài khoản mới bằng API đăng ký cho mỗi lần chạy. Terminal output không lưu password/token; state DB đọc-only là quan sát bổ trợ. Đo monotonic là ở client và không chứng minh thời điểm server so sánh đúng 30 giây.
 
 ## Việc tiếp theo
 
-Gửi prompt ở bước 8 để Codex tiếp tục chạy toàn bộ các ca A-FR02 còn lại, cập nhật từng TC thành kết quả có bằng chứng hoặc ghi rõ lý do chưa chạy. Lượt `--attempts 2` trước đó chỉ cung cấp bằng chứng một phần; không dùng API thay cho UI hoặc restart backend khi cần giữ state khóa.
+A-FR02 đã có execution table; bước còn lại là review bug drafts, chuẩn bị ảnh network/state phù hợp nếu đăng issue, và quyết định có dựng harness clock riêng cho ba mốc chưa chạy hay để Not run. Không xóa 46 tài khoản test hoặc restart backend khi chưa cần và chưa bảo toàn bằng chứng.
