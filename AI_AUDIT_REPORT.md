@@ -643,3 +643,24 @@ Thực thi toàn bộ ca Domain và BVA B-FR07 trong `features/B-FR07/03-domain-
 - **Issue:** soạn hai draft (B-BUG-001 Add không cập nhật giỏ; B-BUG-002 empty state thiếu illustration), có reproduction, expected/actual, labels đề xuất và ảnh cần đính kèm. Chưa đăng GitHub.
 - **AI/harness gap và side effect:** trial `20261014T191002Z-BFR07` bị loại vì harness append giá trị làm `1` thành `11`; mọi kết quả UI từ trial không dùng. Trial này đã gửi exploratory API POST quantity 1.5 trước khi loại. Run qualified cũng gửi API POST quantity 1.5 trong B-DT-020, nhận HTTP 200 `Added to cart`; API spec/SRS không định nghĩa expected invalid input nên đây chỉ là observation. GET chỉ đọc sau đó trả hai entry P1 q=1.5, nhưng không có baseline cart trước các POST nên không thể quy thuộc từng entry. UI không hiển thị dòng để dọn; không gọi API delete, không sửa database, không restart backend. State API cục bộ này còn lại và cần được biết trước lần kiểm thử sau.
 - **An toàn dữ liệu:** không sửa/xóa sản phẩm mẫu, không thay đổi SUT, không reset backend. Ca độc lập được xác nhận/reset bằng Web UI; không seed cart bằng API.
+
+
+## Interaction AI-026 — Đối chiếu và chuẩn bị bug report B-FR07
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi nhận:** 2026-10-15 (UTC+07:00); đây là ngày thực hiện lượt cập nhật, không khẳng định giờ gửi prompt.
+- **Phạm vi:** đối chiếu hai Fail của Run `20261014T191645Z-BFR07-UI` với SRS FR-06/FR-07; gộp các fail cùng luồng/triệu chứng, tách lỗi empty state; chuẩn bị title/body và chỉ ghi AI gap có evidence.
+
+### Prompt nguyên văn
+
+```text
+Đối chiếu bug B-FR07 đã có evidence với SRS. Cập nhật 07-bugs-and-ai-gaps.md, gộp test fail cùng nguyên nhân, tách lỗi độc lập; chuẩn bị title/body issue với bước tái hiện, expected/actual, severity có lý do, TC ID và ảnh cần đính kèm. Chỉ nêu AI gap có bằng chứng. Không tự đăng GitHub Issue; ghi audit và commit riêng phần báo cáo bug.
+```
+
+### Đã đối chiếu và đầu ra
+
+- **Oracle:** `eshop-sut/README.md` FR-06 yêu cầu quantity là số nguyên dương tối thiểu 1 và phản hồi trực quan sau thao tác Thêm; FR-07 yêu cầu empty cart có hình minh họa và thông báo rõ. Đã đối chiếu TC và screenshot trong run qualified.
+- **Output:** [`features/B-FR07/07-bugs-and-ai-gaps.md`](features/B-FR07/07-bugs-and-ai-gaps.md); snapshot prompt/đầu ra tại [`audit/AI-026-bfr07-bug-report-output.md`](audit/AI-026-bfr07-bug-report-output.md).
+- **Tổ chức lỗi:** B-DT-002 gộp triệu chứng không thấy visual feedback và không có sản phẩm trong giỏ sau một click Add hợp lệ thành một issue draft; nguyên nhân kỹ thuật chưa được khẳng định. B-DT-001 thiếu hình minh họa là issue độc lập. Mỗi draft có title/body, các bước, expected/actual, severity và lý do, TC ID, đường dẫn ảnh cần đính kèm.
+- **AI gaps:** chỉ ghi dữ liệu có evidence: trial harness nhập `1` thành `11` (run bị loại), exploratory API POST quantity 1.5 có HTTP 200, và GET sau đó có hai entry nhưng thiếu baseline để quy thuộc. Không suy luận bug từ API observation.
+- **Giới hạn:** Không đăng GitHub Issue theo yêu cầu. Ảnh cần được tải thành attachment khi issue được tạo; labels cần đối chiếu repo lúc đăng. Không sửa kết quả execution hoặc SUT.

@@ -105,3 +105,6 @@ A-FR02 đã có execution table và GitHub Issues #1–#3 có ảnh. Còn review
 - [x] Cập nhật audit và tiến độ.
 
 **Giới hạn/side effect:** Run thử đầu bị loại do harness nhập quantity sai (1 thành 11), nhưng đã gửi một API POST exploratory quantity 1.5. Qualified run cũng gửi API POST exploratory 1.5; response HTTP 200. GET chỉ đọc cho thấy hai entry, nhưng không có API cart baseline nên không thể phân bổ; UI không hiển thị entry để dọn. Không gọi API delete hoặc sửa DB. Chi tiết trong execution notes và AI Audit AI-025.
+
+
+- [x] AI-026: đối chiếu B-FR07 bug với SRS, tách 2 lỗi độc lập và chuẩn bị issue draft; chưa đăng GitHub.
