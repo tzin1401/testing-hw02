@@ -849,3 +849,13 @@ Dựa trên review thực tế của tôi, cập nhật 05-review-coverage.md ch
 - **Nguồn:** `eshop-sut/README.md` FR-01/FR-20; `eshop-sut/api_specification.md` §1.1; `group_feature_assignment.md` member 2 Pool D; slide Domain/BVA VN/EN.
 - **Output:** [`features/D-MREG/01-requirements.md`](features/D-MREG/01-requirements.md), D-R01–D-R09. Expected tách Mobile UI khỏi API: FR-01 yêu cầu confirm field/mismatch rejection, nhưng API spec chỉ liệt kê `name`, `email`, `password`.
 - **Giới hạn:** ghi các oracle chưa rõ; không tạo EC/TC, không chạy test, không ghi human review/approval.
+
+
+## Interaction AI-039 — Equivalence domains D-MREG
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi audit:** 2026-10-15T12:50:16Z (19:50:16 UTC+07); thời điểm audit, không phải timestamp prompt chính xác.
+- **Prompt nguyên văn:** xem [AI-039-dmreg-domains-output.md](audit/AI-039-dmreg-domains-output.md).
+- **Nguồn:** `features/D-MREG/01-requirements.md` D-R01–D-R09, FR-01/FR-20, API spec §1.1, phân công member 2 Pool D và slide Domain/BVA.
+- **Output:** [`features/D-MREG/02-domains.md`](features/D-MREG/02-domains.md), D-EC-01–D-EC-24. Tách email format lỗi khỏi email hợp lệ đã tồn tại; từng password rule được cô lập; confirm chỉ ở UI; lỗi API/network không có expected chi tiết thì ghi câu hỏi.
+- **Giới hạn:** chưa chạy SUT, chưa tạo test case, actual, Pass/Fail hoặc human review.
