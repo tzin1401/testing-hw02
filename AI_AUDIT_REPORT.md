@@ -871,3 +871,14 @@ Dựa trên review thực tế của tôi, cập nhật 05-review-coverage.md ch
 - **Expected:** chỉ dùng ý nghĩa bắt buộc, uniqueness, password rules, tạo account và điều hướng Login theo SRS/API. Không đặt câu chữ thông báo lỗi cụ thể. Hậu kiểm DB chỉ đọc là bằng chứng state; không thay cho UI.
 - **Giới hạn:** chỉ thiết kế và rà soát tài liệu; chưa mở app, chạy test, tạo account, chụp evidence, điền actual/status, hoặc ghi human review. Chưa thiết kế BVA.
 - **Commit:** ghi sau khi commit riêng file cases và AI Audit; không stage SUT hoặc thay đổi sẵn có khác.
+
+
+## Interaction AI-041 — Boundary/robustness cases D-MREG
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi audit:** 2026-10-15T12:56:39Z (19:56:39 UTC+07); thời điểm ghi nhận, không phải timestamp prompt chính xác.
+- **Prompt nguyên văn:** xem [AI-041-dmreg-boundary-cases-output.md](audit/AI-041-dmreg-boundary-cases-output.md).
+- **Nguồn đối chiếu:** `features/D-MREG/01-requirements.md` D-R01–D-R09; `02-domains.md` D-EC-08–D-EC-14; `03-domain-cases.md` D-DT-002, D-DT-007–D-DT-011; SRS FR-01/FR-20, API §1.1 và slide Domain/BVA.
+- **Output:** [`features/D-MREG/04-boundary-cases.md`](features/D-MREG/04-boundary-cases.md). BVA cho password length tại 7/8/9 (LB−1/LB/LB+1); robustness/EC tách riêng cho thiếu chữ hoa, chữ thường, chữ số và ký tự thuộc `@$!%*?&`. Mỗi ca quy định Mobile UI thao tác, email/account state và evidence dự kiến. Hai ca thành công dùng email mới riêng.
+- **Giới hạn:** SRS không nêu upper bound password hoặc giới hạn độ dài họ tên/email/confirm, nên không tạo các biên đó. Chưa chạy test, tạo account, chụp evidence, điền actual/status hay human review. Không sửa SUT.
+- **Commit:** ghi sau khi commit riêng file BVA/robustness và AI Audit.
