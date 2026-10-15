@@ -108,3 +108,5 @@ A-FR02 đã có execution table và GitHub Issues #1–#3 có ảnh. Còn review
 
 
 - [x] AI-026: đối chiếu B-FR07 bug với SRS, tách 2 lỗi độc lập và chuẩn bị issue draft; chưa đăng GitHub.
+
+- [x] AI-027: đăng hai GitHub Issue B-FR07 kèm ảnh, xác minh body/labels/URL; #4 và #5 đang OPEN.

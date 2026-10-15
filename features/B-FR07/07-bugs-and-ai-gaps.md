@@ -4,15 +4,17 @@
 **SUT baseline:** `85af3ba875c88283615e22cb108f13e2fccaf0e9`
 **Đối chiếu oracle:** `eshop-sut/README.md`, FR-06 và FR-07. Hai TC Fail được giữ thành hai issue draft vì chúng kiểm tra hai đầu ra độc lập: thêm sản phẩm vào giỏ và empty state. Chưa tạo issue trên GitHub.
 
-## Draft B-BUG-001 — Thêm sản phẩm hợp lệ không cập nhật giỏ hoặc phản hồi trên Web
+## B-BUG-001 — Thêm sản phẩm hợp lệ không cập nhật giỏ hoặc phản hồi trên Web
 
-**Severity đề xuất: Major.** Thêm sản phẩm là luồng cốt lõi của giỏ hàng. Với dữ liệu P1 hợp lệ, người dùng không thấy sản phẩm trong giỏ và không quan sát được phản hồi sau thao tác. Bằng chứng hiện giới hạn ở một fixture và một run; chưa xác nhận phạm vi trên trình duyệt khác.
+**GitHub:** [Issue #4](https://github.com/tzin1401/testing-hw02/issues/4) — OPEN.
+
+**Severity đã gán: Major.** Thêm sản phẩm là luồng cốt lõi của giỏ hàng. Với dữ liệu P1 hợp lệ, người dùng không thấy sản phẩm trong giỏ và không quan sát được phản hồi sau thao tác. Bằng chứng hiện giới hạn ở một fixture và một run; chưa xác nhận phạm vi trên trình duyệt khác.
 
 **TC:** `B-DT-002` — một sản phẩm; requirements `B-R03`, `B-R13`; nguồn SRS FR-06 (phản hồi trực quan sau khi bấm Thêm vào giỏ) và FR-07 (hiển thị sản phẩm trong danh sách giỏ).
 
-**Title đề xuất:** `Web: Thêm sản phẩm hợp lệ không cập nhật giỏ hàng`
+**Title đã đăng:** `[BUG][Cart] Valid product addition does not update the Web cart`
 
-**Body đề xuất để đăng:**
+**Body đã đăng:**
 
 ```markdown
 ## Môi trường
@@ -47,17 +49,19 @@
 - TC: B-DT-002; Run: 20261014T191645Z-BFR07-UI.
 ```
 
-**Ảnh cần đính kèm:** [input](../../evidence/B-FR07/full-runs/20261014T191645Z-BFR07-UI/screenshots/B-DT-002_input-p1-default.png), [sau click](../../evidence/B-FR07/full-runs/20261014T191645Z-BFR07-UI/screenshots/B-DT-002_after-add-p1.png), [giỏ sau click](../../evidence/B-FR07/full-runs/20261014T191645Z-BFR07-UI/screenshots/B-DT-002_cart-after-add.png). Ảnh đang ở repo, chưa được tải thành attachment lên GitHub.
+**Ảnh đã đính kèm:** [input](../../evidence/B-FR07/full-runs/20261014T191645Z-BFR07-UI/screenshots/B-DT-002_input-p1-default.png), [sau click](../../evidence/B-FR07/full-runs/20261014T191645Z-BFR07-UI/screenshots/B-DT-002_after-add-p1.png), [giỏ sau click](../../evidence/B-FR07/full-runs/20261014T191645Z-BFR07-UI/screenshots/B-DT-002_cart-after-add.png). Đã xác minh body Issue #4 chứa đủ ba ảnh từ `github.com/user-attachments/assets/`.
 
-## Draft B-BUG-002 — Giỏ rỗng thiếu hình minh họa
+## B-BUG-002 — Giỏ rỗng thiếu hình minh họa
 
-**Severity đề xuất: Minor.** Đây là thiếu sót trình bày ở empty state; thông báo giỏ rỗng vẫn hiển thị rõ, nên bằng chứng không cho thấy người dùng bị ngăn khỏi luồng chính.
+**GitHub:** [Issue #5](https://github.com/tzin1401/testing-hw02/issues/5) — OPEN.
+
+**Severity đã gán: Minor.** Đây là thiếu sót trình bày ở empty state; thông báo giỏ rỗng vẫn hiển thị rõ, nên bằng chứng không cho thấy người dùng bị ngăn khỏi luồng chính.
 
 **TC:** `B-DT-001` — giỏ rỗng; requirement `B-R01`; nguồn SRS FR-07.
 
-**Title đề xuất:** `Web cart: Empty state không hiển thị hình minh họa`
+**Title đã đăng:** `[BUG][Cart] Empty cart state is missing its illustration`
 
-**Body đề xuất để đăng:**
+**Body đã đăng:**
 
 ```markdown
 ## Môi trường
@@ -84,7 +88,7 @@
 - TC: B-DT-001; Run: 20261014T191645Z-BFR07-UI.
 ```
 
-**Ảnh cần đính kèm:** [empty state](../../evidence/B-FR07/full-runs/20261014T191645Z-BFR07-UI/screenshots/B-DT-001_empty-state.png). Ảnh đang ở repo, chưa được tải thành attachment lên GitHub.
+**Ảnh đã đính kèm:** [empty state](../../evidence/B-FR07/full-runs/20261014T191645Z-BFR07-UI/screenshots/B-DT-001_empty-state.png). Đã xác minh body Issue #5 chứa ảnh từ `github.com/user-attachments/assets/`.
 
 ## Fail đã gộp và các ca chưa kết luận
 
@@ -99,4 +103,4 @@ Các ca +/- / xóa / dialog / cột / tổng tiền không tạo issue: không t
 - GET chỉ đọc sau đó trả hai entry P1 quantity 1.5. Không có baseline cart API trước các POST, nên không thể xác định entry nào đến từ attempt nào. Web không hiển thị các entry; không gọi API delete, không sửa DB, không restart backend. Side effect API local còn tồn tại.
 - Run lưu 107 ảnh checkpoint và timestamps UTC/monotonic. Không có ảnh dòng hàng hoặc giá/quantity/thành tiền/tổng vì thao tác thêm trên Web không tạo được dòng.
 
-Hai draft trên chưa được đăng GitHub. Trước khi đăng, cần tải các ảnh được liệt kê thành attachment và đối chiếu labels của repo.
+Hai issue đã đăng và được xác minh còn OPEN; mỗi issue có labels `type: bug`, `status: new`, `severity`, `priority`, `module: cart`. Labels có sẵn `module: cart` được tạo cho bước phân loại này. Ghi nhận hoạt động đăng issue tại AI-027.

@@ -664,3 +664,15 @@ Thực thi toàn bộ ca Domain và BVA B-FR07 trong `features/B-FR07/03-domain-
 - **Tổ chức lỗi:** B-DT-002 gộp triệu chứng không thấy visual feedback và không có sản phẩm trong giỏ sau một click Add hợp lệ thành một issue draft; nguyên nhân kỹ thuật chưa được khẳng định. B-DT-001 thiếu hình minh họa là issue độc lập. Mỗi draft có title/body, các bước, expected/actual, severity và lý do, TC ID, đường dẫn ảnh cần đính kèm.
 - **AI gaps:** chỉ ghi dữ liệu có evidence: trial harness nhập `1` thành `11` (run bị loại), exploratory API POST quantity 1.5 có HTTP 200, và GET sau đó có hai entry nhưng thiếu baseline để quy thuộc. Không suy luận bug từ API observation.
 - **Giới hạn:** Không đăng GitHub Issue theo yêu cầu. Ảnh cần được tải thành attachment khi issue được tạo; labels cần đối chiếu repo lúc đăng. Không sửa kết quả execution hoặc SUT.
+
+
+## Interaction AI-027 — Đăng GitHub Issues B-FR07
+
+- **Tên công cụ:** Codex + GitHub CLI `gh` 2.101.0.
+- **Ngày giờ ghi nhận:** 2026-10-15 (UTC+07:00); thời điểm tạo issue được GitHub ghi tại issue.
+- **Repo/tài khoản:** `tzin1401/testing-hw02`; xác minh `gh auth status` cho thấy tài khoản `tzin1401` đăng nhập và repo truy cập được.
+- **Prompt nguyên văn:** “Đăng lên cho tôi”.
+- **Chuẩn áp dụng:** slide `slide/03 - github_bug_management.pptx.pdf`: title dạng `[BUG][Module]`; các trường môi trường, bước, actual/expected, evidence; labels type, status, severity, priority, module.
+- **Hành động/kết quả:** tạo label thiếu `module: cart`; đăng [Issue #4](https://github.com/tzin1401/testing-hw02/issues/4) cho B-DT-002 với severity major/priority P1 và 3 ảnh; đăng [Issue #5](https://github.com/tzin1401/testing-hw02/issues/5) cho B-DT-001 với severity minor/priority P2 và 1 ảnh. Cả hai gắn `type: bug`, `status: new`, `module: cart`.
+- **Xác minh:** `gh issue view` trả đúng title, body, labels và ảnh inline từ `github.com/user-attachments/assets/`; hai issue đang OPEN.
+- **Output:** cập nhật [`features/B-FR07/07-bugs-and-ai-gaps.md`](features/B-FR07/07-bugs-and-ai-gaps.md), [`reports/work-progress.md`](reports/work-progress.md), snapshot [`audit/AI-027-bfr07-github-issues-output.md`](audit/AI-027-bfr07-github-issues-output.md).
