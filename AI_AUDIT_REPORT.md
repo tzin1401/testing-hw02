@@ -693,3 +693,23 @@ Thực thi toàn bộ ca Domain và BVA B-FR07 trong `features/B-FR07/03-domain-
 - **Output:** [`features/C-FR14/01-requirements.md`](features/C-FR14/01-requirements.md); snapshot đầy đủ tại [`audit/AI-028-cfr14-requirements-output.md`](audit/AI-028-cfr14-requirements-output.md).
 - **Nội dung:** C-R01–C-R06, input/state/output cho Admin Web và API, nguồn expected, ranh giới FR-14 và câu hỏi review. Ghi rõ không có Edit trong FR-14 dù API spec liệt kê PUT; không suy ra unique, 255 ký tự, trim, chính sách xóa category đang được tham chiếu hay status/body HTTP. Quyền GET `/api/categories` được để câu hỏi vì SRS nêu rõ yêu cầu JWT/admin cho API ghi, không chốt GET.
 - **Giới hạn:** Chỉ phân tích yêu cầu; chưa tạo EC/TC, chưa chạy SUT, chưa ghi human review hoặc xác nhận của sinh viên.
+
+
+## Interaction AI-029 — Phân hoạch miền C-FR14
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi nhận:** 2026-10-15 (UTC+07:00); không suy đoán giờ gửi prompt chính xác.
+- **Phạm vi:** tạo C-EC classes từ requirements C-FR14; không tạo ca và không chạy SUT.
+
+### Prompt nguyên văn
+
+```text
+Từ `features/C-FR14/01-requirements.md`, tạo `02-domains.md`. Đặt C-EC ID và phân hoạch: tên rỗng/không rỗng; khoảng trắng-only là lớp cần xác định cách diễn giải chứ không giả định trim; tên ASCII và Unicode có dấu; danh sách rỗng/có danh mục; category ID test vừa tạo/tồn tại/không tồn tại nếu có thể kết luận; role admin, user thường, thiếu token, token sai/hết hạn cho thao tác ghi. Mỗi lớp có đại diện cụ thể, expected theo FR-14/FR-12, output/state cần quan sát và requirement liên quan. Phân biệt GET xem danh sách với thao tác POST/DELETE bị ràng buộc quyền; không tự đòi khách không được xem danh mục nếu SRS không nói. Không đặt giới hạn độ dài hoặc uniqueness. Giải thích ngắn lý do chia và gắn câu hỏi cho các oracle chưa đủ. Chưa chạy test. Ghi audit và commit riêng.
+```
+
+### Đã đối chiếu và đầu ra
+
+- **Đã đọc:** `features/C-FR14/01-requirements.md`; `eshop-sut/README.md` FR-12/FR-14; `eshop-sut/api_specification.md` mục 3.4; phân công Pool C Thành viên 2; slide `domain-testing-vn.pdf`/`domain-testing-en.pdf` về phân hoạch tương đương và input/output.
+- **Output:** [`features/C-FR14/02-domains.md`](features/C-FR14/02-domains.md), các lớp C-EC-01–C-EC-15; snapshot tại [`audit/AI-029-cfr14-domains-output.md`](audit/AI-029-cfr14-domains-output.md).
+- **Phân biệt chính:** GET list có lớp quan sát quyền riêng và không bị gán từ chối cho user/khách; POST/DELETE được phân hoạch theo admin, user thường, thiếu/sai/hết hạn token theo FR-12. Whitespace-only và category ID không tồn tại giữ là câu hỏi/thăm dò khi oracle không đủ. Không thêm uniqueness hoặc giới hạn độ dài.
+- **Giới hạn:** Chưa tạo test case, chưa chạy SUT, chưa ghi kết quả hay human review.
