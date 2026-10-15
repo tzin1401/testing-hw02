@@ -809,3 +809,22 @@ Dựa trên review thực tế của tôi, cập nhật 05-review-coverage.md ch
 - **AI gap có evidence:** lần click UI đầu nhắm dòng ngoài viewport, được phát hiện qua ảnh/state; bằng chứng tên rỗng ban đầu chưa thấy dòng mới nên có capture bổ sung; API evidence cho C-DT-018 lặp cùng một POST setup record do runner lưu response hai lần—không phải hai request độc lập. Các điểm được ghi rõ trong bug report; không suy diễn thêm bug SUT.
 - **Output:** [`features/C-FR14/07-bugs-and-ai-gaps.md`](features/C-FR14/07-bugs-and-ai-gaps.md); snapshot tại [`audit/AI-035-cfr14-bug-report-output.md`](audit/AI-035-cfr14-bug-report-output.md).
 - **Không đăng issue:** theo yêu cầu, chỉ chuẩn bị title/body và evidence cần đính kèm. Issue API là ca API-only nên dùng network log redacted, không tạo ảnh UI không phản ánh thao tác API.
+
+
+## Interaction AI-036 — Đăng GitHub Issues C-FR14
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại; GitHub CLI `gh` `2.101.0`, tài khoản đăng nhập `tzin1401`.
+- **Ngày giờ ghi nhận:** 2026-10-15T07:07:28Z (14:07:28 UTC+07); thời điểm audit, không phải timestamp prompt chính xác.
+- **Prompt nguyên văn:**
+
+```text
+Đăng issue lên đi
+```
+
+- **Repo đích:** `tzin1401/testing-hw02`; kiểm tra trước khi tạo thấy issues #1–#5 hiện có và không có issue trùng C-FR14.
+- **Thao tác:** tạo label còn thiếu `module: admin`; đăng issue #6 và #7 theo hai bug draft AI-035, dùng labels `type: bug`, `severity`, `priority`, `status: new`, `module`.
+- **Issue #6:** [Hệ thống cho phép tạo danh mục khi tên để trống](https://github.com/tzin1401/testing-hw02/issues/6), labels Minor/P2/Admin. `gh issue create --attach` tải hai ảnh UI; xác minh body sau tạo có URL asset GitHub, ảnh trước `730f684f-cd6a-45e7-9095-1eb0ebf6940f`, ảnh sau `78372825-d465-4c90-aa75-5e3a892b8164`.
+- **Issue #7:** [API categories cho phép user thường POST và DELETE](https://github.com/tzin1401/testing-hw02/issues/7), labels Major/P1/API. Body có request/response và state delta đã che token. Vì lỗi là API-only, không đính kèm ảnh UI không chứng minh được role/token.
+- **Xác minh:** `gh issue view` xác nhận hai issue tồn tại ở trạng thái OPEN, đúng titles, bodies và labels. Issue #6 body được chỉnh sau upload để giữ đúng URL attachment thay vì relative path cục bộ.
+- **Output:** cập nhật [`features/C-FR14/07-bugs-and-ai-gaps.md`](features/C-FR14/07-bugs-and-ai-gaps.md), [`reports/work-progress.md`](reports/work-progress.md), snapshot [`audit/AI-036-cfr14-issue-publication-output.md`](audit/AI-036-cfr14-issue-publication-output.md).
+- **Giới hạn:** Chỉ đăng issues và ảnh #6; không push repo commit, code, SUT hoặc file evidence lên GitHub repository.

@@ -6,7 +6,9 @@
 
 ## Bug đã tái hiện
 
-### Issue draft C-FR14-01 — Có thể tạo danh mục với tên rỗng
+### GitHub Issue #6 — Có thể tạo danh mục với tên rỗng
+
+- **URL:** https://github.com/tzin1401/testing-hw02/issues/6
 
 - **Title:** `[BUG][Admin] Hệ thống cho phép tạo danh mục khi tên để trống`
 - **Mô tả:** FR-14 ghi tên danh mục là bắt buộc và không được để trống. Trên Admin UI, để trống trường tên và bấm **Thêm mới** vẫn tạo dòng danh mục có tên rỗng.
@@ -52,9 +54,11 @@
 - **TC liên quan:** C-DT-003, C-BV-001.
 - **Severity / Priority:** `severity: minor`, `priority: P2`. Chức năng tạo danh mục sai validation nhưng cần quyền admin và không làm thay đổi dữ liệu mẫu; ảnh hưởng dữ liệu quản trị và vi phạm yêu cầu bắt buộc, chưa có bằng chứng mất dữ liệu khác.
 - **Labels đề xuất:** `type: bug`, `severity: minor`, `priority: P2`, `status: new`, `module: admin`.
-- **Evidence cần đính kèm:** ảnh [trước](../../evidence/C-FR14/full-runs/20261015T055119Z-CFR14/screenshots/issue-empty-name-before.png) và [sau](../../evidence/C-FR14/full-runs/20261015T055119Z-CFR14/screenshots/issue-empty-name-after-created.png), cùng `issue-empty-name-evidence.json`. Ảnh sau cho thấy ID 26 với tên trống; JSON có snapshot trước/sau và cleanup đúng ID.
+- **Evidence đã đính kèm:** [ảnh trước](https://github.com/user-attachments/assets/730f684f-cd6a-45e7-9095-1eb0ebf6940f) và [ảnh sau](https://github.com/user-attachments/assets/78372825-d465-4c90-aa75-5e3a892b8164). Ảnh sau cho thấy ID 26 với tên trống; snapshot trước/sau và cleanup đúng ID nằm trong `issue-empty-name-evidence.json`.
 
-### Issue draft C-FR14-02 — Role user thường ghi/xóa được danh mục qua API
+### GitHub Issue #7 — Role user thường ghi/xóa được danh mục qua API
+
+- **URL:** https://github.com/tzin1401/testing-hw02/issues/7
 
 - **Title:** `[BUG][API] API categories cho phép user thường POST và DELETE`
 - **Mô tả:** FR-12 yêu cầu API ghi danh mục cần JWT hợp lệ và role admin. Hai request có JWT hợp lệ role `user` đã thay đổi dữ liệu: POST tạo category ID 6, DELETE xóa target test ID 10.
@@ -102,7 +106,7 @@
 - **TC liên quan:** C-DT-014, C-DT-018. Không dùng UI Admin để suy ra API permission.
 - **Severity / Priority:** `severity: major`, `priority: P1`. Role user không được phép thay đổi danh mục; có thể làm sai dữ liệu quản trị hoặc xóa category. Target trong lần test là dữ liệu test riêng, không phải category mẫu.
 - **Labels đề xuất:** `type: bug`, `severity: major`, `priority: P1`, `status: new`, `module: api`.
-- **Evidence cần đính kèm:** `api-evidence.json`, mục `C-DT-014` và `C-DT-018`; `cleanup-evidence.json` cho biết các ID test được dọn sau evidence. Response đã che token, kèm snapshot category trước/sau. Không tạo ảnh UI giả cho ca API-only; network log là evidence.
+- **Evidence đã đăng trong body:** request/response và snapshot redacted từ `api-evidence.json`, mục `C-DT-014` và `C-DT-018`. Đây là ca API-only; không có ảnh UI thích hợp nên body chứa network transcript thực tế, không tạo ảnh giả.
 
 ## Phân loại các ca chưa thành bug
 
@@ -121,4 +125,4 @@
 ## Coverage gap (không phải AI gap)
 
 - C-R01 về quyền truy cập **Admin UI** của user thường/khách chưa được kiểm tra trực tiếp. API POST/DELETE role user là phép thử riêng, không thay thế UI access test.
-- Không đăng GitHub Issue theo yêu cầu. Hai draft có title/body theo slide (environment, steps, expected/actual, evidence, severity/priority, labels); ảnh được chỉ định cho issue UI. Với bug API-only, bằng chứng là network log redacted; không có ảnh UI thích hợp và không tạo ảnh giả.
+- Đã đăng hai issue theo cấu trúc slide: title, environment, steps, expected/actual, TC ID, severity/priority, evidence và labels. Issue #6 có hai ảnh UI; issue #7 có network transcript redacted trong body vì là lỗi API-only. Không upload/push code hoặc SUT trong thao tác đăng issue.
