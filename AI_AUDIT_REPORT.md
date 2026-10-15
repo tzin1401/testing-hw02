@@ -734,3 +734,25 @@ Tạo `features/C-FR14/03-domain-cases.md`. Mỗi TC `C-DT-nnn` ghi role/tài kh
 - **Phạm vi ca:** thêm ASCII/Unicode, tên rỗng, probe ba dấu cách, xem danh sách UI, probe GET với admin/user/không token, xóa target test UI, probe dialog/hủy, API POST/DELETE admin và POST/DELETE âm với token thiếu/sai/hết hạn hoặc user role.
 - Mỗi ca ghi role/trạng thái, dữ liệu/tên cụ thể theo Run ID, bước thao tác, expected, C-EC/C-R và bằng chứng. Ca âm chỉ có một yếu tố quyền sai; không dùng dữ liệu mẫu làm target. Quy trình dọn chỉ áp dụng ID do test tạo sau khi lưu evidence.
 - **Giới hạn:** tên whitespace-only và dialog/Hủy vẫn là probe; quyền GET không bị suy rộng từ quyền ghi. Không ghi status HTTP hoặc policy chưa có oracle. Chưa chạy SUT, chưa ghi actual/status/human review.
+
+
+## Interaction AI-032 — Thiết kế BVA C-FR14
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi nhận:** 2026-10-15 (UTC+07:00); không suy đoán giờ gửi prompt chính xác.
+- **Phạm vi:** chọn các điểm biên có căn cứ cho tên category và trạng thái ID; chỉ thiết kế, không chạy SUT.
+
+### Prompt nguyên văn
+
+```text
+Tạo `features/C-FR14/04-boundary-cases.md` theo slide. Với tên danh mục, dùng 0/1/2 ký tự làm biên dưới (0 rỗng, 1 và 2 không rỗng), expected theo quy tắc “bắt buộc, không được để trống”; giải thích không có upper bound trong SRS nên không bịa max. Có thể dùng các đại diện Unicode/whitespace như domain probes, nhưng đừng gọi chúng BVA nếu không phải điểm biên thứ tự. Với ID, chỉ chọn tồn tại/không tồn tại nếu requirement/ca hỗ trợ; không tạo số ID cực đại giả. Nếu có biên khác được nêu rõ trong tài liệu thì dẫn nguồn. Mỗi ca có setup danh mục riêng, role/token, thao tác, expected, C-EC/C-R/TC ID và ảnh/log cần lưu. Không chạy test hay điền actual. Ghi audit và commit riêng.
+```
+
+### Đã đối chiếu và đầu ra
+
+- **Đã đọc/đối chiếu:** `features/C-FR14/01-requirements.md`, `02-domains.md`, `03-domain-cases.md`; SRS FR-12/FR-14; API specification mục 3.4; slide BVA về lower/upper boundary, delta và giá trị sát biên.
+- **Output:** [`features/C-FR14/04-boundary-cases.md`](features/C-FR14/04-boundary-cases.md); snapshot đầy đủ tại [`audit/AI-032-cfr14-boundary-cases-output.md`](audit/AI-032-cfr14-boundary-cases-output.md).
+- **Biên:** `LB=1 ký tự`, `δ=1`; cases tên 0/1/2 ký tự. SRS/API không nêu UB nên không tạo max. 1/2 ký tự dùng ASCII; chọn candidate chưa có trong danh sách để tránh đụng dữ liệu, không coi đó là uniqueness check.
+- **ID:** tồn tại dùng ID của category test do case tạo; không tồn tại là probe xác minh bằng GET trước, không đặt ID cực đại và không gán expected response. Ghi rõ ID không có thứ tự/giới hạn được nêu nên đây là state-boundary probe, không phải BVA số học.
+- **Phân biệt Domain/BVA:** Unicode/whitespace-only và role/token được giữ ở Domain cases, không gọi là điểm BVA có thứ tự.
+- **Giới hạn:** Không chạy test, không điền actual/status/human review; không dùng hoặc xóa dữ liệu mẫu.
