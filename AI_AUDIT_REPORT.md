@@ -932,3 +932,17 @@ Dựa trên review thực tế của tôi, cập nhật 05-review-coverage.md ch
 - **Evidence:** thêm comment liên kết JSON redacted trên nhánh main; Issues API không nhận file local trực tiếp làm attachment. Issue nêu không có screenshot API phù hợp và không dùng ảnh UI Blocked để suy ra lỗi API.
 - **Giới hạn:** Mobile D-DT-006 vẫn Blocked; không cập nhật trạng thái test, không sửa SUT.
 - **Commit:** sẽ ghi sau khi commit riêng báo cáo và audit.
+
+
+## Interaction AI-046 — Skill Domain/BVA và hướng dẫn demo
+
+- **Công cụ:** Codex; dùng skill-creator (`/home/zinn/.codex/skills/.system/skill-creator/SKILL.md`).
+- **Thời điểm ghi audit:** 2026-10-15T15:14:56Z (22:14:56 +07:00).
+- **Prompt và toàn văn output:** [AI-046-domain-bva-skill-output.md](audit/AI-046-domain-bva-skill-output.md).
+- **Artifact:** [SKILL.md](skills/domain-bva/SKILL.md), [hướng dẫn gọi/demo A-FR02](skills/domain-bva/references/demo-a-fr02.md).
+- **Nguồn:** slide EN trang in 13–14, 31–37; requirements/review/execution A-FR02; review B/C/D; hướng dẫn mục 14; phần đầu harness A-FR02.
+- **Review:** kế thừa phản hồi hiểu ca cũ đúng phạm vi; không xác nhận người dùng review skill, bản demo mới hoặc phê duyệt expected. Các câu hỏi oracle vẫn cần làm rõ.
+- **Output:** quy trình tổng quát, EC/biên/TC, human review, thực thi/evidence/bug; ví dụ tách riêng có prompt từng bước và run mới mỗi lần thực thi lại.
+- **Validation:** quick_validate báo `Skill is valid!`; kiểm tra nguồn phương pháp, đường dẫn reference, các giới hạn đo thời gian và UI/API. Không chạy lại SUT, không có video hoặc kết quả mới.
+- **Giới hạn helper:** hướng dẫn nhắc kiểm tra metadata commit/DB hard-code trong harness trước khi dùng; chưa xác minh dịch vụ runtime ở lượt này.
+- **Commit:** phần skill và audit được commit riêng; tra lịch sử `git log -- skills/domain-bva/SKILL.md` để lấy mã commit chứa interaction này.
