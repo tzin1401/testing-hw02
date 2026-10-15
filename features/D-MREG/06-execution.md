@@ -1,92 +1,66 @@
-# D-MREG — Execution log
+# D-MREG — Nhật ký thực thi Domain và BVA
 
-**Run ID:** `20261015T1303Z-DMREG`
 **SUT baseline:** `85af3ba875c88283615e22cb108f13e2fccaf0e9`
-**Phạm vi chạy:** Mobile UI theo từng ca; API chỉ là bằng chứng phụ trợ, không thay thế UI.
+**Run Mobile:** `20261015T153620Z-57c022`, Android Emulator Pixel 9 / Android 15 / API 35 / x86_64, Expo Go SDK 54. Bằng chứng trong `evidence/D-MREG/supplement-runs/20261015T153620Z-57c022/`.
+**Run API phụ trợ:** `20261015T1303Z-DMREG`, chạy trên bản sao DB cô lập vì backend ban đầu không có listener; không restart backend cũ, không dùng API thay cho Mobile UI.
 
-## Môi trường và kiểm tra trước chạy
+## Điểm giới hạn chung
 
-- Android Emulator đang chạy: AVD Pixel 9, Android 15, API 35, x86_64; `emulator-5554`. Expo Go hiển thị SDK 54. Ảnh khởi đầu và thao tác UI nằm tại `evidence/D-MREG/full-runs/20261015T1303Z-DMREG/`.
-- SUT gitlink ở commit baseline nêu trên. Working tree SUT đã có thay đổi từ trước: `backend/database.sqlite`, `frontend-mobile/App.js`, `backend/node_modules/`. Không sửa các mục này; `App.js` đặt API URL `http://10.0.2.2:3000/api`.
-- Expo Go/Metro đã hoạt động trên cổng 8081. Backend PID cũ không còn chạy khi kiểm tra lại và cổng 3000 từ chối kết nối lúc 13:04:41Z. Không restart backend cũ vì có thể seed/reset state. Thay vào đó, tạo bản sao cô lập `/tmp/hw02-dmreg-isolated-run` từ `/tmp/hw02-mobile-backend-safe` và chạy server trên bản sao đó; source `server.js` khớp byte với SUT (`SHA-256 47573ce5a6bf9a894748d2bb56cc8d1659ad7acd033fdd6db6b3e4d9473eb487`). Server khởi tạo dữ liệu seed trong DB bản sao; DB của SUT và bản sao nguồn không bị khởi động lại.
-- Host API `/api/products` ban đầu đã trả 5 sản phẩm. Sau đó backend tạm không còn listener; khi server bản sao được bật, cổng 3000 hoạt động lại. Chạm sản phẩm trong app khi listener vắng mặt mở màn chi tiết báo `TypeError: Network request failed`; không dùng quan sát này làm kết luận cho D-MREG.
-- Có thể điều khiển emulator bằng ADB và chụp ảnh. Tuy nhiên, các lần tap vào header **Đăng nhập** không chuyển sang Login; thao tác tap vào vùng sản phẩm có phản hồi. Không vào được form Register nên không thể quan sát bốn trường hay thực hiện submit từ Mobile. Các screenshot/ADB dump chứng minh blocker, không chứng minh expected của form.
-- Không restart backend hoặc Metro trong khi chạy API. Không sửa code SUT, không xóa dữ liệu. Backend API bản sao hiện chứa hai account test trùng email `vinh.dmreg.api-fixture01@example.com`, do phép kiểm tra API phụ trợ bên dưới; không có account test nào được tạo trong DB SUT.
+Form Mobile quan sát được chỉ có ba trường: Họ tên, Email, Mật khẩu; thiếu trường Xác nhận mật khẩu theo D-R07. Vì thế các ca được thiết kế với đủ bốn trường không thể hoàn thành đúng setup. Bảng “ca thiết kế” ghi verdict cho toàn ca; kết quả thao tác trên ba trường hiện có ghi riêng là **probe biến thể**, không được tính Pass/Fail cho full test case.
 
-## Kết quả API phụ trợ — không thay thế UI
+## Trạng thái 20 ca thiết kế
 
-Tại 13:04:41Z, hai POST thử tới backend đang tắt bị `Connection refused`, không làm thay đổi DB (`count=0`). Sau khi xác minh bản sao cô lập, gửi một POST hợp lệ làm fixture rồi gửi lại cùng email một lần nữa. Cả hai request là tới `POST /api/register`; response lần 1 HTTP 200, `id=3`, count 1; lần 2 HTTP 200, `id=4`, count 2. Request/response đã che password; count được truy vấn SQLite ở chế độ chỉ đọc.
+| TC | Trạng thái full TC | Lý do / bằng chứng |
+|---|---|---|
+| D-DT-001 | Fail | Form chỉ có 3 trường; thiếu xác nhận mật khẩu. `D-DT-001` presence record và `D-DT-001-register-form.png`. |
+| D-DT-002–D-DT-011 | Partial / setup không đạt | Có submit các biến thể 3 trường và ghi kết quả riêng bên dưới; không thể nhập confirmation nên không hoàn tất ca thiết kế. |
+| D-DT-012–D-DT-013 | Blocked | Ca phụ thuộc trường xác nhận không tồn tại. |
+| D-BV-001–D-BV-005 | Partial / setup không đạt | Password được thử qua Mobile UI nhưng confirmation field thiếu. D-BV-002 còn gặp network request failed. Chi tiết bên dưới. |
+| D-BV-006–D-BV-007 | Not run | Không có lượt submit hợp lệ đủ để đánh giá hai ca này. Các lượt tự động hóa bổ sung ngày 16/10 đều bị dừng trước submit do nhập sai/lệch trường; một lượt chụp màn hình trước submit rồi thoát Expo Go về Home. Không dùng các ảnh đó để kết luận chức năng. |
 
-- Evidence: [`api-registration-duplicate-isolated.json`](../../evidence/D-MREG/full-runs/20261015T1303Z-DMREG/api-registration-duplicate-isolated.json), [`api-registration-duplicate.json`](../../evidence/D-MREG/full-runs/20261015T1303Z-DMREG/api-registration-duplicate.json).
-- API evidence xác nhận endpoint tạo hai account với cùng email, trái yêu cầu uniqueness D-R04. Đây là API-only observation/failure; không đánh dấu D-DT-006 Mobile là Fail và không suy ra app Mobile đã submit.
-- API success fixture trả đúng response success đã mô tả trong API spec. Đây chỉ là kiểm tra contract API và tạo account fixture; không phải Pass cho đăng ký Mobile, password UI validation, confirm field hoặc navigation.
+Không cộng 15 partial thành 15 TC hoàn tất; không có Pass/Fail đầy đủ cho 19 ca phụ thuộc form 4 trường.
 
-## Trạng thái từng ca
+## Kết quả probe biến thể trên ba trường hiện có
 
-`Blocked` nghĩa là chưa thực hiện thao tác trên Register Mobile, do không thể mở được màn hình Login/Register từ emulator bằng điều khiển hiện có. Không ghi Pass/Fail cho checkpoint UI chưa có bằng chứng.
-
-| TC | Trạng thái | Actual / lý do | Evidence |
+| Probe liên quan | Input chính (password luôn được che trong log) | Actual UI và state | Đánh giá |
 |---|---|---|---|
-| D-DT-001 | **Blocked** | App hiển thị Home; tap vào header Đăng nhập không mở Login. Chưa quan sát được form bốn trường. | `D-DT-001-no-register-screen.png` |
-| D-DT-002 | **Blocked** | Chưa nhập/submit trên Mobile; không kiểm tra account/navigation UI. | cùng blocker UI; API fixture không thay thế ca này |
-| D-DT-003 | **Blocked** | Chưa vào Register để nhập name rỗng. | cùng blocker UI |
-| D-DT-004 | **Blocked** | Chưa vào Register để nhập email rỗng. | cùng blocker UI |
-| D-DT-005 | **Blocked** | Chưa vào Register để nhập email sai format. | cùng blocker UI |
-| D-DT-006 | **Blocked** | Chưa vào Register để thử duplicate trên Mobile. API duplicate đã chạy riêng, không đổi status UI. | API log chỉ là supplementary |
-| D-DT-007 | **Blocked** | Chưa vào Register để nhập password rỗng. | cùng blocker UI |
-| D-DT-008 | **Blocked** | Chưa vào Register để thử password thiếu hoa. | cùng blocker UI |
-| D-DT-009 | **Blocked** | Chưa vào Register để thử password thiếu thường. | cùng blocker UI |
-| D-DT-010 | **Blocked** | Chưa vào Register để thử password thiếu số. | cùng blocker UI |
-| D-DT-011 | **Blocked** | Chưa vào Register để thử thiếu ký tự thuộc tập. | cùng blocker UI |
-| D-DT-012 | **Blocked** | Chưa vào Register để nhập confirmation mismatch. | cùng blocker UI |
-| D-DT-013 | **Blocked** | Chưa vào Register để để trống confirmation. | cùng blocker UI |
-| D-BV-001 | **Blocked** | Chưa nhập password 7 ký tự trên Mobile. | cùng blocker UI |
-| D-BV-002 | **Blocked** | Chưa nhập password 8 ký tự/submit trên Mobile. | cùng blocker UI |
-| D-BV-003 | **Blocked** | Chưa nhập password 9 ký tự/submit trên Mobile. | cùng blocker UI |
-| D-BV-004 | **Blocked** | Chưa thử robustness thiếu hoa trên Mobile. | cùng blocker UI |
-| D-BV-005 | **Blocked** | Chưa thử robustness thiếu thường trên Mobile. | cùng blocker UI |
-| D-BV-006 | **Blocked** | Chưa thử robustness thiếu số trên Mobile. | cùng blocker UI |
-| D-BV-007 | **Blocked** | Chưa thử robustness thiếu ký tự tập trên Mobile. | cùng blocker UI |
+| D-DT-002 | Tên hợp lệ, email mới, password dài 8; confirmation absent | Alert đăng ký thành công, DB test count 0→1, chuyển về Login. | Biến thể 3 trường thành công; không phải Pass full TC D-DT-002. |
+| D-DT-003 | Họ tên rỗng; email mới; password dài 8 | Alert thành công, count 0→1, chuyển Login. | Finding D-R01: validation tên bắt buộc không quan sát được. |
+| D-DT-004 | Email rỗng; tên/password hợp lệ | Alert thành công, count 0→1, chuyển Login. | Finding D-R02: email rỗng được chấp nhận. |
+| D-DT-005 | Email `bad-20261015t153620z-57c022` (không có `@`) | Alert thành công, count 0→1, chuyển Login. | Finding D-R03: đại diện sai format được chấp nhận. |
+| D-DT-006 | Email đã tạo ở biến thể D-DT-002 | Alert thành công, count 1→2. | Finding D-R04 trên Mobile UI; cùng loại uniqueness issue API-only D-MREG run. |
+| D-DT-007–011 | Password rỗng, thiếu hoa, thiếu thường, thiếu số, thiếu ký tự thuộc tập tương ứng | Form hiện lỗi password; count email 0→0. | Probe cho quy tắc password hiện có; do confirmation absent, không tính Pass full TC. |
+| D-BV-001 | Password length 7 | Lỗi password hiện; count 0→0. | Đúng hướng rejection quan sát được; ca full TC còn confirmation absent. |
+| D-BV-002 | Password length 8 | Hiện “Network request failed”; count 0→0. | Không kết luận độ dài tại biên; network failure chặn oracle. |
+| D-BV-003 | Password length 9 | Alert thành công; count 0→1; chuyển Login. | Biến thể 3 trường thành công; chưa phải Pass full TC. |
+| D-BV-004–005 | Thiếu hoa / thiếu thường, length 8 trong event | Form hiện lỗi password; count 0→0. | Probe robustness; không tính Pass full TC. |
 
-## Trạng thái theo requirement
+`events.jsonl` là nguồn timestamp/state; các ảnh trước/phản hồi/điều hướng tương ứng nằm cùng thư mục run. Mỗi password chỉ ghi `[REDACTED]` và độ dài, không ghi giá trị.
 
-| Requirement | Mobile UI | API phụ trợ | Kết luận trong Run |
-|---|---|---|---|
-| D-R01 | **Blocked** — chưa tới form | — | Chưa kết luận |
-| D-R02 | **Blocked** — chưa tới form | — | Chưa kết luận |
-| D-R03 | **Blocked** — chưa tới form | — | Chưa kết luận |
-| D-R04 | **Blocked** — chưa submit từ app | **Fail** — cùng email tạo hai bản ghi | API-only failure; UI vẫn cần chạy |
-| D-R05 | **Blocked** — chưa tới form | — | Chưa kết luận |
-| D-R06 | **Blocked** — chưa tới form | — | Chưa kết luận password UI rules |
-| D-R07 | **Blocked** — chưa thấy confirmation field | — | Chưa kết luận; API spec không nhận confirmation field |
-| D-R08 | **Blocked** — chưa submit từ app | **Pass** contract success cho request hợp lệ | API result không phải Pass Mobile |
-| D-R09 | **Blocked** — không có success UI | — | Chưa kết luận navigation |
+## Kết quả API-only bổ trợ uniqueness
 
-## Observation chưa đủ expected để phân loại
+Trên bản sao cô lập `/tmp/hw02-dmreg-isolated-run`, hai POST tuần tự cùng email trả HTTP 200, lần lượt tạo ID 3 và 4, count 0→1→2. `server.js` khớp hash với baseline; database thuộc bản sao, không phải DB SUT. Evidence: `evidence/D-MREG/full-runs/20261015T1303Z-DMREG/api-registration-duplicate-isolated.json`. Đây là lỗi API D-R04; nó không đại diện cho Mobile UI. Run bổ sung Mobile D-DT-006 sau đó cũng ghi biến thể UI tạo trùng, như ở bảng trên.
 
-- Khi backend cũ không còn listener, trang chi tiết sản phẩm đã hiện `TypeError: Network request failed`. Đây là lỗi kết nối ngoài luồng đăng ký, xảy ra trước khi khởi động bản sao cô lập; không dùng nó làm Fail D-MREG.
-- Chưa quan sát được Register nên không có actual về whitespace/trim, chi tiết grammar email, Unicode/password counting, thông báo lỗi, giữ form sau lỗi, hoặc điều hướng sau lỗi. Đây là các câu hỏi Q trong requirements/domains, không phải Pass/Fail.
-- Email uniqueness race và network retry/submit lặp chưa được thử. API duplicate test là request tuần tự, không phải race test.
+## Requirement-level findings
 
-## Các thao tác Mobile còn cần thực hiện
+- D-R01, D-R02, D-R03: probe Mobile cho thấy họ tên rỗng, email rỗng và email không có `@` đều được chấp nhận trên form ba trường; ba TC full setup chưa hoàn thành vì confirm thiếu.
+- D-R04: API-only duplicate được xác nhận; biến thể UI cũng tạo bản ghi thứ hai. Không thử race condition.
+- D-R05/D-R06: password policies có các probe bị từ chối/được chấp nhận; không chấm Pass cho full registration flow vì thiếu confirmation. Password length 8 có network failure.
+- D-R07: Fail về sự hiện diện trường confirmation (D-DT-001); khớp/mismatch/rỗng không thể thử.
+- D-R08/D-R09: có bằng chứng success alert, DB count và điều hướng trong biến thể 3 trường, nhưng không coi là Pass cho ca có bốn trường.
 
-Không cần chạy lệnh terminal. Trên emulator Pixel 9 đang mở app:
+## AI/execution gap và giới hạn
 
-1. Chạm **Đăng nhập** ở góc trên bên phải. Ở Login, chạm liên kết đăng ký. Nếu thao tác bằng chuột không phản hồi, dùng chạm trực tiếp vào vùng chữ trên emulator. Với D-DT-001, chụp màn hình khi form Register mở và xác nhận có thể focus/nhập bốn trường. Nếu thiếu trường, lưu ảnh đó; đánh dấu các ca dùng field thiếu là Blocked, rồi tiếp tục ca không cần field đó.
-2. Mỗi ca độc lập bắt đầu lại ở Register mới. Điền dữ liệu chính xác trong ca tương ứng của [03-domain-cases.md](03-domain-cases.md) hoặc [04-boundary-cases.md](04-boundary-cases.md); password là chuỗi test giả trong file, không phải mật khẩu cá nhân. Sau mỗi trường password, giữ nội dung ẩn. Ẩn bàn phím, chụp ảnh trước submit có tên TC ID, bấm **Đăng Ký** một lần, chụp ảnh phản hồi/điều hướng với cùng TC ID.
-3. Trường hợp thành công dùng email riêng ghi trong TC và chụp màn Login sau submit. Ca lỗi không cần xóa account; không có account nên giữ dữ liệu như vậy. Không xóa fixture `api-fixture01` khỏi bản sao backend.
-4. Lưu ảnh vào `evidence/D-MREG/` với tên đã nêu dưới từng ca. Gửi ảnh/log hoặc cho biết đường dẫn đã lưu để cập nhật actual/status. Đừng ghi password/token vào ảnh/log không che.
+Run đầu `20261015T1303Z-DMREG` bị chặn khi tap header, sau đó run bổ sung mở được Register qua Login và liên kết đăng ký. Giới hạn ban đầu được khắc phục. Không dùng kết quả “Blocked” của run đầu để phủ nhận evidence run sau.
 
-Danh sách case-by-case dữ liệu, tap/input, keyboard, submit, expected và TC ID đã có trong hai file thiết kế liên kết ở trên; không được gộp UI result với API log.
+Không có evidence cho D-BV-006/007 trong run; không dùng ảnh từ ca Domain tương tự thay thế. Chưa xác minh xử lý mạng lỗi, trim, Unicode, giới hạn chiều dài, câu chữ expected, hay race email. Account test được tạo trong DB clone; không xóa DB/account test. Không restart backend SUT.
 
-## Run metadata
+## Lượt automation không hợp lệ ngày 16/10/2026
 
-- **Run start:** `2026-10-15T13:04:41Z` (API connectivity refusal); isolated API exercise: `2026-10-15T13:05:37Z` onward. UTC and monotonic values are in JSON evidence.
-- **Device:** Android Emulator Pixel 9, Android 15/API 35, x86_64; emulator serial `emulator-5554`.
-- **Expo:** Expo Go SDK 54; Metro port 8081.
-- **Backend:** isolated copy on `127.0.0.1:3000`; source `server.js` matches baseline. Test DB `/tmp/hw02-dmreg-isolated-run/database.sqlite`.
-- **Password/token redaction:** API JSON evidence stores `[REDACTED]`; no credentials included.
+Các lượt sau được giữ lại để minh bạch về lỗi công cụ nhưng không tính vào 20 TC hoặc probe có kết quả:
 
-## Giới hạn
+- `20261016T003700Z-DMREG-BV67`: hai process chạy chồng; trường tên bị nhập thành `Nguyen` thay vì giá trị dự kiến và dữ liệu trường bị lệch. Không dùng kết quả hiển thị để chấm ca.
+- `20261015T174041Z-DMREG-BV67-clean`, `20261015T174117Z-DMREG-BV67-clean`, `20261015T174221Z-DMREG-BV67-clean`: xác minh trường đầu vào thất bại trước khi submit; không tạo account theo các lượt này.
+- `20261015T174259Z-D-MREG-manual-probe`: ảnh trước submit xác nhận tên `V`, email riêng và password được che; thao tác tiếp theo rời Expo Go về màn hình Home, không lưu được response UI đáng tin cậy. DB clone được truy vấn chỉ đọc và không thấy account email fixture (`0`), nhưng không có checkpoint response của app nên không kết luận rejection.
 
-Không có ảnh Register, response do Mobile gửi, hoặc bằng chứng điều hướng Mobile. Vì vậy 20 checkpoint UI đều Blocked; không báo cáo các ca đó là Pass/Fail. API duplicate là failure có bằng chứng riêng và chỉ phản ánh endpoint. Không tự chấm các câu hỏi về error wording, network handling hay các oracle chưa chốt.
+Đây là lỗi thao tác/điều khiển của AI, không phải lỗi SUT. D-BV-006/007 vẫn **Not run**. Cần mở lại app, làm từng trường và xác nhận response trên app trước khi gọi lượt mới là test.

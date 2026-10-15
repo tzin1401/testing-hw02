@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.11" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>HW02 Main Report - 23120190</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">HW02 Main Report - 23120190</h1>
+</header>
+<h1 id="báo-cáo-kiểm-thử-hw02-eshop">Báo cáo kiểm thử HW02 — EShop</h1>
+<ul>
+<li><strong>Sinh viên:</strong> Nguyễn Lê Thế Vinh — MSSV 23120190 —
+Thành viên 2</li>
+<li><strong>SUT:</strong> EShop, baseline
+<code>85af3ba875c88283615e22cb108f13e2fccaf0e9</code></li>
+<li><strong>Phạm vi:</strong> A-FR02, B-FR07, C-FR14, D-MREG</li>
+<li><strong>Nguồn:</strong> SRS/ API specification ở baseline, phân công
+nhóm và slide Domain Testing/BVA. Expected được lấy từ yêu cầu; chỗ yêu
+cầu chưa rõ được giữ làm câu hỏi/probe.</li>
+</ul>
+<h2 id="phương-pháp">Phương pháp</h2>
+<p>Với mỗi chức năng, tài liệu <code>01</code> trích yêu cầu, input,
+state, output và oracle; <code>02</code> phân lớp EC; <code>03</code>
+thiết kế Domain cases; <code>04</code> thiết kế BVA; <code>05</code> ghi
+nhận review người dùng theo đúng phản hồi; <code>06</code> ghi
+actual/status/evidence; <code>07</code> đối chiếu bug và AI gap. Ca âm
+cố gắng chỉ vi phạm một điều kiện. Không tự đặt giới hạn trên khi SRS
+không nêu. Kết quả partial/observation không được tính thành
+Pass/Fail.</p>
+<h2 id="tổng-hợp-số-ca-thiết-kế">Tổng hợp số ca thiết kế</h2>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: right;">TC thiết kế</th>
+<th style="text-align: right;">Pass</th>
+<th style="text-align: right;">Fail</th>
+<th style="text-align: right;">Partial/observation</th>
+<th style="text-align: right;">Blocked/Not run</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A-FR02</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">2 observation</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td>B-FR07</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">23</td>
+</tr>
+<tr>
+<td>C-FR14</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>D-MREG</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td><strong>Tổng</strong></td>
+<td style="text-align: right;"><strong>105</strong></td>
+<td style="text-align: right;"><strong>30</strong></td>
+<td style="text-align: right;"><strong>22</strong></td>
+<td style="text-align: right;"><strong>20</strong></td>
+<td style="text-align: right;"><strong>33</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Cách tính có giải thích trong <a href="../README.md">README</a>.
+Những số liệu này mô tả hồ sơ hiện tại, không phải điểm rubric. Bảng
+test chi tiết và bằng chứng gốc nằm trong từng
+<code>06-execution.md</code> và thư mục evidence tương ứng.</p>
+<h2 id="a-fr02-đăng-nhập-và-khóa-tài-khoản-web">A-FR02 — Đăng nhập và
+khóa tài khoản Web</h2>
+<p>Run evidence ghi 14 Pass, 15 Fail, hai ca partial/blocked vì
+threshold bị khóa sớm, hai observation-only và ba biên thời gian chưa
+chạy. Các lỗi có expected rõ gồm bộ đếm tăng 2 thay vì 1, threshold khóa
+xảy ra sớm, thời lượng khóa khác yêu cầu và input email trên Web không
+có browser type validation như thiết kế. Ba biên yêu cầu điều khiển
+clock tại server không được kết luận từ đồng hồ client. Xem <a
+href="../features/A-FR02/06-execution.md">execution</a>, <a
+href="../features/A-FR02/07-bugs-and-ai-gaps.md">bug report</a>, <a
+href="../features/A-FR02/timing-analysis.md">timing analysis</a>.</p>
+<h2 id="b-fr07-giỏ-hàng-web">B-FR07 — Giỏ hàng Web</h2>
+<p>Run chính có 1 Pass, 2 Fail và 23 Blocked trên 26 TC thiết kế; lỗi
+thêm hợp lệ từ trang chi tiết làm hỏng setup. Run bổ sung tạo giỏ bằng
+đường Home/biến thể riêng, quan sát thêm: cùng sản phẩm không gộp dòng;
+thiếu nút <code>+/-</code>; xóa không hỏi xác nhận; nhãn “Tổng tạm
+tính”; phép tính dòng/tổng khớp ở checkpoint. Các phép thử
+<code>-SUP</code> không thay verdict của TC gốc. Không có kết luận về UB
+hay validation quantity app-level khi đường thêm hợp lệ chưa tạo được
+tiền đề. Xem <a href="../features/B-FR07/06-execution.md">execution</a>
+và <a href="../features/B-FR07/07-bugs-and-ai-gaps.md">bug
+report</a>.</p>
+<h2 id="c-fr14-quản-lý-danh-mục-admin">C-FR14 — Quản lý danh mục
+Admin</h2>
+<p>23 TC thiết kế: 15 Pass, 4 Fail, 1 Blocked, 3 Observation. Fail gồm
+tên rỗng được nhận ở UI/biên 0 và API cho phép JWT role user
+POST/DELETE. GET authorization, whitespace và ID không tồn tại vẫn
+probes do oracle chưa đủ rõ. Guest checkpoint chỉ cho thấy form Admin
+Login. Lượt UI bổ sung dùng fixture role user đã xác minh trong DB
+clone: login API trả 200, Admin UI hiện “Bạn không phải là admin!” và
+không có admin token. Đây là bằng chứng UI riêng; API write tests vẫn là
+evidence khác. Xem <a
+href="../features/C-FR14/06-execution.md">execution</a> và <a
+href="../features/C-FR14/07-bugs-and-ai-gaps.md">bug report</a>.</p>
+<h2 id="d-mreg-đăng-ký-mobile">D-MREG — Đăng ký Mobile</h2>
+<p>Run Pixel 9 emulator phát hiện form chỉ có ba trường, thiếu xác nhận
+mật khẩu. Trong 20 TC thiết kế, 1 Fail (thiếu field), 15 Partial (thao
+tác biến thể trên ba field), 2 Blocked (ca xác nhận), 2 Not run (BVA
+robustness riêng không có evidence hợp lệ). Các biến thể đã chấp nhận họ
+tên/email rỗng, email không có <code>@</code>, và email trùng; weak
+password probes bị từ chối. D-BV-002 độ dài 8 gặp network failure nên
+không kết luận. Các biến thể ba field không được tính Pass/Fail cho test
+case đầy đủ bốn trường. API-only duplicate test cũng tạo bản ghi thứ hai
+trên DB cô lập; không dùng API thay UI. Hai lượt automation mới cho
+D-BV-006/007 không tới được response đáng tin cậy và được loại khỏi kết
+quả. Xem <a href="../features/D-MREG/06-execution.md">execution</a>, <a
+href="../features/D-MREG/07-bugs-and-ai-gaps.md">bug report</a>.</p>
+<h2 id="github-issues-và-bằng-chứng">GitHub issues và bằng chứng</h2>
+<p>Issue #1–#8 đã tồn tại theo hồ sơ. Một số findings B/D mới phát hiện
+trong run bổ sung chưa được đăng thành issues mới; xem <a
+href="bug-report.md">bug report</a> để biết issue hiện có, findings và
+attachment còn thiếu. Trước khi nộp cần xác minh trực tiếp từng issue có
+ảnh thật hiển thị/đính kèm theo yêu cầu của đề. Local screenshot hoặc
+JSON chưa đồng nghĩa đã upload lên issue.</p>
+<h2 id="kết-luận-và-giới-hạn">Kết luận và giới hạn</h2>
+<p>Bài làm có thiết kế 105 TC cho bốn chức năng, evidence của các run đã
+thực hiện và một số findings tái hiện được. Tuy nhiên còn nhiều ca
+Blocked/partial/Not run, findings mới chưa được xuất bản đầy đủ, và bộ
+tài liệu nộp cần đồng bộ lại trước khi tạo ZIP cuối. Báo cáo không tự
+chấm điểm; sinh viên cần tự đối chiếu rubric, duyệt nội dung AI Critique
+và xác minh GitHub/evidence. Skill/video không được đánh giá trong lần
+rà soát này.</p>
+</body>
+</html>

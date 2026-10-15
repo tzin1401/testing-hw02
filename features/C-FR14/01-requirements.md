@@ -7,9 +7,9 @@
 
 | Nguồn | Nội dung dùng trong tài liệu |
 |---|---|
-| [`eshop-sut/README.md`](../../eshop-sut/README.md), FR-14 | Admin có thể thêm, xem, xóa danh mục; tên danh mục bắt buộc, không được để trống. |
-| [`eshop-sut/README.md`](../../eshop-sut/README.md), FR-12 | Phân hệ Admin chỉ dành cho role admin; các API ghi `/api/categories` phải yêu cầu JWT hợp lệ và role admin trong token. |
-| [`eshop-sut/api_specification.md`](../../eshop-sut/api_specification.md), mục 3.4 | `GET /api/categories`, `POST /api/categories` với body `{"name":"Tên DM"}`, `PUT /api/categories/:id`, `DELETE /api/categories/:id`. Mục này không nêu response mẫu hoặc HTTP status. |
+| [`eshop-sut/README.md`](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md), FR-14 | Admin có thể thêm, xem, xóa danh mục; tên danh mục bắt buộc, không được để trống. |
+| [`eshop-sut/README.md`](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md), FR-12 | Phân hệ Admin chỉ dành cho role admin; các API ghi `/api/categories` phải yêu cầu JWT hợp lệ và role admin trong token. |
+| [`eshop-sut/api_specification.md`](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/api_specification.md), mục 3.4 | `GET /api/categories`, `POST /api/categories` với body `{"name":"Tên DM"}`, `PUT /api/categories/:id`, `DELETE /api/categories/:id`. Mục này không nêu response mẫu hoặc HTTP status. |
 | [`group_feature_assignment.md`](../../group_feature_assignment.md), Pool C — Thành viên 2 | FR-14; input tên danh mục; xét tên rỗng, chỉ khoảng trắng, tên hợp lệ; thêm và xóa. Đây là phân công kiểm thử, không bổ sung chính sách trim chưa có trong SRS. |
 | Slide [`domain-testing-vn.pdf`](../../slide/domain-testing-vn.pdf) và [`domain-testing-en.pdf`](../../slide/domain-testing-en.pdf) | Phương pháp xác định input/output từ đặc tả và phân biệt các lớp dữ liệu; slide là phương pháp, không đặt thêm expected nghiệp vụ. |
 

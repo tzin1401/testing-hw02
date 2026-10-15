@@ -2,7 +2,7 @@
 
 **SUT baseline:** `85af3ba875c88283615e22cb108f13e2fccaf0e9`.
 **Run:** `20261015T055119Z-CFR14`.
-**Nguồn expected:** [SRS `eshop-sut/README.md`](../../eshop-sut/README.md), FR-12 dòng 174–179 và FR-14 dòng 186–189; API specification mục 3.4 xác nhận endpoint. FR-14 yêu cầu Admin thêm/xem/xóa và tên bắt buộc không rỗng. FR-12 yêu cầu JWT hợp lệ cùng role `admin` cho các API ghi `/api/categories`. Không dùng code SUT để quyết định expected.
+**Nguồn expected:** [SRS `eshop-sut/README.md`](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md), FR-12 dòng 174–179 và FR-14 dòng 186–189; API specification mục 3.4 xác nhận endpoint. FR-14 yêu cầu Admin thêm/xem/xóa và tên bắt buộc không rỗng. FR-12 yêu cầu JWT hợp lệ cùng role `admin` cho các API ghi `/api/categories`. Không dùng code SUT để quyết định expected.
 
 ## Bug đã tái hiện
 
@@ -126,3 +126,12 @@
 
 - C-R01 về quyền truy cập **Admin UI** của user thường/khách chưa được kiểm tra trực tiếp. API POST/DELETE role user là phép thử riêng, không thay thế UI access test.
 - Đã đăng hai issue theo cấu trúc slide: title, environment, steps, expected/actual, TC ID, severity/priority, evidence và labels. Issue #6 có hai ảnh UI; issue #7 có network transcript redacted trong body vì là lỗi API-only. Không upload/push code hoặc SUT trong thao tác đăng issue.
+
+## Đính chính checkpoint Admin UI bổ sung
+
+Run `20261015T154202360Z-supp` có guest screenshot cho form Admin Login. Event user ghi fixture role `user` là `supp-20261015t154202360z-supp@example.com`, nhưng lần nhập ở trang Admin lại dùng `test@eshop.com`; actual chỉ là alert “Đăng nhập thất bại”, không lưu request/response login. Vì vậy đây chưa phải evidence đủ để kết luận credentials hợp lệ rồi bị từ chối do role. C-R01 UI role-user còn thiếu kiểm chứng; không lấy screenshot/log generic làm Pass.
+
+
+## Kết quả C-R01 user UI sau khi xác minh fixture
+
+Run `20261016T003500Z-CUI-user` dùng fixture role `user` ID 11 trong backend clone đã xác minh bằng SQLite read-only. Đăng nhập từ Admin UI có API login HTTP 200, sau đó giao diện hiện alert “Bạn không phải là admin!”, vẫn ở Login và `adminTokenPresent=false`. Đây là bằng chứng bổ sung rằng role user bị chặn ở Admin UI. Nó không mâu thuẫn với lỗi API write Issue #7: UI check và API POST/DELETE là các đường riêng. Record cũ dùng `test@eshop.com` với alert generic vẫn được xem là lần thử inconclusive.

@@ -1,0 +1,8 @@
+{
+  "recorded_at_utc": "2026-10-15T15:45:34.814855+00:00",
+  "state": "stopped; requires evidence review; not a completed qualified test suite",
+  "reason": "User requested documentation/instructions only; no further tests authorized in this turn",
+  "event_count": 96,
+  "last_event_utc": "2026-10-15T15:43:14.761Z",
+  "note": "Web cart segment has cleanup event; C user-login has no completed result. Mobile run stopped after partial progress; screenshot without completed log is not a verdict."
+}

@@ -1,73 +1,42 @@
-# D-MREG — Báo cáo bug, issue draft và AI/execution gaps
+# D-MREG — Findings, issue draft và AI gaps
 
-**SUT baseline:** `85af3ba875c88283615e22cb108f13e2fccaf0e9`
-**Run:** `20261015T1303Z-DMREG` — chi tiết thực thi tại [`06-execution.md`](06-execution.md)
-**Đối chiếu oracle:** FR-01 trong `eshop-sut/README.md`; endpoint `POST /api/register` trong `eshop-sut/api_specification.md`.
-**Nguyên tắc:** chỉ báo bug có bằng chứng và expected từ tài liệu. Không suy ra lỗi Mobile UI từ API.
+**Baseline:** `85af3ba875c88283615e22cb108f13e2fccaf0e9`
+**Mobile run:** `20261015T153620Z-57c022`, Pixel 9 / Android 15 / API 35 / Expo Go SDK 54.
+**API run:** `20261015T1303Z-DMREG` trên backend clone cô lập; không thay Mobile UI.
 
-## Bug có bằng chứng: API tạo nhiều tài khoản cùng email
+## Findings có evidence
 
-Đây là **một lỗi độc lập** được xác nhận trong run này. Không có thêm lỗi API/Mobile nào đủ bằng chứng để tách thành bug khác. Các ca Mobile chưa thực hiện vẫn Blocked, không được gộp vào lỗi này.
+| Finding | Requirement / TC | Actual | Evidence | GitHub |
+|---|---|---|---|---|
+| Form thiếu trường xác nhận mật khẩu | D-R07; D-DT-001 Fail | Chỉ có Họ tên, Email, Mật khẩu. | `supplement-runs/20261015T153620Z-57c022/D-DT-001-register-form.png`, presence event | Chưa có issue riêng trong #1–#8. Issue draft cần tạo kèm ảnh form. |
+| Họ tên rỗng được chấp nhận ở form 3 trường | D-R01; probe liên quan D-DT-003 | App báo thành công, DB test count 0→1. | `D-DT-003-before.png`, `D-DT-003-response.png`, event | Chưa có issue riêng. Vì thiếu confirmation, ghi là probe variant, không phải full TC Fail. |
+| Email rỗng được chấp nhận ở form 3 trường | D-R02; probe liên quan D-DT-004 | App báo thành công, DB test count 0→1. | `D-DT-004-before.png`, `D-DT-004-response.png`, event | Chưa có issue riêng. Probe variant. |
+| Email sai format được chấp nhận ở form 3 trường | D-R03; probe liên quan D-DT-005 | Email không có `@` được chấp nhận; app báo thành công, count 0→1. | `D-DT-005-before.png`, `D-DT-005-response.png`, event | Chưa có issue riêng. Probe variant. |
+| Email trùng tạo account thứ hai | D-R04; API evidence và probe Mobile liên quan D-DT-006 | API POST lặp tuần tự count 0→1→2; Mobile variant cũng count 1→2 và báo thành công. Không thử race. | `full-runs/20261015T1303Z-DMREG/api-registration-duplicate-isolated.json`; `supplement-runs/20261015T153620Z-57c022/D-DT-006-{before,response}.png` và event | Issue #8 đã có nhưng ghi API-only; cần cập nhật nội dung/evidence từ Mobile variant sau khi ảnh được đính kèm. |
+| Mật khẩu rỗng/thiếu nhóm bị chặn trong các probe | D-R05/D-R06; D-DT-007–011, D-BV-001, D-BV-004/005 | Có thông báo password và DB count 0→0. | Ảnh response và event từng TC | Không phải bug từ bằng chứng hiện tại; full flow vẫn partial. |
 
-- **Title đề xuất:** `[BUG][API] Đăng ký tạo tài khoản mới dù email đã tồn tại`
-- **Requirement:** D-R04 — FR-01 yêu cầu email là duy nhất trong hệ thống.
-- **TC / nguồn phát hiện:** API-only supplemental check liên quan D-R04; không phải kết quả Mobile của D-DT-006. Không gán một TC UI là Fail.
-- **Expected có căn cứ:** Sau khi email đã được dùng để tạo tài khoản, lần đăng ký tiếp theo không được tạo thêm tài khoản cùng email. FR-01 không nêu HTTP status hoặc câu chữ response lỗi cụ thể; API specification chỉ mô tả response thành công.
-- **Môi trường và phạm vi:** baseline `85af3ba875c88283615e22cb108f13e2fccaf0e9`; Linux host; backend `server.js` byte-match baseline, chạy trên bản sao test cô lập `/tmp/hw02-dmreg-isolated-run`; database của bản sao, không phải DB trong repo. Đây là kiểm tra API tuần tự, không phải thử race condition.
-- **Severity / Priority đề xuất:** `major / P1`. Lý do: vi phạm trực tiếp tính duy nhất của email—định danh tài khoản theo FR-01—và tạo các bản ghi có cùng email, có thể gây nhập nhằng khi đăng nhập/tìm user. Bằng chứng chỉ dùng DB test cô lập; chưa có ảnh hưởng dữ liệu người dùng thật được ghi nhận.
-- **Labels đề xuất:** `type: bug`, `severity: major`, `priority: P1`, `status: new`, `module: api` (đối chiếu tên label hiện có của repo trước khi đăng).
+### Issue draft cần bổ sung
 
-### Body đề xuất cho GitHub Issue
+**Draft 1 — thiếu trường xác nhận:** `[BUG][Mobile] Form đăng ký không có trường Xác nhận mật khẩu` — Expected: FR-01 yêu cầu trường bắt buộc và giá trị phải khớp; Actual: form có ba trường. TC `D-DT-001`; ảnh `D-DT-001-register-form.png`; severity đề xuất Major/P1 vì không thể thực hiện một yêu cầu bắt buộc. Cần bổ sung steps/môi trường/labels theo template slide trước khi đăng.
 
-```markdown
-## Mô tả
-`POST /api/register` tạo thêm tài khoản khi email đó đã được đăng ký trước, trái với yêu cầu email duy nhất tại FR-01.
+**Draft 2 — validation họ tên:** `[BUG][Mobile] Form đăng ký chấp nhận họ tên để trống` — Expected: không đăng ký khi họ tên thiếu; Actual probe: success alert/count tăng 0→1. TC liên quan `D-DT-003` (variant 3 field); ảnh trước/sau. Severity đề xuất Major/P1 do tạo account thiếu thông tin bắt buộc. Ghi rõ confirmation field đang absent, đây là variant.
 
-## Môi trường
-- SUT baseline: `85af3ba875c88283615e22cb108f13e2fccaf0e9`
-- Backend source: `server.js` khớp baseline; chạy trong bản sao test cô lập trên Linux.
-- Endpoint: `POST http://127.0.0.1:3000/api/register`
-- Database: DB của bản sao test, không phải database làm việc của SUT.
-- Run ID: `20261015T1303Z-DMREG`
+**Draft 3 — email validation:** `[BUG][Mobile] Form đăng ký chấp nhận email rỗng hoặc sai định dạng` — Expected: email bắt buộc và đúng format; Actual probes riêng: email rỗng và chuỗi không có `@` đều success/count tăng. TC liên quan `D-DT-004/005` (variants 3 field); đính kèm hai bộ ảnh, không gộp hai input trong một lần chạy. Severity đề xuất Major/P1 vì account có định danh email không hợp lệ.
 
-## Bước tái hiện
-1. Dùng email test mới `vinh.dmreg.api-fixture01@example.com`; xác minh count ban đầu bằng truy vấn chỉ đọc là 0.
-2. Gửi `POST /api/register` với họ tên test, email này và mật khẩu hợp lệ (mật khẩu đã được che trong evidence).
-3. Xác minh request đầu tạo một tài khoản: HTTP 200, ID 3, count là 1.
-4. Gửi lại cùng request với chính email đó.
-5. Đọc count bằng truy vấn chỉ đọc.
+### Issue #8 — cần đồng bộ lại với evidence mới
 
-## Kết quả mong đợi
-Request thứ hai không tạo tài khoản khác cho email đã tồn tại theo FR-01. FR-01/API specification không quy định HTTP status hoặc body lỗi cụ thể, nên issue không yêu cầu một status/message riêng.
+Issue #8 đã được đăng cho lỗi API duplicate email, severity/priority Major/P1. Nội dung đã đăng trước đó nêu Mobile D-DT-006 Blocked. Run bổ sung sau đó có Mobile variant count 1→2 và success alert. Cập nhật issue để nói rõ đây là variant trên form thiếu confirmation, không đổi full TC status. API log có password redacted; ảnh Mobile không lộ password. Chưa xác minh ảnh API screenshot được gắn trong issue; JSON/link không thay ảnh theo yêu cầu đề.
 
-## Kết quả thực tế
-Request thứ hai cũng trả HTTP 200 với `User registered successfully`, ID 4; count email tăng từ 1 lên 2. Tổng count quan sát: 0 → 1 → 2.
+## Các điểm chưa được kết luận là bug
 
-## Test và phạm vi
-- Requirement: D-R04 / FR-01.
-- Phát hiện: API-only supplemental check trong run `20261015T1303Z-DMREG`.
-- Mobile `D-DT-006` vẫn Blocked vì chưa mở được màn hình Register; kết quả API không đại tính cho UI.
-- Hai POST tuần tự; chưa kiểm thử race condition.
-
-## Severity / Priority đề xuất
-Major / P1, vì vi phạm ràng buộc duy nhất của email và tạo định danh tài khoản trùng. Chỉ tái hiện trên DB test cô lập; chưa có dữ liệu người dùng thật bị ảnh hưởng.
-
-## Evidence đính kèm
-- `evidence/D-MREG/full-runs/20261015T1303Z-DMREG/api-registration-duplicate-isolated.json` — request/response đã che password, timestamp UTC/monotonic và count DB trước/sau.
-- Ảnh UI: không có ảnh phù hợp cho API-only lỗi này. Không đính kèm ảnh emulator đang Blocked vì ảnh đó không chứng minh API response. Nếu quy trình nhóm bắt buộc có ảnh, cần chụp ảnh terminal/API client thật hiển thị hai response và che thông tin nhạy cảm; không tạo ảnh minh họa giả.
-```
-
-**Issue đã đăng:** [#8 — Đăng ký tạo tài khoản mới dù email đã tồn tại](https://github.com/tzin1401/testing-hw02/issues/8). Labels: `type: bug`, `severity: major`, `priority: P1`, `status: new`, `module: api`. JSON evidence được liên kết trong comment issue vì GitHub CLI/API không nhận file local làm attachment; file có sẵn trên `main`: [api-registration-duplicate-isolated.json](https://github.com/tzin1401/testing-hw02/blob/main/evidence/D-MREG/full-runs/20261015T1303Z-DMREG/api-registration-duplicate-isolated.json). Không có screenshot API phù hợp; issue nêu rõ giới hạn này.
+- D-BV-002 length 8 gặp `Network request failed`; không kết luận biên 8 pass/fail.
+- D-BV-006/007 chưa có event/ảnh riêng; không mượn ca Domain tương tự để đánh dấu đã chạy.
+- Email race, trim, Unicode, max length, câu chữ lỗi, hành vi network/retry chưa có expected đủ rõ hoặc chưa chạy.
+- Thiếu confirmation đã làm các test bốn trường không thể hoàn thành; các outcome của ba trường hiện có là findings quan sát được nhưng không nâng thành full testcase verdict.
 
 ## AI / execution gaps có bằng chứng
 
-- **Blocker điều khiển Mobile UI:** run evidence có ảnh trước/sau thao tác và log ghi ADB/emulator kết nối, nhưng tap vào header “Đăng nhập” không mở Login; Register không được mở. Vì vậy các ca UI chưa chạy. Đây là giới hạn điều khiển trong run, chưa đủ căn cứ kết luận SUT có lỗi điều hướng.
-- **Backend ban đầu không chạy:** log run ghi port 3000 từ chối kết nối tại `2026-10-15T13:04:41Z`. Để tránh restart backend có thể làm mất state, lượt chạy dùng bản sao cô lập và kiểm tra source hash. Đây là giới hạn môi trường đã được xử lý, không phải lỗi chức năng.
-- **Không có AI content gap được xác nhận:** evidence hiện có không chỉ ra AI đã bịa expected, bỏ sót lỗi đã quan sát, hoặc báo sai trạng thái UI. Chỉ ghi nhận giới hạn thao tác UI nêu trên; không suy diễn thành AI gap nội dung.
-
-## Chưa kết luận / không phải bug đã xác nhận
-
-- Các ca `D-DT-001–013` và `D-BV-001–007` trên Mobile đều **Blocked**; chưa có actual UI để báo lỗi.
-- Không kết luận form thiếu trường xác nhận vì chưa mở được Register. Không dùng mã nguồn thay evidence giao diện.
-- Không kết luận API status/message lỗi, validation password API, xử lý network/retry, race condition, whitespace/trim hoặc navigation sau đăng ký; chưa có evidence phù hợp hoặc oracle cụ thể.
-- Lỗi `TypeError: Network request failed` xuất hiện ở trang chi tiết sản phẩm khi backend cũ đã dừng, ngoài luồng đăng ký; không báo thành bug D-MREG.
+- Run ban đầu dùng thao tác tap header không mở Login; sau đó run bổ sung thành công bằng điều hướng qua Login và liên kết đăng ký. Kết quả đầu tiên là blocker của automation, không phải bug điều hướng SUT.
+- Lượt run bổ sung dừng sau D-BV-005; D-BV-006/007 không được chạy. Audit/output trước đó có chỗ mô tả robustness đến D-BV-007 như đã Pass; mô tả đó không khớp event log và cần được bỏ/đính chính.
+- Các lượt automation mới ngày 16/10 cũng không hoàn thành D-BV-006/007: một lượt chạy chồng với tên nhập sai; ba lượt dừng ở kiểm tra input; lượt manual có ảnh trước submit nhưng thoát Expo Go về Home trước khi lưu response. Giữ lại dưới Run ID trong `06-execution.md`, không tính là kết quả SUT. Đây là AI execution gap có bằng chứng.
+- D-BV-002 lỗi network làm input đúng LB chưa được xác minh; không được dùng D-DT-002 thành công làm bằng chứng thay thế do email/setup/run khác.

@@ -104,3 +104,27 @@ Các ca +/- / xóa / dialog / cột / tổng tiền không tạo issue: không t
 - Run lưu 107 ảnh checkpoint và timestamps UTC/monotonic. Không có ảnh dòng hàng hoặc giá/quantity/thành tiền/tổng vì thao tác thêm trên Web không tạo được dòng.
 
 Hai issue đã đăng và được xác minh còn OPEN; mỗi issue có labels `type: bug`, `status: new`, `severity`, `priority`, `module: cart`. Labels có sẵn `module: cart` được tạo cho bước phân loại này. Ghi nhận hoạt động đăng issue tại AI-027.
+
+## Đánh giá bổ sung từ Run `20261015T154202360Z-supp`
+
+Lượt chạy bổ sung `20261015T154202360Z-supp` đã dùng đường thêm từ Home (`addHome`) và double-click để vượt qua blocker của `B-DT-002`, từ đó xác thực các chức năng tiếp theo trên giao diện giỏ hàng Web:
+
+1. **Bug gộp dòng sản phẩm trùng (`B-DT-004-SUP`):** Thêm cùng sản phẩm P1 hai lần không gộp thành một dòng với `quantity=2` mà tạo hai dòng riêng biệt của P1 trong giỏ (Fail).
+2. **Thiếu nút điều chỉnh số lượng `+` và `-` (`B-DT-006-SUP` ~ `B-DT-010-SUP`):** Trên giao diện mỗi dòng sản phẩm chỉ có nút "Xóa", hoàn toàn thiếu hai nút `+` và `-` theo yêu cầu FR-07 (Fail hiện diện; Blocked tương tác tăng giảm).
+3. **Thiếu hộp thoại xác nhận khi xóa (`B-DT-011-SUP` ~ `B-DT-013-SUP`):** Khi bấm nút "Xóa", dòng sản phẩm lập tức bị gỡ khỏi giỏ hàng mà không hiển thị hộp thoại xác nhận theo yêu cầu (Fail hiện diện dialog; Blocked nhánh Hủy).
+4. **Sai nhãn hiển thị tổng tiền (`B-DT-015-SUP`):** Nhãn hiển thị là "Tổng tạm tính" thay vì "Tổng cộng" theo FR-07 (Fail nhãn).
+5. **Tính toán số học hợp lệ (`B-DT-005-SUP`):** Khi có hai sản phẩm trong giỏ, đơn giá × số lượng của từng dòng và tổng số tiền được tính toán và hiển thị chính xác (Pass).
+
+
+## Findings bổ sung chưa có issue riêng
+
+Run `20261015T154202360Z-supp` có ảnh và event trực tiếp cho các hành vi dưới đây. Chúng không thuộc hai issue #4/#5 đã đăng và cần issue riêng nếu báo cáo hết lỗi theo đề:
+
+| Candidate | TC/evidence | Expected / Actual | Lưu ý |
+|---|---|---|---|
+| Thêm cùng sản phẩm không gộp dòng | B-DT-004-SUP, `B-DT-004-SUP-duplicate-product.png` | FR-07 yêu cầu gộp; thực tế thành hai dòng P1 quantity 1. | Finding độc lập với lỗi click đầu Issue #4. |
+| Thiếu điều khiển tăng/giảm quantity | B-DT-006–010-SUP, ảnh controls | Yêu cầu có `+/-`; trên dòng chỉ có Xóa. | Fail sự hiện diện; thao tác phụ thuộc Blocked. Có thể một issue bao trùm cả hai control. |
+| Xóa không có dialog xác nhận | B-DT-011–013-SUP, ảnh before/after, `dialogs: []` | Expected dialog; actual xóa ngay. | Nhánh cancel Blocked; hình ảnh cho thấy không có dialog. |
+| Nhãn tổng tiền không đúng | B-DT-015-SUP, `B-DT-015-SUP-total-label.png` | Expected “Tổng cộng”; actual “Tổng tạm tính”. | Bug UI độc lập. |
+
+Các issue trên chưa được khẳng định đã đăng; local evidence chưa đồng nghĩa ảnh đính kèm trên GitHub. B-DT-005-SUP phép tính đúng không phải bug. Bảng issue cần được đồng bộ sau khi issue thực sự được tạo/đính kèm.

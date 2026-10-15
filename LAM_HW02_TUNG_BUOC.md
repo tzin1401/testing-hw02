@@ -1,5 +1,7 @@
 # Làm HW02 từng bước — Nguyễn Lê Thế Vinh — 23120190
 
+> **Bổ sung sau kiểm tra bài nộp:** xem [Hướng dẫn xử lý phần kiểm thử còn thiếu](reports/HUONG_DAN_BO_SUNG_KIEM_THU.md) và [nhật ký công việc trước khi dừng](reports/testing-handoff.md). Hiện chỉ hướng dẫn; gửi từng prompt khi muốn thực hiện bước đó.
+
 Bạn mở file này bên cạnh cửa sổ chat và làm **từ trên xuống**. Mỗi lần chỉ làm một bước. Đánh dấu `[x]` khi bạn đã hoàn thành thật. Chưa làm thì giữ `[ ]`.
 
 Bạn không cần viết hết báo cáo ngay. Trình tự là: **chuẩn bị → thiết kế test → bạn đọc và kiểm tra → chạy thử → lưu kết quả → làm chức năng tiếp theo → đóng gói**.

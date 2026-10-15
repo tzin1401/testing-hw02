@@ -7,9 +7,9 @@
 
 | Mã | Nguồn | Dùng để xác định |
 |---|---|---|
-| S1 | [`eshop-sut/README.md`](../../eshop-sut/README.md), FR-07 | Hành vi giỏ hàng Web: nội dung/ cột, gộp sản phẩm, xác nhận xóa, tiếp tục mua sắm, nhãn tổng tiền, giỏ rỗng |
-| S2 | [`eshop-sut/README.md`](../../eshop-sut/README.md), FR-06 | Ô nhập số lượng trên trang chi tiết sản phẩm: số nguyên dương, tối thiểu 1; phản hồi trực quan khi thêm vào giỏ |
-| S3 | [`eshop-sut/api_specification.md`](../../eshop-sut/api_specification.md), mục 4.1–4.2 | API cart được tài liệu hóa là `GET /api/cart`, `POST /api/cart`; header yêu cầu Bearer token; body thêm hàng có `id`, `name`, `price`, `quantity` |
+| S1 | [`eshop-sut/README.md`](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md), FR-07 | Hành vi giỏ hàng Web: nội dung/ cột, gộp sản phẩm, xác nhận xóa, tiếp tục mua sắm, nhãn tổng tiền, giỏ rỗng |
+| S2 | [`eshop-sut/README.md`](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md), FR-06 | Ô nhập số lượng trên trang chi tiết sản phẩm: số nguyên dương, tối thiểu 1; phản hồi trực quan khi thêm vào giỏ |
+| S3 | [`eshop-sut/api_specification.md`](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/api_specification.md), mục 4.1–4.2 | API cart được tài liệu hóa là `GET /api/cart`, `POST /api/cart`; header yêu cầu Bearer token; body thêm hàng có `id`, `name`, `price`, `quantity` |
 | S4 | [`group_feature_assignment.md`](../../group_feature_assignment.md), Thành viên 2 / Pool B FR-07 | Input được giao: số lượng, nút +/−, nút Xóa; thành tiền = đơn giá × số lượng; số lượng tối thiểu ≥1; dialog xác nhận; nhãn “Tổng cộng” |
 | S5 | Slide [`domain-testing-en.pdf`](../../slide/domain-testing-en.pdf) và [`domain-testing-vn.pdf`](../../slide/domain-testing-vn.pdf) | Phương pháp: xác định input/output từ đặc tả; expected của một phân hoạch phải nhất quán; chọn giá trị biên từ điều kiện có nguồn |
 

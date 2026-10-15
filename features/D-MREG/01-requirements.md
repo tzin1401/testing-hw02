@@ -45,7 +45,7 @@ Expected result bên dưới lấy từ SRS và API specification, không lấy 
 
 ## Nguồn
 
-- SRS: [`eshop-sut/README.md`](../../eshop-sut/README.md), FR-01 dòng 30–36; FR-20 dòng 233–235.
-- API: [`eshop-sut/api_specification.md`](../../eshop-sut/api_specification.md), Authentication §1.1, dòng 11–21.
+- SRS: [`eshop-sut/README.md`](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md), FR-01 dòng 30–36; FR-20 dòng 233–235.
+- API: [`eshop-sut/api_specification.md`](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/api_specification.md), Authentication §1.1, dòng 11–21.
 - Phân công: [`group_feature_assignment.md`](../../group_feature_assignment.md), thành viên 2 Pool D, dòng 15 và 50–52.
 - Slide: [`slide/domain-testing-vn.pdf`](../../slide/domain-testing-vn.pdf), Domain Testing bước xác định input/output, phân lớp và chọn đại diện (trang 6–10); BVA và giá trị lân cận (trang 19–23). [`slide/domain-testing-en.pdf`](../../slide/domain-testing-en.pdf), tương ứng phần Domain Testing (trang 13–19) và BVA (trang 20–24).

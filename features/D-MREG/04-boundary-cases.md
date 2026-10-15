@@ -123,5 +123,5 @@ Các ca dưới đây không phải điểm BVA theo thứ tự. Mỗi password 
 - [01-requirements.md](01-requirements.md), D-R01–D-R09; password policy D-R06.
 - [02-domains.md](02-domains.md), D-EC-08–D-EC-14.
 - [03-domain-cases.md](03-domain-cases.md), D-DT-002, D-DT-007–D-DT-011.
-- SRS [`eshop-sut/README.md`](../../eshop-sut/README.md), FR-01 và FR-20; API [`eshop-sut/api_specification.md`](../../eshop-sut/api_specification.md), §1.1.
+- SRS [`eshop-sut/README.md`](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md), FR-01 và FR-20; API [`eshop-sut/api_specification.md`](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/api_specification.md), §1.1.
 - Slide Domain/BVA: [`slide/domain-testing-vn.pdf`](../../slide/domain-testing-vn.pdf), BVA trang 19–23; [`slide/domain-testing-en.pdf`](../../slide/domain-testing-en.pdf), BVA trang 20–24.

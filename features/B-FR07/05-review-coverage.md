@@ -36,4 +36,4 @@ Phản hồi nhận được: **“Tôi đã hiểu hết tất cả các ca ki�
 - Chưa ghi nhận phê duyệt kỹ thuật cho các expected có ghi “diễn giải”, “candidate”, “cần xác nhận” hoặc “chưa có oracle”. Các điểm đó tiếp tục cần làm rõ trước khi chấm kết quả.
 - Qua đối chiếu coverage, không thấy yêu cầu B-R01–B-R13 nào thiếu ít nhất một liên kết tới EC và ca thiết kế. Những requirement không có numeric boundary được ghi `—` và lý do, không tạo điểm biên giả.
 - Không sửa `01-requirements.md`–`04-boundary-cases.md` theo phản hồi “đã hiểu”; phản hồi không yêu cầu thay nội dung. Các khoảng trống đặc tả được giữ trong requirements/domains/cases.
-- Chưa chạy test; file này không có actual, status, Pass/Fail hoặc kết luận bug.
+- **Thực thi và bằng chứng:** Đã được thực thi trong Run chính `20261014T191645Z-BFR07-UI` và Run bổ sung `20261015T154202360Z-supp` (Home add & double-click variants), ghi nhận chi tiết tại [`06-execution.md`](06-execution.md) và [`07-bugs-and-ai-gaps.md`](07-bugs-and-ai-gaps.md).

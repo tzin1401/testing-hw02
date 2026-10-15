@@ -16,8 +16,8 @@ Nếu nhập sai liên tiếp, hệ thống đếm số lần sai. Mỗi lần �
 
 | Mã nguồn tài liệu | Tài liệu và phần sử dụng | Vai trò |
 |---|---|---|
-| S1 | [SRS EShop](../../eshop-sut/README.md), FR-02 | Nguồn chính cho hành vi đăng nhập, bộ đếm, khóa, token và email Web |
-| S2 | [API specification](../../eshop-sut/api_specification.md), mục 1.2 | `POST /api/login`, body `email`/`password`, thành công HTTP 200 và có `token`, `user` |
+| S1 | [SRS EShop](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/README.md), FR-02 | Nguồn chính cho hành vi đăng nhập, bộ đếm, khóa, token và email Web |
+| S2 | [API specification](https://github.com/ttbhanh/eshop-sut/blob/85af3ba875c88283615e22cb108f13e2fccaf0e9/api_specification.md), mục 1.2 | `POST /api/login`, body `email`/`password`, thành công HTTP 200 và có `token`, `user` |
 | S3 | [Slide VN](../../slide/domain-testing-vn.pdf), trang 6–7 | Bước 1: xác định Input/Output dựa vào đặc tả |
 | S4 | [Slide EN](../../slide/domain-testing-en.pdf), trang 13–14 | Quy trình Domain Testing; xác định Input/Output trước khi chia lớp/chọn ca |
 | S5 | [Phân công nhóm](../../group_feature_assignment.md), Thành viên 2 | Phạm vi FR-02 trên Web; chú ý số lần sai và thời gian khóa |
