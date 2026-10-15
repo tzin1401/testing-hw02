@@ -17,8 +17,8 @@
 | Bug report | Liệt kê issue #1–#8 và findings mới | #7/#8 đang mở và đúng labels; kiểm tra CLI không thấy ảnh attachment trong body/comments. Findings mới B/D chưa có issue. |
 | AI Critique | Draft cần được đối chiếu trải nghiệm cá nhân | Sinh viên review 200–300 từ; không xác nhận thay. |
 | AI Audit | Có lịch sử; đã thêm AI-053/054; PDF/HTML xuất lại | Sinh viên vẫn cần đọc các output và lưu ý các lượt Mobile invalid; không có human approval mới. |
-| Commit log | Có file text nhưng chưa phản ánh thay đổi chưa commit | Commit thay đổi sau khi review; tái tạo log sau commit. |
-| ZIP | Đã tạo draft, CRC pass; điểm tự chấm để trống | Chốt commit log rồi tái tạo draft cuối; draft không thay ZIP cuối có hậu tố điểm. |
+| Commit log | Bộ tài liệu/evidence đã commit `668c7c2`, file log chưa làm mới sau commit | Tái tạo log sau commit; giữ nguyên submodule `eshop-sut` và thay đổi không liên quan. |
+| ZIP | Draft trước log cuối đã CRC pass; điểm tự chấm để trống | Tái tạo draft từ commit log mới; draft không thay ZIP cuối có hậu tố điểm. |
 | Skill/video | **Tạm bỏ khỏi lần kiểm tra này theo yêu cầu** | Đối chiếu riêng khi quay lại phạm vi skill/video. |
 
 ## Số liệu TC thiết kế hiện tại

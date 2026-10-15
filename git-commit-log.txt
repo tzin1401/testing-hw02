@@ -1,0 +1,83 @@
+4cf96b7 | 2026-10-13T14:42:35+07:00 | Nguyen Le The Vinh | Add domain testing homework PDF
+
+2daf4a3 | 2026-10-14T23:14:06+07:00 | Nguyen Le The Vinh | Prepare HW02 scope, environment and progress documents
+
+15864d1 | 2026-10-14T23:28:34+07:00 | Nguyen Le The Vinh | Record backend web and admin environment setup evidence
+
+11efabd | 2026-10-14T23:31:47+07:00 | Nguyen Le The Vinh | A-FR02: document requirements and input-output model
+
+382c3dc | 2026-10-14T23:36:35+07:00 | Nguyen Le The Vinh | A-FR02: partition input and state equivalence classes
+
+9560ad3 | 2026-10-14T23:41:11+07:00 | Nguyen Le The Vinh | A-FR02: design domain test cases and trace equivalence classes
+
+126fb62 | 2026-10-14T23:45:22+07:00 | Nguyen Le The Vinh | A-FR02: design boundary cases and timing measurement protocol
+
+4c419a6 | 2026-10-15T00:08:33+07:00 | Nguyen Le The Vinh | A-FR02: record case review and requirement coverage
+
+0ad8a14 | 2026-10-15T00:17:53+07:00 | Nguyen Le The Vinh | A-FR02: record reported login run and pending evidence
+
+8426be4 | 2026-10-15T00:23:01+07:00 | Nguyen Le The Vinh | A-FR02: prepare sequential login capture script
+
+f74c541 | 2026-10-15T00:50:57+07:00 | Nguyen Le The Vinh | A-FR02: make execution guide prompt-driven
+
+8debb0c | 2026-10-15T00:54:59+07:00 | Nguyen Le The Vinh | docs: expand B C D testing workflows
+
+5f94d22 | 2026-10-15T01:21:46+07:00 | Nguyen Le The Vinh | A-FR02: record Domain and BVA execution
+
+cef591f | 2026-10-15T01:42:25+07:00 | Nguyen Le The Vinh | A-FR02: add bug screenshot evidence
+
+c2701e2 | 2026-10-15T01:49:18+07:00 | Nguyen Le The Vinh | Docs: record A-FR02 GitHub issues workflow
+
+7c7b3a7 | 2026-10-15T01:53:16+07:00 | Nguyen Le The Vinh | B-FR07: document cart requirements
+
+be170bc | 2026-10-15T01:56:29+07:00 | Nguyen Le The Vinh | B-FR07: partition cart input and output domains
+
+eb61b16 | 2026-10-15T02:00:45+07:00 | Nguyen Le The Vinh | B-FR07: design cart domain test cases
+
+3e8e1ee | 2026-10-15T02:02:48+07:00 | Nguyen Le The Vinh | B-FR07: design quantity boundary test cases
+
+e00b293 | 2026-10-15T02:04:24+07:00 | Nguyen Le The Vinh | B-FR07: record review and coverage matrix
+
+4c1da57 | 2026-10-15T02:23:45+07:00 | Nguyen Le The Vinh | Record B-FR07 domain and boundary execution
+
+687f0f7 | 2026-10-15T12:17:33+07:00 | Nguyen Le The Vinh | Refine B-FR07 bug report drafts
+
+be967ad | 2026-10-15T12:21:26+07:00 | Nguyen Le The Vinh | Record B-FR07 GitHub issues
+
+77972d4 | 2026-10-15T12:24:14+07:00 | Nguyen Le The Vinh | Add C-FR14 requirements analysis
+
+a4ff6f2 | 2026-10-15T12:34:01+07:00 | Nguyen Le The Vinh | Add C-FR14 domain partitions
+
+0a9ed0c | 2026-10-15T12:38:21+07:00 | Nguyen Le The Vinh | Add C-FR14 domain test cases
+
+dd563ae | 2026-10-15T12:42:06+07:00 | Nguyen Le The Vinh | Add C-FR14 boundary test cases
+
+a6bceb2 | 2026-10-15T12:47:55+07:00 | Nguyen Le The Vinh | Record C-FR14 review coverage
+
+e446625 | 2026-10-15T13:28:22+07:00 | Nguyen Le The Vinh | C-FR14: record Domain and BVA execution
+
+304e6c7 | 2026-10-15T13:29:55+07:00 | Nguyen Le The Vinh | C-FR14: reconcile bug reports with evidence
+
+fe06780 | 2026-10-15T14:07:55+07:00 | Nguyen Le The Vinh | C-FR14: record published GitHub issues
+
+8459e83 | 2026-10-15T19:47:22+07:00 | Nguyen Le The Vinh | docs: update D-MREG emulator setup guide
+
+54d0c58 | 2026-10-15T19:50:31+07:00 | Nguyen Le The Vinh | docs: define D-MREG registration requirements
+
+2d5e760 | 2026-10-15T19:51:21+07:00 | Nguyen Le The Vinh | docs: add D-MREG equivalence domains
+
+c6239a9 | 2026-10-15T19:54:50+07:00 | Nguyen Le The Vinh | D-MREG: design mobile registration domain cases
+
+2063832 | 2026-10-15T19:56:52+07:00 | Nguyen Le The Vinh | D-MREG: design password boundary cases
+
+7e7b3e3 | 2026-10-15T19:58:16+07:00 | Nguyen Le The Vinh | D-MREG: record review coverage
+
+4a88d36 | 2026-10-15T20:11:23+07:00 | Nguyen Le The Vinh | D-MREG: record mobile execution and API finding
+
+309c192 | 2026-10-15T22:03:12+07:00 | Nguyen Le The Vinh | D-MREG: reconcile API bug report
+
+e593f0c | 2026-10-15T22:05:07+07:00 | Nguyen Le The Vinh | D-MREG: record published GitHub issue
+
+10d3cfe | 2026-10-15T22:15:57+07:00 | Nguyen Le The Vinh | docs: add reusable Domain BVA skill and A-FR02 demo guide
+
+668c7c2 | 2026-10-16T00:52:06+07:00 | Nguyen Le The Vinh | docs: reconcile HW02 evidence and submission reports
