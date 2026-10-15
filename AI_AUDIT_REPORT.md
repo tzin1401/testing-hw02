@@ -676,3 +676,20 @@ Thực thi toàn bộ ca Domain và BVA B-FR07 trong `features/B-FR07/03-domain-
 - **Hành động/kết quả:** tạo label thiếu `module: cart`; đăng [Issue #4](https://github.com/tzin1401/testing-hw02/issues/4) cho B-DT-002 với severity major/priority P1 và 3 ảnh; đăng [Issue #5](https://github.com/tzin1401/testing-hw02/issues/5) cho B-DT-001 với severity minor/priority P2 và 1 ảnh. Cả hai gắn `type: bug`, `status: new`, `module: cart`.
 - **Xác minh:** `gh issue view` trả đúng title, body, labels và ảnh inline từ `github.com/user-attachments/assets/`; hai issue đang OPEN.
 - **Output:** cập nhật [`features/B-FR07/07-bugs-and-ai-gaps.md`](features/B-FR07/07-bugs-and-ai-gaps.md), [`reports/work-progress.md`](reports/work-progress.md), snapshot [`audit/AI-027-bfr07-github-issues-output.md`](audit/AI-027-bfr07-github-issues-output.md).
+
+
+## Interaction AI-028 — Requirements C-FR14
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi nhận:** 2026-10-15 (UTC+07:00); không suy đoán giờ gửi prompt chính xác.
+- **Phạm vi:** đọc SRS FR-14/FR-12, API specification, slide Domain/BVA, phân công Thành viên 2; tạo requirements bằng tiếng Việt đơn giản.
+- **Prompt nguyên văn:**
+
+```text
+Đọc FR-14 và FR-12 trong `eshop-sut/README.md`, API specification, slide Domain/BVA và phân công thành viên 2. Tạo `features/C-FR14/01-requirements.md` tiếng Việt đơn giản. Tách yêu cầu C-Rxx cho: admin thêm danh mục; xem danh sách; xóa danh mục; tên bắt buộc không để trống; API thao tác ghi cần JWT hợp lệ và role admin theo FR-12. Liệt kê input (tên, token/role, category ID), state trước/sau, output quan sát được ở Admin/API và nguồn expected. Nêu rõ FR-14 không bắt buộc edit; không tự thêm uniqueness, max length 255, chính sách trim, xóa danh mục đang được sản phẩm tham chiếu hoặc HTTP status nếu SRS/API contract không nói. Đánh dấu các điểm chưa rõ để review. Chưa tạo EC/TC, chưa chạy test hay human review. Ghi audit và commit riêng.
+```
+
+- **Đã đọc:** `eshop-sut/README.md` FR-12 và FR-14; `eshop-sut/api_specification.md` mục 3.4 và phần API Admin; `group_feature_assignment.md` Pool C của Thành viên 2; slide `domain-testing-vn.pdf` và `domain-testing-en.pdf` về input/output, phân hoạch tương đương và BVA. Không đọc code SUT để đặt expected.
+- **Output:** [`features/C-FR14/01-requirements.md`](features/C-FR14/01-requirements.md); snapshot đầy đủ tại [`audit/AI-028-cfr14-requirements-output.md`](audit/AI-028-cfr14-requirements-output.md).
+- **Nội dung:** C-R01–C-R06, input/state/output cho Admin Web và API, nguồn expected, ranh giới FR-14 và câu hỏi review. Ghi rõ không có Edit trong FR-14 dù API spec liệt kê PUT; không suy ra unique, 255 ký tự, trim, chính sách xóa category đang được tham chiếu hay status/body HTTP. Quyền GET `/api/categories` được để câu hỏi vì SRS nêu rõ yêu cầu JWT/admin cho API ghi, không chốt GET.
+- **Giới hạn:** Chỉ phân tích yêu cầu; chưa tạo EC/TC, chưa chạy SUT, chưa ghi human review hoặc xác nhận của sinh viên.
