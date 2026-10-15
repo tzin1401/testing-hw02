@@ -921,3 +921,14 @@ Dựa trên review thực tế của tôi, cập nhật 05-review-coverage.md ch
 - **AI gap:** chưa có bằng chứng về lỗi nội dung do AI sinh. ADB không mở được Login được ghi nhận là execution/tooling limitation có ảnh/log, không quy thành bug SUT hoặc AI content gap.
 - **Giới hạn:** không chạy thêm test, không sửa SUT, không tạo dữ liệu ngoài DB bản sao, không đăng issue. Mobile TCs vẫn Blocked.
 - **Commit:** `COMMIT_ID` (báo cáo bug và audit בלבד).
+
+
+## Interaction AI-045 — Đăng issue D-MREG
+
+- **Tên công cụ:** Codex và GitHub CLI dưới tài khoản `tzin1401`.
+- **Ngày giờ audit:** 2026-10-15T15:04:53Z (22:04:53 +07:00).
+- **Prompt nguyên văn và output:** [AI-045-dmreg-issue-publication-output.md](audit/AI-045-dmreg-issue-publication-output.md).
+- **Kết quả:** tạo [GitHub issue #8](https://github.com/tzin1401/testing-hw02/issues/8), title `[BUG][API] Đăng ký tạo tài khoản mới dù email đã tồn tại`; labels `type: bug`, `severity: major`, `priority: P1`, `status: new`, `module: api`.
+- **Evidence:** thêm comment liên kết JSON redacted trên nhánh main; Issues API không nhận file local trực tiếp làm attachment. Issue nêu không có screenshot API phù hợp và không dùng ảnh UI Blocked để suy ra lỗi API.
+- **Giới hạn:** Mobile D-DT-006 vẫn Blocked; không cập nhật trạng thái test, không sửa SUT.
+- **Commit:** sẽ ghi sau khi commit riêng báo cáo và audit.

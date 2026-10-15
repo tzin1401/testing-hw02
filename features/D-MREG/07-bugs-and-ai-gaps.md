@@ -57,7 +57,7 @@ Major / P1, vì vi phạm ràng buộc duy nhất của email và tạo định 
 - Ảnh UI: không có ảnh phù hợp cho API-only lỗi này. Không đính kèm ảnh emulator đang Blocked vì ảnh đó không chứng minh API response. Nếu quy trình nhóm bắt buộc có ảnh, cần chụp ảnh terminal/API client thật hiển thị hai response và che thông tin nhạy cảm; không tạo ảnh minh họa giả.
 ```
 
-**Trạng thái issue:** chỉ chuẩn bị draft, chưa đăng theo yêu cầu. Evidence chính hiện là JSON request/response, không phải screenshot.
+**Issue đã đăng:** [#8 — Đăng ký tạo tài khoản mới dù email đã tồn tại](https://github.com/tzin1401/testing-hw02/issues/8). Labels: `type: bug`, `severity: major`, `priority: P1`, `status: new`, `module: api`. JSON evidence được liên kết trong comment issue vì GitHub CLI/API không nhận file local làm attachment; file có sẵn trên `main`: [api-registration-duplicate-isolated.json](https://github.com/tzin1401/testing-hw02/blob/main/evidence/D-MREG/full-runs/20261015T1303Z-DMREG/api-registration-duplicate-isolated.json). Không có screenshot API phù hợp; issue nêu rõ giới hạn này.
 
 ## AI / execution gaps có bằng chứng
 
