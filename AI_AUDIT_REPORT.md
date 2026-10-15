@@ -859,3 +859,15 @@ Dựa trên review thực tế của tôi, cập nhật 05-review-coverage.md ch
 - **Nguồn:** `features/D-MREG/01-requirements.md` D-R01–D-R09, FR-01/FR-20, API spec §1.1, phân công member 2 Pool D và slide Domain/BVA.
 - **Output:** [`features/D-MREG/02-domains.md`](features/D-MREG/02-domains.md), D-EC-01–D-EC-24. Tách email format lỗi khỏi email hợp lệ đã tồn tại; từng password rule được cô lập; confirm chỉ ở UI; lỗi API/network không có expected chi tiết thì ghi câu hỏi.
 - **Giới hạn:** chưa chạy SUT, chưa tạo test case, actual, Pass/Fail hoặc human review.
+
+
+## Interaction AI-040 — Domain cases D-MREG
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi audit:** 2026-10-15T12:54:18Z (19:54:18 UTC+07); thời điểm ghi nhận, không phải timestamp prompt chính xác.
+- **Prompt nguyên văn:** xem [AI-040-dmreg-domain-cases-output.md](audit/AI-040-dmreg-domain-cases-output.md).
+- **Đã đối chiếu:** `features/D-MREG/01-requirements.md` D-R01–D-R09; `02-domains.md` D-EC-01–D-EC-24; SRS FR-01/FR-20; API specification §1.1; phân công thành viên 2; slide Domain Testing.
+- **Output:** [`features/D-MREG/03-domain-cases.md`](features/D-MREG/03-domain-cases.md), 13 ca D-DT-001–D-DT-013. Có ca hiện diện bốn trường, đăng ký hợp lệ, tên/email/password/confirm lỗi, password thiếu từng nhóm riêng, email trùng bằng fixture test và hậu kiểm account state chỉ đọc. Mỗi ca chỉ có một điều kiện nghiệp vụ âm; password rỗng/confirm rỗng có ràng buộc logic được ghi rõ và không dùng D-DT-007 để kết luận confirm behavior.
+- **Expected:** chỉ dùng ý nghĩa bắt buộc, uniqueness, password rules, tạo account và điều hướng Login theo SRS/API. Không đặt câu chữ thông báo lỗi cụ thể. Hậu kiểm DB chỉ đọc là bằng chứng state; không thay cho UI.
+- **Giới hạn:** chỉ thiết kế và rà soát tài liệu; chưa mở app, chạy test, tạo account, chụp evidence, điền actual/status, hoặc ghi human review. Chưa thiết kế BVA.
+- **Commit:** ghi sau khi commit riêng file cases và AI Audit; không stage SUT hoặc thay đổi sẵn có khác.
