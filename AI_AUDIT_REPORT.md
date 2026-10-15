@@ -713,3 +713,24 @@ Từ `features/C-FR14/01-requirements.md`, tạo `02-domains.md`. Đặt C-EC ID
 - **Output:** [`features/C-FR14/02-domains.md`](features/C-FR14/02-domains.md), các lớp C-EC-01–C-EC-15; snapshot tại [`audit/AI-029-cfr14-domains-output.md`](audit/AI-029-cfr14-domains-output.md).
 - **Phân biệt chính:** GET list có lớp quan sát quyền riêng và không bị gán từ chối cho user/khách; POST/DELETE được phân hoạch theo admin, user thường, thiếu/sai/hết hạn token theo FR-12. Whitespace-only và category ID không tồn tại giữ là câu hỏi/thăm dò khi oracle không đủ. Không thêm uniqueness hoặc giới hạn độ dài.
 - **Giới hạn:** Chưa tạo test case, chưa chạy SUT, chưa ghi kết quả hay human review.
+
+
+## Interaction AI-031 — Thiết kế ca Domain C-FR14
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi nhận:** 2026-10-15 (UTC+07:00); không suy đoán giờ gửi prompt chính xác.
+- **Phạm vi:** chuyển requirements/domains C-FR14 thành các ca thao tác UI/API; không chạy test.
+
+### Prompt nguyên văn
+
+```text
+Tạo `features/C-FR14/03-domain-cases.md`. Mỗi TC `C-DT-nnn` ghi role/tài khoản và state chuẩn bị, tên hoặc category ID cụ thể, thao tác click/nhập/API từng bước, expected, C-EC, C-R, cách quan sát và evidence. Bao gồm: admin thêm tên hợp lệ rồi thấy chính xác trong danh sách; tên rỗng bị từ chối và không tạo dòng; xem danh sách có dữ liệu; xóa đúng danh mục test vừa tạo và xác nhận chỉ dòng đó biến mất; mở dialog/hủy nếu UI có dialog; API POST/DELETE với admin; cùng thao tác ghi bằng thiếu token, token không hợp lệ và user thường phải bị từ chối theo FR-12; kiểm tra GET riêng mà không suy rộng quyền. Tên ba dấu cách ghi là probe/expected chưa chốt nếu không có quy tắc trim. Không sửa/xóa dữ liệu mẫu; mọi tạo/xóa chỉ với danh mục test do ca tạo. Nêu thủ tục dọn chỉ ID test đã tạo sau khi lưu evidence, không tự xóa trong thiết kế. Mỗi ca âm cơ bản chỉ vi phạm một yếu tố (tên hoặc quyền). Chưa chạy. Ghi audit và commit riêng.
+```
+
+### Đã đối chiếu và đầu ra
+
+- **Đã đọc/đối chiếu:** `features/C-FR14/01-requirements.md`, `features/C-FR14/02-domains.md`; SRS FR-12/FR-14 trong `eshop-sut/README.md`; `eshop-sut/api_specification.md` mục 3.4; slide Domain/BVA và phân công Pool C Thành viên 2.
+- **Output:** [`features/C-FR14/03-domain-cases.md`](features/C-FR14/03-domain-cases.md), 18 ca `C-DT-001`–`C-DT-018`; snapshot tại [`audit/AI-031-cfr14-domain-cases-output.md`](audit/AI-031-cfr14-domain-cases-output.md).
+- **Phạm vi ca:** thêm ASCII/Unicode, tên rỗng, probe ba dấu cách, xem danh sách UI, probe GET với admin/user/không token, xóa target test UI, probe dialog/hủy, API POST/DELETE admin và POST/DELETE âm với token thiếu/sai/hết hạn hoặc user role.
+- Mỗi ca ghi role/trạng thái, dữ liệu/tên cụ thể theo Run ID, bước thao tác, expected, C-EC/C-R và bằng chứng. Ca âm chỉ có một yếu tố quyền sai; không dùng dữ liệu mẫu làm target. Quy trình dọn chỉ áp dụng ID do test tạo sau khi lưu evidence.
+- **Giới hạn:** tên whitespace-only và dialog/Hủy vẫn là probe; quyền GET không bị suy rộng từ quyền ghi. Không ghi status HTTP hoặc policy chưa có oracle. Chưa chạy SUT, chưa ghi actual/status/human review.
