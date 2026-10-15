@@ -882,3 +882,15 @@ Dựa trên review thực tế của tôi, cập nhật 05-review-coverage.md ch
 - **Output:** [`features/D-MREG/04-boundary-cases.md`](features/D-MREG/04-boundary-cases.md). BVA cho password length tại 7/8/9 (LB−1/LB/LB+1); robustness/EC tách riêng cho thiếu chữ hoa, chữ thường, chữ số và ký tự thuộc `@$!%*?&`. Mỗi ca quy định Mobile UI thao tác, email/account state và evidence dự kiến. Hai ca thành công dùng email mới riêng.
 - **Giới hạn:** SRS không nêu upper bound password hoặc giới hạn độ dài họ tên/email/confirm, nên không tạo các biên đó. Chưa chạy test, tạo account, chụp evidence, điền actual/status hay human review. Không sửa SUT.
 - **Commit:** ghi sau khi commit riêng file BVA/robustness và AI Audit.
+
+
+## Interaction AI-042 — Review coverage D-MREG
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi audit:** 2026-10-15T12:58:04Z (19:58:04 UTC+07); thời điểm audit, không phải timestamp prompt chính xác.
+- **Prompt nguyên văn:** xem [AI-042-dmreg-review-coverage-output.md](audit/AI-042-dmreg-review-coverage-output.md).
+- **Phản hồi review nguyên văn:** “Tôi đã đọc qua và hiểu được hết tất cả các ca kiểm thử.” Ghi nhận sinh viên nói đã xem/hiểu D-DT-001–D-DT-013 và D-BV-001–D-BV-007; không ghi thành phê duyệt expected, giả định, coverage hoặc execution.
+- **Đã đối chiếu:** `features/D-MREG/01-requirements.md`, `02-domains.md`, `03-domain-cases.md`, `04-boundary-cases.md`, cùng FR-01/FR-20, API §1.1 và slide Domain/BVA.
+- **Output:** [`features/D-MREG/05-review-coverage.md`](features/D-MREG/05-review-coverage.md), truy vết D-R01–D-R09 → D-EC/BVA/robustness → D-DT/D-BV. Ghi rõ câu hỏi còn mở về trim, email grammar/normalization, upper bounds, Unicode, confirm/API contract, lỗi/network/retry, uniqueness race và phương thức xác minh account.
+- **Giới hạn:** chỉ cập nhật review/coverage; không chạy test, không điền actual/status/evidence và không tự kết luận expected còn thiếu.
+- **Commit:** ghi sau khi commit riêng coverage và AI Audit.
