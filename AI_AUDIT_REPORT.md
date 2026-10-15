@@ -839,3 +839,13 @@ Dựa trên review thực tế của tôi, cập nhật 05-review-coverage.md ch
 - **Bảo toàn dữ liệu:** backend được chạy từ bản sao `/tmp/hw02-mobile-backend-safe`; database SUT trong repo không được khởi động/reset trong lượt này. `API_URL` hiện là `http://10.0.2.2:3000/api` để emulator truy cập host.
 - **Output:** sửa mục 12 trong `LAM_HW02_TUNG_BUOC.md` để có quy trình riêng cho emulator và cập nhật `reports/environment.md` với môi trường thực tế.
 - **Giới hạn:** chỉ xác nhận app mở và hiển thị danh sách sản phẩm; chưa chạy test D-MREG, chưa chụp/saved ảnh setup vào evidence, chưa ghi Pass/Fail. Bước kế tiếp là prompt mục 13.1 tạo requirements.
+
+
+## Interaction AI-038 — Requirements D-MREG
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi audit:** 2026-10-15T12:47:27Z (19:47:27 UTC+07); thời điểm ghi audit, không phải timestamp chính xác prompt.
+- **Prompt nguyên văn:** xem [AI-038-dmreg-requirements-output.md](audit/AI-038-dmreg-requirements-output.md).
+- **Nguồn:** `eshop-sut/README.md` FR-01/FR-20; `eshop-sut/api_specification.md` §1.1; `group_feature_assignment.md` member 2 Pool D; slide Domain/BVA VN/EN.
+- **Output:** [`features/D-MREG/01-requirements.md`](features/D-MREG/01-requirements.md), D-R01–D-R09. Expected tách Mobile UI khỏi API: FR-01 yêu cầu confirm field/mismatch rejection, nhưng API spec chỉ liệt kê `name`, `email`, `password`.
+- **Giới hạn:** ghi các oracle chưa rõ; không tạo EC/TC, không chạy test, không ghi human review/approval.
