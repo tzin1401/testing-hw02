@@ -1,0 +1,39 @@
+{
+  "run_id": "20261015T1303Z-DMREG",
+  "baseline_sut": "85af3ba875c88283615e22cb108f13e2fccaf0e9",
+  "device": {
+    "type": "Android Emulator",
+    "avd": "Pixel 9",
+    "serial": "emulator-5554",
+    "os": "Android 15",
+    "api_level": 35,
+    "abi": "x86_64"
+  },
+  "expo": {
+    "client": "Expo Go",
+    "sdk": 54,
+    "metro_port": 8081
+  },
+  "backend": {
+    "initial_status": "not listening at 2026-10-15T13:04:41Z",
+    "safe_action": "created isolated copy /tmp/hw02-dmreg-isolated-run; did not restart original backend",
+    "url": "http://127.0.0.1:3000",
+    "source_server_sha256": "47573ce5a6bf9a894748d2bb56cc8d1659ad7acd033fdd6db6b3e4d9473eb487"
+  },
+  "mobile_ui": {
+    "state": "Home product list",
+    "attempt": "ADB tap on visible Login header at (805,72); app remained on Home",
+    "evidence": [
+      "D-DT-001-before-tap.png",
+      "D-DT-001-after-tap-no-transition.png"
+    ],
+    "form_reached": false,
+    "all_mobile_tc_status": "Blocked"
+  },
+  "api_supplement": {
+    "evidence": "api-registration-duplicate-isolated.json",
+    "passwords": "redacted",
+    "db_queries": "read-only"
+  },
+  "note": "No Mobile result is inferred from API. No SUT source was edited."
+}

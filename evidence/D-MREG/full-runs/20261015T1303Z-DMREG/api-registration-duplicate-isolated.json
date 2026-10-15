@@ -1,0 +1,73 @@
+{
+  "run_id": "20261015T1303Z-DMREG",
+  "api_only": true,
+  "baseline_sut": "85af3ba875c88283615e22cb108f13e2fccaf0e9",
+  "endpoint": "http://127.0.0.1:3000/api/register",
+  "isolated_backend_copy": "/tmp/hw02-dmreg-isolated-run",
+  "email": "vinh.dmreg.api-fixture01@example.com",
+  "db_mode": "read-only for count queries",
+  "observations": [
+    {
+      "case": "fixture-create",
+      "request": {
+        "method": "POST",
+        "path": "/api/register",
+        "body": {
+          "name": "HW02 Mobile API fixture",
+          "email": "vinh.dmreg.api-fixture01@example.com",
+          "password": "[REDACTED]"
+        }
+      },
+      "response": {
+        "http_status": 200,
+        "body": {
+          "message": "User registered successfully",
+          "id": 3
+        }
+      },
+      "timestamps": {
+        "start": {
+          "utc": "2026-10-15T13:05:37.098516+00:00",
+          "monotonic_ns": 339588012684672
+        },
+        "end": {
+          "utc": "2026-10-15T13:05:37.122952+00:00",
+          "monotonic_ns": 339588037108954
+        }
+      },
+      "read_only_count_after": 1
+    },
+    {
+      "case": "duplicate-email",
+      "request": {
+        "method": "POST",
+        "path": "/api/register",
+        "body": {
+          "name": "HW02 Mobile API fixture",
+          "email": "vinh.dmreg.api-fixture01@example.com",
+          "password": "[REDACTED]"
+        }
+      },
+      "response": {
+        "http_status": 200,
+        "body": {
+          "message": "User registered successfully",
+          "id": 4
+        }
+      },
+      "timestamps": {
+        "start": {
+          "utc": "2026-10-15T13:05:37.123119+00:00",
+          "monotonic_ns": 339588037263583
+        },
+        "end": {
+          "utc": "2026-10-15T13:05:37.126256+00:00",
+          "monotonic_ns": 339588040406487
+        }
+      },
+      "read_only_count_after": 2
+    }
+  ],
+  "pre_count": 0,
+  "post_count": 2
+}

@@ -21,7 +21,7 @@
 | A-FR02 — Đăng nhập/khóa Web | Requirements A-R01–A-R11 (AI-007) | Các EC đã ghi (AI-008) | 24 ca thiết kế (AI-009) | 12 ca thiết kế (AI-010) | Sinh viên nói đã đọc/hiểu (AI-011); chưa xác nhận phê duyệt thiết kế | Run 001 user-reported; Run 003 API, Run 004 UI, Run 005 ảnh bổ sung; 33/36 TC có actual/checkpoint, 3 mốc clock Not run; xem 06-execution | 3 bug đã đăng Issue #1–#3 có ảnh/labels; AI gaps trong harness ở 07 |
 | B-FR07 — Giỏ hàng Web | Requirements B-R01–B-R13 (AI-020); câu hỏi mở được đánh dấu | EC B-EC-01–B-EC-41 (AI-021); các lớp chưa rõ giữ dạng thăm dò | 20 ca B-DT-001–020 (AI-022) | 6 ca B-BV-001–006 (AI-023) | Người dùng xác nhận đã hiểu toàn bộ ca (AI-024); chưa phê duyệt expected | Run `20261014T191645Z-BFR07-UI`: 1 Pass / 2 Fail / 23 Blocked / 0 Not run; xem `features/B-FR07/06-execution.md` | 2 issue draft chưa đăng; AI gaps và side effect API ghi ở `07-bugs-and-ai-gaps.md` (AI-025) |
 | C-FR14 — Danh mục Admin | C-R01–C-R06 (AI-028) | C-EC-01–C-EC-15 (AI-029) | 18 ca C-DT-001–018 (AI-031) | 3 name-boundary cases + 2 ID probes (AI-032) | Người dùng nói đã đọc/hiểu; chưa phê duyệt expected (AI-033). Coverage có gap C-R01 UI access. | Run `20261015T055119Z-CFR14`: 15 Pass / 4 Fail / 1 Blocked / 3 observation-only (AI-034) | Issues #6/#7 OPEN, đăng và xác minh trong AI-036; xem `features/C-FR14/07-bugs-and-ai-gaps.md` |
-| D-MREG — Đăng ký Mobile | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
+| D-MREG — Đăng ký Mobile | D-R01–D-R09 (AI-038) | D-EC-01–D-EC-24 (AI-039) | 13 ca D-DT (AI-040) | 3 BVA + 4 robustness (AI-041) | Đã nói đã đọc/hiểu; chưa phê duyệt expected (AI-042) | Run AI-043: 20 UI TC Blocked; API phụ trợ duplicate email Fail, valid response Pass; xem 06-execution | API duplicate issue draft chưa đăng; không có UI evidence, xem 07-bugs-and-ai-gaps |
 
 Không chuyển một ô thành hoàn thành chỉ vì AI đã đề xuất nội dung. Review chỉ ghi khi có nhận xét thật của sinh viên; execution chỉ ghi khi có lần chạy và bằng chứng.
 
@@ -57,7 +57,7 @@ Tạo commit sau từng bước thực sự hoàn thành của từng chức nă
 - [x] Web hiển thị danh sách sản phẩm theo ảnh sinh viên gửi (AI-005).
 - [x] Admin hiển thị ba danh mục mẫu theo ảnh sinh viên gửi (AI-006).
 - [ ] Lưu bản ảnh gốc vào repo và bổ sung phiên bản trình duyệt.
-- [ ] Chuẩn bị môi trường Mobile.
+- [x] Chuẩn bị Android Emulator Pixel 9 / Android 15 / API 35 và Expo Go SDK 54 (AI-037).
 
 Các dấu hoàn thành ở đây chỉ ghi khả năng mở môi trường, không phải Pass test chức năng hay human review.
 
@@ -123,3 +123,15 @@ A-FR02 đã có execution table và GitHub Issues #1–#3 có ảnh. Còn review
 - [ ] Kiểm tra trực tiếp quyền truy cập Admin UI bằng user thường/khách; đây vẫn là khoảng trống C-R01. Không thay thế bằng API test.
 
 - [x] AI-036: đăng hai issue C-FR14 #6/#7; #6 có hai ảnh UI đính kèm, #7 có request/response API đã che token trong body.
+
+## Thực thi D-MREG — AI-043
+
+- [x] Xác nhận emulator Pixel 9 / Android 15 / API 35, Expo Go SDK 54, Metro và baseline SUT.
+- [x] Không restart backend cũ. Khi backend không còn listener, tạo bản sao cô lập để chạy API phụ trợ; source `server.js` khớp baseline, DB SUT không bị reset.
+- [x] Thử vào Login/Register bằng ADB và lưu ảnh trước/sau; header tap không chuyển màn hình. Không có bằng chứng form Register.
+- [x] API-only: request hợp lệ tạo fixture trả 200; POST trùng email cũng trả 200, count tăng 1→2 trên DB test clone. Request/response đã che password.
+- [x] Ghi cả 13 Domain và 7 BVA/robustness TC là **Blocked** cho Mobile UI; không dùng API để suy ra UI. D-R04 có Fail API-only; D-R08 success contract API Pass-only.
+- [x] Cập nhật execution, bug/AI gap, evidence và AI Audit. Issue duplicate email chỉ được chuẩn bị, chưa đăng vì chưa có screenshot theo yêu cầu.
+- [ ] Thực hiện thủ công D-DT/D-BV trên emulator sau khi vào được Register; lưu ảnh theo TC ID và cập nhật actual/status. Không cần lệnh terminal.
+
+Chi tiết blocker, API side effect và các bước thao tác Mobile còn lại: [`features/D-MREG/06-execution.md`](../features/D-MREG/06-execution.md), [`features/D-MREG/07-bugs-and-ai-gaps.md`](../features/D-MREG/07-bugs-and-ai-gaps.md), evidence run [`evidence/D-MREG/full-runs/20261015T1303Z-DMREG/`](../evidence/D-MREG/full-runs/20261015T1303Z-DMREG/).

@@ -894,3 +894,18 @@ Dựa trên review thực tế của tôi, cập nhật 05-review-coverage.md ch
 - **Output:** [`features/D-MREG/05-review-coverage.md`](features/D-MREG/05-review-coverage.md), truy vết D-R01–D-R09 → D-EC/BVA/robustness → D-DT/D-BV. Ghi rõ câu hỏi còn mở về trim, email grammar/normalization, upper bounds, Unicode, confirm/API contract, lỗi/network/retry, uniqueness race và phương thức xác minh account.
 - **Giới hạn:** chỉ cập nhật review/coverage; không chạy test, không điền actual/status/evidence và không tự kết luận expected còn thiếu.
 - **Commit:** ghi sau khi commit riêng coverage và AI Audit.
+
+
+## Interaction AI-043 — Thực thi D-MREG
+
+- **Tên công cụ:** Codex; Android Emulator/ADB, Expo Go SDK 54, Python stdlib/SQLite read-only và backend Node trong bản sao cô lập.
+- **Ngày giờ audit:** 2026-10-15T13:10:53Z (20:10:53 UTC+07); mốc thao tác/API chi tiết nằm trong evidence UTC/monotonic.
+- **Prompt nguyên văn:** xem [AI-043-dmreg-execution-output.md](audit/AI-043-dmreg-execution-output.md).
+- **Baseline:** SUT `85af3ba875c88283615e22cb108f13e2fccaf0e9`; Android Emulator Pixel 9, Android 15/API 35, Expo Go SDK 54; Metro 8081. `frontend-mobile/App.js`, `database.sqlite`, `node_modules` đã dirty trước khi bắt đầu; không sửa/stage.
+- **Safety:** backend PID cũ không còn listener, port 3000 connection refused lúc `2026-10-15T13:04:41Z`. Không restart backend cũ. Dùng copy `/tmp/hw02-dmreg-isolated-run`; `server.js` SHA-256 khớp source SUT, init/reset chỉ trong DB copy. Không tạo user trong DB SUT hoặc xóa account.
+- **Mobile UI:** ADB connect được và chụp screenshot; tap vào header Login không chuyển view. Chưa thấy Register. Các ca `D-DT-001–013` và `D-BV-001–007` đều **Blocked**; không gán Pass/Fail từ API. Evidence trước/sau tap và metadata trong `evidence/D-MREG/full-runs/20261015T1303Z-DMREG/`.
+- **API phụ trợ:** POST hợp lệ tạo fixture email `vinh.dmreg.api-fixture01@example.com`, HTTP 200/ID 3/count 1. POST cùng email lần nữa HTTP 200/ID 4/count 2. SQLite count chỉ đọc; password đã che. Đây là API-only Fail cho D-R04 (uniqueness). D-R08 success response contract được ghi API-only Pass; không phải Mobile Pass.
+- **Bug/report:** draft issue `[BUG][API] Đăng ký API tạo nhiều tài khoản cùng email`, major/P1 có lý do và label đề xuất trong `07-bugs-and-ai-gaps.md`. Chưa đăng theo điều kiện chưa có ảnh/screenshot; API evidence JSON đã lưu.
+- **Gap:** tool không đưa được app qua nút Login; không kết luận đó là bug SUT. Trang chi tiết báo network error khi backend cũ dừng; không gán thành bug D-MREG. Chưa có evidence UI form.
+- **Output:** [`features/D-MREG/06-execution.md`](features/D-MREG/06-execution.md), [`07-bugs-and-ai-gaps.md`](features/D-MREG/07-bugs-and-ai-gaps.md), cập nhật [`reports/work-progress.md`](reports/work-progress.md) và evidence run.
+- **Giới hạn:** 20 ca UI chưa chạy; execution còn cần thaoć động bằng tay trong emulator theo các bước đầy đủ trong design files. Issue chưa đăng; SUT unchanged.
