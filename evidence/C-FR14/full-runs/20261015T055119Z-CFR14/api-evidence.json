@@ -1,0 +1,1644 @@
+{
+  "run_id": "20261015T055119Z-CFR14",
+  "started": {
+    "utc": "2026-10-15T05:51:19.964Z",
+    "monotonic_ms": 323229837.432003
+  },
+  "baseline": {
+    "main_repo": "a6bceb2e2d367bcd5d087259f2bb738534176e61",
+    "sut": "85af3ba875c88283615e22cb108f13e2fccaf0e9"
+  },
+  "fixture_roles": {
+    "admin": "admin",
+    "user": "user"
+  },
+  "cases": [
+    {
+      "id": "C-DT-006",
+      "kind": "get",
+      "before": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        }
+      ],
+      "requests": [
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:19.969Z",
+            "monotonic_ms": 323229841.75053
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:19.971Z",
+            "monotonic_ms": 323229844.220781
+          },
+          "request": {
+            "method": "GET",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": null
+          },
+          "response": {
+            "status": 200,
+            "body": [
+              {
+                "id": 1,
+                "name": "Điện thoại"
+              },
+              {
+                "id": 2,
+                "name": "Laptop"
+              },
+              {
+                "id": 3,
+                "name": "Phụ kiện"
+              }
+            ]
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:19.971Z",
+            "monotonic_ms": 323229844.241148
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:19.974Z",
+            "monotonic_ms": 323229846.757049
+          },
+          "request": {
+            "method": "GET",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": null
+          },
+          "response": {
+            "status": 200,
+            "body": [
+              {
+                "id": 1,
+                "name": "Điện thoại"
+              },
+              {
+                "id": 2,
+                "name": "Laptop"
+              },
+              {
+                "id": 3,
+                "name": "Phụ kiện"
+              }
+            ]
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:19.974Z",
+            "monotonic_ms": 323229846.773274
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:19.976Z",
+            "monotonic_ms": 323229848.816469
+          },
+          "request": {
+            "method": "GET",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "(omitted)"
+            },
+            "body": null
+          },
+          "response": {
+            "status": 200,
+            "body": [
+              {
+                "id": 1,
+                "name": "Điện thoại"
+              },
+              {
+                "id": 2,
+                "name": "Laptop"
+              },
+              {
+                "id": 3,
+                "name": "Phụ kiện"
+              }
+            ]
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        }
+      ],
+      "note": "Observation only: GET authorization unspecified; no pass/fail by credential.",
+      "timestamp": {
+        "utc": "2026-10-15T05:51:19.979Z",
+        "monotonic_ms": 323229851.939109
+      }
+    },
+    {
+      "id": "C-DT-009",
+      "kind": "post_admin",
+      "before": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        }
+      ],
+      "requests": [
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:19.981Z",
+            "monotonic_ms": 323229854.44157
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:19.997Z",
+            "monotonic_ms": 323229869.823289
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-DT-009-T055119-api"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 4
+            }
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 4,
+          "name": "C14-C-DT-009-T055119-api"
+        }
+      ],
+      "note": "created ID 4",
+      "timestamp": {
+        "utc": "2026-10-15T05:51:20.014Z",
+        "monotonic_ms": 323229887.477499
+      }
+    },
+    {
+      "id": "C-DT-010",
+      "kind": "delete_admin",
+      "before": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 5,
+          "name": "C14-C-DT-010-T055119-target"
+        }
+      ],
+      "requests": [
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.018Z",
+            "monotonic_ms": 323229890.966616
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.029Z",
+            "monotonic_ms": 323229902.035046
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-DT-010-T055119-target"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 5
+            }
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.018Z",
+            "monotonic_ms": 323229890.966616
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.029Z",
+            "monotonic_ms": 323229902.035046
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-DT-010-T055119-target"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 5
+            }
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.032Z",
+            "monotonic_ms": 323229904.868095
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.042Z",
+            "monotonic_ms": 323229914.705669
+          },
+          "request": {
+            "method": "DELETE",
+            "url": "/api/categories/5",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": null
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category deleted"
+            }
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        }
+      ],
+      "note": "target ID 5; remains_after_delete=false",
+      "timestamp": {
+        "utc": "2026-10-15T05:51:20.043Z",
+        "monotonic_ms": 323229916.642968
+      }
+    },
+    {
+      "id": "C-DT-011",
+      "kind": "post_none",
+      "before": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        }
+      ],
+      "requests": [
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.045Z",
+            "monotonic_ms": 323229918.305636
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.047Z",
+            "monotonic_ms": 323229919.882875
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "(omitted)"
+            },
+            "body": {
+              "name": "C14-C-DT-011-T055119-denied"
+            }
+          },
+          "response": {
+            "status": 401,
+            "body": {
+              "error": "Unauthorized"
+            }
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        }
+      ],
+      "note": "name_exists_after=false",
+      "timestamp": {
+        "utc": "2026-10-15T05:51:20.048Z",
+        "monotonic_ms": 323229921.093051
+      }
+    },
+    {
+      "id": "C-DT-012",
+      "kind": "post_invalid",
+      "before": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        }
+      ],
+      "requests": [
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.050Z",
+            "monotonic_ms": 323229923.205112
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.052Z",
+            "monotonic_ms": 323229924.750146
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer not-a-valid-token"
+            },
+            "body": {
+              "name": "C14-C-DT-012-T055119-denied"
+            }
+          },
+          "response": {
+            "status": 403,
+            "body": {
+              "error": "Forbidden"
+            }
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        }
+      ],
+      "note": "name_exists_after=false",
+      "timestamp": {
+        "utc": "2026-10-15T05:51:20.053Z",
+        "monotonic_ms": 323229925.816324
+      }
+    },
+    {
+      "id": "C-DT-013",
+      "kind": "post_expired",
+      "before": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        }
+      ],
+      "requests": [
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.054Z",
+            "monotonic_ms": 323229926.699194
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.055Z",
+            "monotonic_ms": 323229928.104586
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-DT-013-T055119-denied"
+            }
+          },
+          "response": {
+            "status": 403,
+            "body": {
+              "error": "Forbidden"
+            }
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        }
+      ],
+      "note": "name_exists_after=false",
+      "timestamp": {
+        "utc": "2026-10-15T05:51:20.056Z",
+        "monotonic_ms": 323229928.889616
+      }
+    },
+    {
+      "id": "C-DT-014",
+      "kind": "post_user",
+      "before": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        }
+      ],
+      "requests": [
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.057Z",
+            "monotonic_ms": 323229929.869864
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.066Z",
+            "monotonic_ms": 323229939.29257
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-DT-014-T055119-denied"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 6
+            }
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        }
+      ],
+      "note": "name_exists_after=true",
+      "timestamp": {
+        "utc": "2026-10-15T05:51:20.068Z",
+        "monotonic_ms": 323229940.744275
+      }
+    },
+    {
+      "id": "C-DT-015",
+      "kind": "delete_none",
+      "before": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        },
+        {
+          "id": 7,
+          "name": "C14-C-DT-015-T055119-target"
+        }
+      ],
+      "requests": [
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.069Z",
+            "monotonic_ms": 323229941.853361
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.079Z",
+            "monotonic_ms": 323229952.557019
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-DT-015-T055119-target"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 7
+            }
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.069Z",
+            "monotonic_ms": 323229941.853361
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.079Z",
+            "monotonic_ms": 323229952.557019
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-DT-015-T055119-target"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 7
+            }
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.082Z",
+            "monotonic_ms": 323229955.446614
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.083Z",
+            "monotonic_ms": 323229956.405825
+          },
+          "request": {
+            "method": "DELETE",
+            "url": "/api/categories/7",
+            "headers": {
+              "authorization": "(omitted)"
+            },
+            "body": null
+          },
+          "response": {
+            "status": 401,
+            "body": {
+              "error": "Unauthorized"
+            }
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        },
+        {
+          "id": 7,
+          "name": "C14-C-DT-015-T055119-target"
+        }
+      ],
+      "note": "target ID 7; remains_after_delete=true",
+      "timestamp": {
+        "utc": "2026-10-15T05:51:20.096Z",
+        "monotonic_ms": 323229968.977442
+      }
+    },
+    {
+      "id": "C-DT-016",
+      "kind": "delete_invalid",
+      "before": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        },
+        {
+          "id": 8,
+          "name": "C14-C-DT-016-T055119-target"
+        }
+      ],
+      "requests": [
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.097Z",
+            "monotonic_ms": 323229970.281067
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.108Z",
+            "monotonic_ms": 323229981.117807
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-DT-016-T055119-target"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 8
+            }
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.097Z",
+            "monotonic_ms": 323229970.281067
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.108Z",
+            "monotonic_ms": 323229981.117807
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-DT-016-T055119-target"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 8
+            }
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.111Z",
+            "monotonic_ms": 323229984.026181
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.112Z",
+            "monotonic_ms": 323229985.093694
+          },
+          "request": {
+            "method": "DELETE",
+            "url": "/api/categories/8",
+            "headers": {
+              "authorization": "Bearer not-a-valid-token"
+            },
+            "body": null
+          },
+          "response": {
+            "status": 403,
+            "body": {
+              "error": "Forbidden"
+            }
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        },
+        {
+          "id": 8,
+          "name": "C14-C-DT-016-T055119-target"
+        }
+      ],
+      "note": "target ID 8; remains_after_delete=true",
+      "timestamp": {
+        "utc": "2026-10-15T05:51:20.127Z",
+        "monotonic_ms": 323230000.364155
+      }
+    },
+    {
+      "id": "C-DT-017",
+      "kind": "delete_expired",
+      "before": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        },
+        {
+          "id": 9,
+          "name": "C14-C-DT-017-T055119-target"
+        }
+      ],
+      "requests": [
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.129Z",
+            "monotonic_ms": 323230002.363959
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.144Z",
+            "monotonic_ms": 323230016.7249
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-DT-017-T055119-target"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 9
+            }
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.129Z",
+            "monotonic_ms": 323230002.363959
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.144Z",
+            "monotonic_ms": 323230016.7249
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-DT-017-T055119-target"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 9
+            }
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.147Z",
+            "monotonic_ms": 323230020.193967
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.148Z",
+            "monotonic_ms": 323230021.559461
+          },
+          "request": {
+            "method": "DELETE",
+            "url": "/api/categories/9",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": null
+          },
+          "response": {
+            "status": 403,
+            "body": {
+              "error": "Forbidden"
+            }
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        },
+        {
+          "id": 9,
+          "name": "C14-C-DT-017-T055119-target"
+        }
+      ],
+      "note": "target ID 9; remains_after_delete=true",
+      "timestamp": {
+        "utc": "2026-10-15T05:51:20.163Z",
+        "monotonic_ms": 323230036.26143
+      }
+    },
+    {
+      "id": "C-DT-018",
+      "kind": "delete_user",
+      "before": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        },
+        {
+          "id": 10,
+          "name": "C14-C-DT-018-T055119-target"
+        }
+      ],
+      "requests": [
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.166Z",
+            "monotonic_ms": 323230038.765861
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.188Z",
+            "monotonic_ms": 323230061.062953
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-DT-018-T055119-target"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 10
+            }
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.166Z",
+            "monotonic_ms": 323230038.765861
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.188Z",
+            "monotonic_ms": 323230061.062953
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-DT-018-T055119-target"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 10
+            }
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.194Z",
+            "monotonic_ms": 323230066.828717
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.208Z",
+            "monotonic_ms": 323230081.109779
+          },
+          "request": {
+            "method": "DELETE",
+            "url": "/api/categories/10",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": null
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category deleted"
+            }
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        }
+      ],
+      "note": "target ID 10; remains_after_delete=false",
+      "timestamp": {
+        "utc": "2026-10-15T05:51:20.213Z",
+        "monotonic_ms": 323230085.748842
+      }
+    },
+    {
+      "id": "C-BV-004",
+      "kind": "bv_delete_existing",
+      "before": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        },
+        {
+          "id": 11,
+          "name": "C14-C-BV-004-T055119-target"
+        }
+      ],
+      "requests": [
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.217Z",
+            "monotonic_ms": 323230089.837232
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.227Z",
+            "monotonic_ms": 323230100.484082
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-BV-004-T055119-target"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 11
+            }
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.217Z",
+            "monotonic_ms": 323230089.837232
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.227Z",
+            "monotonic_ms": 323230100.484082
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-BV-004-T055119-target"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 11
+            }
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.230Z",
+            "monotonic_ms": 323230103.658575
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.242Z",
+            "monotonic_ms": 323230115.037327
+          },
+          "request": {
+            "method": "DELETE",
+            "url": "/api/categories/11",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": null
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category deleted"
+            }
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        }
+      ],
+      "note": "target ID 11; remains_after_delete=false",
+      "timestamp": {
+        "utc": "2026-10-15T05:51:20.245Z",
+        "monotonic_ms": 323230118.252155
+      }
+    },
+    {
+      "id": "C-BV-005",
+      "kind": "bv_delete_absent",
+      "before": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        },
+        {
+          "id": 12,
+          "name": "C14-C-BV-005-T055119-control"
+        }
+      ],
+      "requests": [
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.247Z",
+            "monotonic_ms": 323230120.365121
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.258Z",
+            "monotonic_ms": 323230130.788574
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-BV-005-T055119-control"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 12
+            }
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.247Z",
+            "monotonic_ms": 323230120.365121
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.258Z",
+            "monotonic_ms": 323230130.788574
+          },
+          "request": {
+            "method": "POST",
+            "url": "/api/categories",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": {
+              "name": "C14-C-BV-005-T055119-control"
+            }
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category created",
+              "id": 12
+            }
+          }
+        },
+        {
+          "start": {
+            "utc": "2026-10-15T05:51:20.260Z",
+            "monotonic_ms": 323230133.583496
+          },
+          "end": {
+            "utc": "2026-10-15T05:51:20.263Z",
+            "monotonic_ms": 323230136.20021
+          },
+          "request": {
+            "method": "DELETE",
+            "url": "/api/categories/0",
+            "headers": {
+              "authorization": "Bearer [REDACTED]"
+            },
+            "body": null
+          },
+          "response": {
+            "status": 200,
+            "body": {
+              "message": "Category deleted"
+            }
+          }
+        }
+      ],
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        },
+        {
+          "id": 12,
+          "name": "C14-C-BV-005-T055119-control"
+        }
+      ],
+      "note": "candidate=0; control_id=12; control_remains=true; oracle unspecified",
+      "timestamp": {
+        "utc": "2026-10-15T05:51:20.277Z",
+        "monotonic_ms": 323230150.276287
+      }
+    }
+  ],
+  "cleanup": [
+    {
+      "case": "C-DT-009",
+      "id": 4,
+      "name": "C14-C-DT-009-T055119-api",
+      "request": {
+        "start": {
+          "utc": "2026-10-15T05:51:20.000Z",
+          "monotonic_ms": 323229872.743523
+        },
+        "end": {
+          "utc": "2026-10-15T05:51:20.011Z",
+          "monotonic_ms": 323229884.132265
+        },
+        "request": {
+          "method": "DELETE",
+          "url": "/api/categories/4",
+          "headers": {
+            "authorization": "Bearer [REDACTED]"
+          },
+          "body": null
+        },
+        "response": {
+          "status": 200,
+          "body": {
+            "message": "Category deleted"
+          }
+        }
+      },
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        }
+      ]
+    },
+    {
+      "case": "C-DT-015",
+      "id": 7,
+      "name": "C14-C-DT-015-T055119-target",
+      "request": {
+        "start": {
+          "utc": "2026-10-15T05:51:20.084Z",
+          "monotonic_ms": 323229957.550428
+        },
+        "end": {
+          "utc": "2026-10-15T05:51:20.094Z",
+          "monotonic_ms": 323229967.502918
+        },
+        "request": {
+          "method": "DELETE",
+          "url": "/api/categories/7",
+          "headers": {
+            "authorization": "Bearer [REDACTED]"
+          },
+          "body": null
+        },
+        "response": {
+          "status": 200,
+          "body": {
+            "message": "Category deleted"
+          }
+        }
+      },
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        }
+      ]
+    },
+    {
+      "case": "C-DT-016",
+      "id": 8,
+      "name": "C14-C-DT-016-T055119-target",
+      "request": {
+        "start": {
+          "utc": "2026-10-15T05:51:20.114Z",
+          "monotonic_ms": 323229987.621848
+        },
+        "end": {
+          "utc": "2026-10-15T05:51:20.125Z",
+          "monotonic_ms": 323229998.385099
+        },
+        "request": {
+          "method": "DELETE",
+          "url": "/api/categories/8",
+          "headers": {
+            "authorization": "Bearer [REDACTED]"
+          },
+          "body": null
+        },
+        "response": {
+          "status": 200,
+          "body": {
+            "message": "Category deleted"
+          }
+        }
+      },
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        }
+      ]
+    },
+    {
+      "case": "C-DT-017",
+      "id": 9,
+      "name": "C14-C-DT-017-T055119-target",
+      "request": {
+        "start": {
+          "utc": "2026-10-15T05:51:20.150Z",
+          "monotonic_ms": 323230023.633331
+        },
+        "end": {
+          "utc": "2026-10-15T05:51:20.161Z",
+          "monotonic_ms": 323230034.297295
+        },
+        "request": {
+          "method": "DELETE",
+          "url": "/api/categories/9",
+          "headers": {
+            "authorization": "Bearer [REDACTED]"
+          },
+          "body": null
+        },
+        "response": {
+          "status": 200,
+          "body": {
+            "message": "Category deleted"
+          }
+        }
+      },
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        }
+      ]
+    },
+    {
+      "case": "C-BV-005",
+      "id": 12,
+      "name": "C14-C-BV-005-T055119-control",
+      "request": {
+        "start": {
+          "utc": "2026-10-15T05:51:20.265Z",
+          "monotonic_ms": 323230138.62353
+        },
+        "end": {
+          "utc": "2026-10-15T05:51:20.275Z",
+          "monotonic_ms": 323230148.41595
+        },
+        "request": {
+          "method": "DELETE",
+          "url": "/api/categories/12",
+          "headers": {
+            "authorization": "Bearer [REDACTED]"
+          },
+          "body": null
+        },
+        "response": {
+          "status": 200,
+          "body": {
+            "message": "Category deleted"
+          }
+        }
+      },
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 6,
+          "name": "C14-C-DT-014-T055119-denied"
+        }
+      ]
+    }
+  ],
+  "finished": {
+    "utc": "2026-10-15T05:51:20.277Z",
+    "monotonic_ms": 323230150.286666
+  }
+}

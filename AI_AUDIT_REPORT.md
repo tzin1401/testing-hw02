@@ -775,3 +775,19 @@ Dựa trên review thực tế của tôi, cập nhật 05-review-coverage.md ch
 - **Ghi nhận phản hồi:** người dùng nói đã đọc và hiểu 18 ca Domain, 5 ca BVA/probe; không nêu ca nào chưa hiểu. Không ghi đây là chấp thuận expected, giả định, độ bao phủ hoặc phê duyệt thiết kế.
 - **Coverage gap:** C-R01 chưa có ca trực tiếp kiểm tra user thường/khách vào Admin Web; API write denial không thay thế kiểm tra UI access. Các oracle whitespace-only, GET authorization, delete ID không tồn tại, category đang được tham chiếu, dialog/Hủy và HTTP status/body được liệt kê cần hỏi thêm.
 - **Giới hạn:** Không sửa requirements/cases khi chưa có yêu cầu cụ thể; chưa chạy SUT, chưa ghi actual/status/Pass/Fail.
+
+
+## Interaction AI-034 — Thực thi Domain/BVA C-FR14
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi audit:** 2026-10-15T05:56:46Z (12:56:46 UTC+07); đây là thời điểm ghi nhận, không phải timestamp prompt chính xác.
+- **Run:** `20261015T055119Z-CFR14`; bắt đầu `2026-10-15T05:51:19Z`.
+- **Baseline:** SUT `85af3ba875c88283615e22cb108f13e2fccaf0e9`; repo bài làm `a6bceb2e2d367bcd5d087259f2bb738534176e61` tại đầu lượt.
+- **Prompt nguyên văn:** xem [AI-034-cfr14-execution-output.md](audit/AI-034-cfr14-execution-output.md), phần Prompt nguyên văn.
+- **Kiểm tra trước chạy:** Backend/Admin/Web phản hồi; admin fixture có role admin, test fixture có role user; Chrome Headless điều khiển được qua CDP. Ba category ban đầu đều được product tham chiếu nên không dùng làm target. Không restart backend, import database.js, sửa SUT hoặc xóa mẫu.
+- **Phương pháp:** API tuần tự cho GET/POST/DELETE; UI thao tác click/nhập bàn phím bằng Chrome CDP. Request/response, timestamp UTC/monotonic, state danh mục trước/sau và ảnh UI lưu trong `evidence/C-FR14/full-runs/20261015T055119Z-CFR14/`. JWT được che; token hết hạn được dùng tạm trong bộ nhớ.
+- **Kết quả:** 18 Domain + 5 BVA/probe: 15 Pass, 4 Fail, 1 Blocked, 3 observation-only. FR-14 lỗi tên rỗng được thêm ở C-DT-003/C-BV-001. FR-12 role user thường POST/DELETE thành công ở C-DT-014/C-DT-018. GET authorization, whitespace-only, ID vắng mặt không bị kết luận lỗi do expected chưa rõ. Dialog/Hủy Blocked vì không có dialog. Category test được đối chiếu ID/tên và dọn sau khi evidence được lưu; snapshot cuối chỉ có ID 1–3.
+- **AI gap:** click đầu nhắm target dưới viewport nên không tạo được thao tác; được phát hiện qua screenshot/state và chạy lại C-DT-007 sau khi cuộn target vào vùng nhìn thấy. UI evidence rỗng ban đầu chưa cho thấy dòng mới; đã lưu capture bổ sung dòng ID 26 cùng snapshot trước/sau rồi dọn đúng ID.
+- **Output:** [`features/C-FR14/06-execution.md`](features/C-FR14/06-execution.md), [`features/C-FR14/07-bugs-and-ai-gaps.md`](features/C-FR14/07-bugs-and-ai-gaps.md), cập nhật [`reports/work-progress.md`](reports/work-progress.md) và evidence run ở trên.
+- **Issue:** hai draft có title, environment, steps, expected/actual, severity/priority, TC IDs, labels và evidence theo slide; chưa đăng GitHub Issue.
+- **Giới hạn:** Chưa kiểm tra trực tiếp user thường/khách truy cập Admin UI (coverage gap C-R01). Không đặt expected cho whitespace, GET access, nonexistent ID, uniqueness, upper bound, dialog, hoặc HTTP response chưa đặc tả. Không sửa SUT.

@@ -1,0 +1,726 @@
+{
+  "run": "20261015T055119Z-CFR14",
+  "admin_role": "admin",
+  "browser": {
+    "product": "Chromium via CDP",
+    "viewport": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "pageX": 0,
+      "pageY": 0,
+      "clientWidth": 780,
+      "clientHeight": 493,
+      "scale": 1,
+      "zoom": 1
+    }
+  },
+  "cases": [
+    {
+      "tc": "C-DT-001",
+      "name": "C14-DT-001-ASCII",
+      "expected": "non-empty name should be added and displayed exactly",
+      "before": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa"
+        ]
+      },
+      "after": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#13\tC14-DT-001-ASCII\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#13\tC14-DT-001-ASCII\tXóa"
+        ]
+      },
+      "id": 13,
+      "cleanup": {
+        "id": 13,
+        "name": "C14-DT-001-ASCII",
+        "status": 200,
+        "body": {
+          "message": "Category deleted"
+        },
+        "after": [
+          {
+            "id": 1,
+            "name": "Điện thoại"
+          },
+          {
+            "id": 2,
+            "name": "Laptop"
+          },
+          {
+            "id": 3,
+            "name": "Phụ kiện"
+          },
+          {
+            "id": 6,
+            "name": "C14-C-DT-014-T055119-denied"
+          }
+        ]
+      },
+      "timestamp": {
+        "utc": "2026-10-15T05:52:22.470Z",
+        "monotonic_ms": 323292343.322104
+      }
+    },
+    {
+      "tc": "C-DT-002",
+      "name": "C14-DT-002-Đồ uống thử",
+      "expected": "non-empty name should be added and displayed exactly",
+      "before": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa"
+        ]
+      },
+      "after": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#14\tC14-DT-002-Đồ uống thử\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#14\tC14-DT-002-Đồ uống thử\tXóa"
+        ]
+      },
+      "id": 14,
+      "cleanup": {
+        "id": 14,
+        "name": "C14-DT-002-Đồ uống thử",
+        "status": 200,
+        "body": {
+          "message": "Category deleted"
+        },
+        "after": [
+          {
+            "id": 1,
+            "name": "Điện thoại"
+          },
+          {
+            "id": 2,
+            "name": "Laptop"
+          },
+          {
+            "id": 3,
+            "name": "Phụ kiện"
+          },
+          {
+            "id": 6,
+            "name": "C14-C-DT-014-T055119-denied"
+          }
+        ]
+      },
+      "timestamp": {
+        "utc": "2026-10-15T05:52:25.809Z",
+        "monotonic_ms": 323295682.331364
+      }
+    },
+    {
+      "tc": "C-DT-003",
+      "expected": "empty name must not be created",
+      "before": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa"
+        ]
+      },
+      "after": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#15\t\tXóa"
+        ]
+      },
+      "timestamp": {
+        "utc": "2026-10-15T05:52:28.416Z",
+        "monotonic_ms": 323298289.022507
+      }
+    },
+    {
+      "tc": "C-BV-001",
+      "expected": "empty name must not be created",
+      "before": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#15\t\tXóa"
+        ]
+      },
+      "after": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#15\t\tXóa",
+          "#16\t\tXóa"
+        ]
+      },
+      "timestamp": {
+        "utc": "2026-10-15T05:52:31.022Z",
+        "monotonic_ms": 323300894.755675
+      }
+    },
+    {
+      "tc": "C-DT-004",
+      "name": "   ",
+      "expected": "whitespace probe, expected unspecified",
+      "before": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#15\t\tXóa",
+          "#16\t\tXóa"
+        ]
+      },
+      "after": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa\n#17\t\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#15\t\tXóa",
+          "#16\t\tXóa",
+          "#17\t\tXóa"
+        ]
+      },
+      "id": null,
+      "timestamp": {
+        "utc": "2026-10-15T05:52:34.323Z",
+        "monotonic_ms": 323304196.407812
+      }
+    },
+    {
+      "tc": "C-DT-005",
+      "expected": "Admin can view a nonempty category list",
+      "before": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa\n#17\t\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#15\t\tXóa",
+          "#16\t\tXóa",
+          "#17\t\tXóa"
+        ]
+      },
+      "after": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa\n#17\t\tXóa\n#18\tC14-DT-005-view-fixture\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#15\t\tXóa",
+          "#16\t\tXóa",
+          "#17\t\tXóa",
+          "#18\tC14-DT-005-view-fixture\tXóa"
+        ]
+      },
+      "id": 18,
+      "cleanup": {
+        "id": 18,
+        "name": "C14-DT-005-view-fixture",
+        "status": 200,
+        "body": {
+          "message": "Category deleted"
+        },
+        "after": [
+          {
+            "id": 1,
+            "name": "Điện thoại"
+          },
+          {
+            "id": 2,
+            "name": "Laptop"
+          },
+          {
+            "id": 3,
+            "name": "Phụ kiện"
+          },
+          {
+            "id": 6,
+            "name": "C14-C-DT-014-T055119-denied"
+          },
+          {
+            "id": 15,
+            "name": ""
+          },
+          {
+            "id": 16,
+            "name": ""
+          },
+          {
+            "id": 17,
+            "name": "   "
+          }
+        ]
+      },
+      "timestamp": {
+        "utc": "2026-10-15T05:52:37.642Z",
+        "monotonic_ms": 323307514.934785
+      }
+    },
+    {
+      "tc": "C-DT-007",
+      "before": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa\n#17\t\tXóa\n#19\tC14-DT-007-delete-target\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#15\t\tXóa",
+          "#16\t\tXóa",
+          "#17\t\tXóa",
+          "#19\tC14-DT-007-delete-target\tXóa"
+        ]
+      },
+      "after": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa\n#17\t\tXóa\n#19\tC14-DT-007-delete-target\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#15\t\tXóa",
+          "#16\t\tXóa",
+          "#17\t\tXóa",
+          "#19\tC14-DT-007-delete-target\tXóa"
+        ]
+      },
+      "id": 19,
+      "dialogObserved": false,
+      "deleteButtonFound": true,
+      "expected": "target test category removed, other categories preserved",
+      "timestamp": {
+        "utc": "2026-10-15T05:52:41.972Z",
+        "monotonic_ms": 323311845.506713
+      }
+    },
+    {
+      "tc": "C-DT-008",
+      "before": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa\n#17\t\tXóa\n#19\tC14-DT-007-delete-target\tXóa\n#20\tC14-DT-008-cancel-target\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#15\t\tXóa",
+          "#16\t\tXóa",
+          "#17\t\tXóa",
+          "#19\tC14-DT-007-delete-target\tXóa",
+          "#20\tC14-DT-008-cancel-target\tXóa"
+        ]
+      },
+      "after": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa\n#17\t\tXóa\n#19\tC14-DT-007-delete-target\tXóa\n#20\tC14-DT-008-cancel-target\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#15\t\tXóa",
+          "#16\t\tXóa",
+          "#17\t\tXóa",
+          "#19\tC14-DT-007-delete-target\tXóa",
+          "#20\tC14-DT-008-cancel-target\tXóa"
+        ]
+      },
+      "id": 20,
+      "dialogObserved": false,
+      "deleteButtonFound": true,
+      "expected": "probe only; SRS does not require dialog/cancel semantics",
+      "timestamp": {
+        "utc": "2026-10-15T05:52:46.106Z",
+        "monotonic_ms": 323315978.735759
+      },
+      "cleanup": {
+        "id": 20,
+        "name": "C14-DT-008-cancel-target",
+        "status": 200,
+        "body": {
+          "message": "Category deleted"
+        },
+        "after": [
+          {
+            "id": 1,
+            "name": "Điện thoại"
+          },
+          {
+            "id": 2,
+            "name": "Laptop"
+          },
+          {
+            "id": 3,
+            "name": "Phụ kiện"
+          },
+          {
+            "id": 6,
+            "name": "C14-C-DT-014-T055119-denied"
+          },
+          {
+            "id": 15,
+            "name": ""
+          },
+          {
+            "id": 16,
+            "name": ""
+          },
+          {
+            "id": 17,
+            "name": "   "
+          },
+          {
+            "id": 19,
+            "name": "C14-DT-007-delete-target"
+          }
+        ]
+      }
+    },
+    {
+      "tc": "C-BV-002",
+      "name": "Q",
+      "expected": "non-empty name should be added and displayed exactly",
+      "before": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa\n#17\t\tXóa\n#19\tC14-DT-007-delete-target\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#15\t\tXóa",
+          "#16\t\tXóa",
+          "#17\t\tXóa",
+          "#19\tC14-DT-007-delete-target\tXóa"
+        ]
+      },
+      "after": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa\n#17\t\tXóa\n#19\tC14-DT-007-delete-target\tXóa\n#21\tQ\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#15\t\tXóa",
+          "#16\t\tXóa",
+          "#17\t\tXóa",
+          "#19\tC14-DT-007-delete-target\tXóa",
+          "#21\tQ\tXóa"
+        ]
+      },
+      "id": 21,
+      "cleanup": {
+        "id": 21,
+        "name": "Q",
+        "status": 200,
+        "body": {
+          "message": "Category deleted"
+        },
+        "after": [
+          {
+            "id": 1,
+            "name": "Điện thoại"
+          },
+          {
+            "id": 2,
+            "name": "Laptop"
+          },
+          {
+            "id": 3,
+            "name": "Phụ kiện"
+          },
+          {
+            "id": 6,
+            "name": "C14-C-DT-014-T055119-denied"
+          },
+          {
+            "id": 15,
+            "name": ""
+          },
+          {
+            "id": 16,
+            "name": ""
+          },
+          {
+            "id": 17,
+            "name": "   "
+          },
+          {
+            "id": 19,
+            "name": "C14-DT-007-delete-target"
+          }
+        ]
+      },
+      "timestamp": {
+        "utc": "2026-10-15T05:52:49.454Z",
+        "monotonic_ms": 323319326.757928
+      }
+    },
+    {
+      "tc": "C-BV-003",
+      "name": "QZ",
+      "expected": "non-empty name should be added and displayed exactly",
+      "before": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa\n#17\t\tXóa\n#19\tC14-DT-007-delete-target\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#15\t\tXóa",
+          "#16\t\tXóa",
+          "#17\t\tXóa",
+          "#19\tC14-DT-007-delete-target\tXóa"
+        ]
+      },
+      "after": {
+        "url": "http://127.0.0.1:5174/",
+        "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa\n#17\t\tXóa\n#19\tC14-DT-007-delete-target\tXóa\n#22\tQZ\tXóa",
+        "inputs": [
+          {
+            "placeholder": "Tên danh mục mới",
+            "value": ""
+          }
+        ],
+        "rows": [
+          "ID\tTên Danh Mục\tHành động",
+          "#1\tĐiện thoại\tXóa",
+          "#2\tLaptop\tXóa",
+          "#3\tPhụ kiện\tXóa",
+          "#6\tC14-C-DT-014-T055119-denied\tXóa",
+          "#15\t\tXóa",
+          "#16\t\tXóa",
+          "#17\t\tXóa",
+          "#19\tC14-DT-007-delete-target\tXóa",
+          "#22\tQZ\tXóa"
+        ]
+      },
+      "id": 22,
+      "cleanup": {
+        "id": 22,
+        "name": "QZ",
+        "status": 200,
+        "body": {
+          "message": "Category deleted"
+        },
+        "after": [
+          {
+            "id": 1,
+            "name": "Điện thoại"
+          },
+          {
+            "id": 2,
+            "name": "Laptop"
+          },
+          {
+            "id": 3,
+            "name": "Phụ kiện"
+          },
+          {
+            "id": 6,
+            "name": "C14-C-DT-014-T055119-denied"
+          },
+          {
+            "id": 15,
+            "name": ""
+          },
+          {
+            "id": 16,
+            "name": ""
+          },
+          {
+            "id": 17,
+            "name": "   "
+          },
+          {
+            "id": 19,
+            "name": "C14-DT-007-delete-target"
+          }
+        ]
+      },
+      "timestamp": {
+        "utc": "2026-10-15T05:52:52.804Z",
+        "monotonic_ms": 323322676.730717
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "test_case": "C-DT-003 supplemental capture",
+  "timestamp_utc": "2026-10-15T05:55:25.028Z",
+  "before": [
+    {
+      "id": 1,
+      "name": "Điện thoại"
+    },
+    {
+      "id": 2,
+      "name": "Laptop"
+    },
+    {
+      "id": 3,
+      "name": "Phụ kiện"
+    }
+  ],
+  "created_test_record": {
+    "id": 26,
+    "name": ""
+  },
+  "after": [
+    {
+      "id": 1,
+      "name": "Điện thoại"
+    },
+    {
+      "id": 2,
+      "name": "Laptop"
+    },
+    {
+      "id": 3,
+      "name": "Phụ kiện"
+    },
+    {
+      "id": 26,
+      "name": ""
+    }
+  ],
+  "cleanup": {
+    "status": 200,
+    "body": {
+      "message": "Category deleted"
+    }
+  },
+  "final": [
+    {
+      "id": 1,
+      "name": "Điện thoại"
+    },
+    {
+      "id": 2,
+      "name": "Laptop"
+    },
+    {
+      "id": 3,
+      "name": "Phụ kiện"
+    }
+  ]
+}

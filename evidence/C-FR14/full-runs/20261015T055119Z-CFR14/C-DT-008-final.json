@@ -1,0 +1,116 @@
+{
+  "name": "C14-C-DT-008-final-cancel-probe",
+  "id": 25,
+  "setup_response": {
+    "status": 200,
+    "body": {
+      "message": "Category created",
+      "id": 25
+    }
+  },
+  "before": {
+    "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa\n#17\t\tXóa\n#19\tC14-DT-007-delete-target\tXóa\n#25\tC14-C-DT-008-final-cancel-probe\tXóa",
+    "rows": [
+      "ID\tTên Danh Mục\tHành động",
+      "#1\tĐiện thoại\tXóa",
+      "#2\tLaptop\tXóa",
+      "#3\tPhụ kiện\tXóa",
+      "#6\tC14-C-DT-014-T055119-denied\tXóa",
+      "#15\t\tXóa",
+      "#16\t\tXóa",
+      "#17\t\tXóa",
+      "#19\tC14-DT-007-delete-target\tXóa",
+      "#25\tC14-C-DT-008-final-cancel-probe\tXóa"
+    ]
+  },
+  "delete_button_reached": true,
+  "dialog_observed": false,
+  "after": {
+    "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa\n#17\t\tXóa\n#19\tC14-DT-007-delete-target\tXóa",
+    "rows": [
+      "ID\tTên Danh Mục\tHành động",
+      "#1\tĐiện thoại\tXóa",
+      "#2\tLaptop\tXóa",
+      "#3\tPhụ kiện\tXóa",
+      "#6\tC14-C-DT-014-T055119-denied\tXóa",
+      "#15\t\tXóa",
+      "#16\t\tXóa",
+      "#17\t\tXóa",
+      "#19\tC14-DT-007-delete-target\tXóa"
+    ]
+  },
+  "api_before": [
+    {
+      "id": 1,
+      "name": "Điện thoại"
+    },
+    {
+      "id": 2,
+      "name": "Laptop"
+    },
+    {
+      "id": 3,
+      "name": "Phụ kiện"
+    },
+    {
+      "id": 6,
+      "name": "C14-C-DT-014-T055119-denied"
+    },
+    {
+      "id": 15,
+      "name": ""
+    },
+    {
+      "id": 16,
+      "name": ""
+    },
+    {
+      "id": 17,
+      "name": "   "
+    },
+    {
+      "id": 19,
+      "name": "C14-DT-007-delete-target"
+    },
+    {
+      "id": 25,
+      "name": "C14-C-DT-008-final-cancel-probe"
+    }
+  ],
+  "api_after": [
+    {
+      "id": 1,
+      "name": "Điện thoại"
+    },
+    {
+      "id": 2,
+      "name": "Laptop"
+    },
+    {
+      "id": 3,
+      "name": "Phụ kiện"
+    },
+    {
+      "id": 6,
+      "name": "C14-C-DT-014-T055119-denied"
+    },
+    {
+      "id": 15,
+      "name": ""
+    },
+    {
+      "id": 16,
+      "name": ""
+    },
+    {
+      "id": 17,
+      "name": "   "
+    },
+    {
+      "id": 19,
+      "name": "C14-DT-007-delete-target"
+    }
+  ],
+  "note": "No dialog observed; click performed immediate deletion; no cancel semantics inferred.",
+  "timestamp_utc": "2026-10-15T05:54:32.771Z"
+}

@@ -1,0 +1,204 @@
+{
+  "timestamp_utc": "2026-10-15T05:54:40Z",
+  "purpose": "post-evidence cleanup of test-owned IDs only",
+  "before": [
+    {
+      "id": 1,
+      "name": "Điện thoại"
+    },
+    {
+      "id": 2,
+      "name": "Laptop"
+    },
+    {
+      "id": 3,
+      "name": "Phụ kiện"
+    },
+    {
+      "id": 6,
+      "name": "C14-C-DT-014-T055119-denied"
+    },
+    {
+      "id": 15,
+      "name": ""
+    },
+    {
+      "id": 16,
+      "name": ""
+    },
+    {
+      "id": 17,
+      "name": "   "
+    },
+    {
+      "id": 19,
+      "name": "C14-DT-007-delete-target"
+    }
+  ],
+  "operations": [
+    {
+      "id": 6,
+      "name": "C14-C-DT-014-T055119-denied",
+      "status": 200,
+      "body": {
+        "message": "Category deleted"
+      },
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 15,
+          "name": ""
+        },
+        {
+          "id": 16,
+          "name": ""
+        },
+        {
+          "id": 17,
+          "name": "   "
+        },
+        {
+          "id": 19,
+          "name": "C14-DT-007-delete-target"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "",
+      "status": 200,
+      "body": {
+        "message": "Category deleted"
+      },
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 16,
+          "name": ""
+        },
+        {
+          "id": 17,
+          "name": "   "
+        },
+        {
+          "id": 19,
+          "name": "C14-DT-007-delete-target"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "",
+      "status": 200,
+      "body": {
+        "message": "Category deleted"
+      },
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 17,
+          "name": "   "
+        },
+        {
+          "id": 19,
+          "name": "C14-DT-007-delete-target"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "   ",
+      "status": 200,
+      "body": {
+        "message": "Category deleted"
+      },
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        },
+        {
+          "id": 19,
+          "name": "C14-DT-007-delete-target"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "C14-DT-007-delete-target",
+      "status": 200,
+      "body": {
+        "message": "Category deleted"
+      },
+      "after": [
+        {
+          "id": 1,
+          "name": "Điện thoại"
+        },
+        {
+          "id": 2,
+          "name": "Laptop"
+        },
+        {
+          "id": 3,
+          "name": "Phụ kiện"
+        }
+      ]
+    }
+  ],
+  "final": [
+    {
+      "id": 1,
+      "name": "Điện thoại"
+    },
+    {
+      "id": 2,
+      "name": "Laptop"
+    },
+    {
+      "id": 3,
+      "name": "Phụ kiện"
+    }
+  ]
+}

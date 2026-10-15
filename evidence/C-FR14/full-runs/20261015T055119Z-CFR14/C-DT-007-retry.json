@@ -1,0 +1,39 @@
+{
+  "tc": "C-DT-007",
+  "attempt": "UI retry after scrolling target row into visible area",
+  "name": "C14-C-DT-007-retry-20261015-delete",
+  "id": 24,
+  "before": {
+    "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa\n#17\t\tXóa\n#19\tC14-DT-007-delete-target\tXóa\n#24\tC14-C-DT-007-retry-20261015-delete\tXóa",
+    "rows": [
+      "ID\tTên Danh Mục\tHành động",
+      "#1\tĐiện thoại\tXóa",
+      "#2\tLaptop\tXóa",
+      "#3\tPhụ kiện\tXóa",
+      "#6\tC14-C-DT-014-T055119-denied\tXóa",
+      "#15\t\tXóa",
+      "#16\t\tXóa",
+      "#17\t\tXóa",
+      "#19\tC14-DT-007-delete-target\tXóa",
+      "#24\tC14-C-DT-007-retry-20261015-delete\tXóa"
+    ]
+  },
+  "buttonVisible": true,
+  "dialogObserved": false,
+  "dialogDecision": "accept",
+  "after": {
+    "text": "EShop Admin\nDashboard\nDanh mục\nSản phẩm\nMã Giảm Giá\nĐơn hàng\nNgười dùng\nĐăng xuất\nQuản lý Danh mục\nThêm mới\nID\tTên Danh Mục\tHành động\n#1\tĐiện thoại\tXóa\n#2\tLaptop\tXóa\n#3\tPhụ kiện\tXóa\n#6\tC14-C-DT-014-T055119-denied\tXóa\n#15\t\tXóa\n#16\t\tXóa\n#17\t\tXóa\n#19\tC14-DT-007-delete-target\tXóa",
+    "rows": [
+      "ID\tTên Danh Mục\tHành động",
+      "#1\tĐiện thoại\tXóa",
+      "#2\tLaptop\tXóa",
+      "#3\tPhụ kiện\tXóa",
+      "#6\tC14-C-DT-014-T055119-denied\tXóa",
+      "#15\t\tXóa",
+      "#16\t\tXóa",
+      "#17\t\tXóa",
+      "#19\tC14-DT-007-delete-target\tXóa"
+    ]
+  },
+  "timestamp_utc": "2026-10-15T05:54:00.968Z"
+}
