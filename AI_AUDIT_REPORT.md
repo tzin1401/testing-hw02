@@ -828,3 +828,14 @@ Dựa trên review thực tế của tôi, cập nhật 05-review-coverage.md ch
 - **Xác minh:** `gh issue view` xác nhận hai issue tồn tại ở trạng thái OPEN, đúng titles, bodies và labels. Issue #6 body được chỉnh sau upload để giữ đúng URL attachment thay vì relative path cục bộ.
 - **Output:** cập nhật [`features/C-FR14/07-bugs-and-ai-gaps.md`](features/C-FR14/07-bugs-and-ai-gaps.md), [`reports/work-progress.md`](reports/work-progress.md), snapshot [`audit/AI-036-cfr14-issue-publication-output.md`](audit/AI-036-cfr14-issue-publication-output.md).
 - **Giới hạn:** Chỉ đăng issues và ảnh #6; không push repo commit, code, SUT hoặc file evidence lên GitHub repository.
+
+
+## Interaction AI-037 — Hướng dẫn Android Emulator cho D-MREG
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại; Android Studio/Android Emulator và Expo Go SDK 54 dùng trong môi trường chạy.
+- **Ngày giờ ghi audit:** 2026-10-15T12:44:32Z (19:44:32 UTC+07); thời điểm ghi nhận, không phải timestamp prompt chính xác.
+- **Prompt nguyên văn:** xem [AI-037-dmreg-emulator-guide-output.md](audit/AI-037-dmreg-emulator-guide-output.md).
+- **Đã xác minh:** emulator Pixel 9 / Android 15 / API 35 / x86_64; Expo Go báo SDK 54; Metro bundle xong và màn hình sản phẩm Mobile xuất hiện. Expo cảnh báo package đang là 54.0.34, dự kiến ~54.0.37; chưa cập nhật dependency. Có cảnh báo SafeAreaView deprecated.
+- **Bảo toàn dữ liệu:** backend được chạy từ bản sao `/tmp/hw02-mobile-backend-safe`; database SUT trong repo không được khởi động/reset trong lượt này. `API_URL` hiện là `http://10.0.2.2:3000/api` để emulator truy cập host.
+- **Output:** sửa mục 12 trong `LAM_HW02_TUNG_BUOC.md` để có quy trình riêng cho emulator và cập nhật `reports/environment.md` với môi trường thực tế.
+- **Giới hạn:** chỉ xác nhận app mở và hiển thị danh sách sản phẩm; chưa chạy test D-MREG, chưa chụp/saved ảnh setup vào evidence, chưa ghi Pass/Fail. Bước kế tiếp là prompt mục 13.1 tạo requirements.

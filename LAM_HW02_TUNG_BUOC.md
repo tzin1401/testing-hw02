@@ -307,21 +307,32 @@ Phạm vi là **Thêm/Xem/Xóa danh mục** (FR-14), cộng kiểm soát quyền
 
 ## 12. Mở ứng dụng Mobile
 
-Chọn điện thoại Android/iPhone có Expo Go cùng Wi-Fi với máy tính, hoặc emulator đã cấu hình. Việc test API trên máy tính không chứng minh giao diện React Native chạy trên Mobile.
+Chọn một trong hai cách: thiết bị thật có Expo Go tương thích SDK, hoặc Android Emulator. Kiểm tra API trong trình duyệt là kiểm tra kết nối môi trường; không thay cho kiểm thử giao diện Mobile.
 
-- [ ] Trên máy tính, chạy `hostname -I` và xác định IP LAN. Nếu có nhiều IP, gửi kết quả cho tôi để xác định cái nào thuộc Wi-Fi.
-- [ ] Trên điện thoại mở `http://IP-CUA-MAY:3000/api/products`. Chỉ tiếp tục khi JSON mở được; nếu không, ghi lỗi mạng/firewall, chưa đánh dấu app chạy.
-- [ ] Mở `eshop-sut/frontend-mobile/App.js`, tìm `API_URL`. Đổi riêng hostname thành IP LAN, giữ nguyên scheme, port và `/api`; ghi config vào `reports/environment.md`. Đây là thay đổi cấu hình trong repo SUT, không stage/commit cùng tài liệu bài làm trừ khi cần theo yêu cầu môn học.
-- [ ] Mở terminal Mobile:
+### Nếu chạy Android Emulator (đường bạn đang dùng)
+
+- [x] Tạo và mở AVD **Pixel 9 / Android 15 / API 35** trong Android Studio.
+- [x] Cài Expo Go cho **SDK 54 / Android Emulator** từ `expo.dev/go`; project dùng Expo SDK 54.
+- [x] Đặt `API_URL` trong `eshop-sut/frontend-mobile/App.js` thành `http://10.0.2.2:3000/api`. Địa chỉ `10.0.2.2` cho emulator truy cập máy tính host. Ghi nhận thay đổi cấu hình này trong `reports/environment.md`; không stage/commit cùng bài làm trừ khi môn học yêu cầu.
+- [x] Mở app trên emulator và thấy danh sách sản phẩm. Đây chỉ xác nhận môi trường, chưa phải kết quả ca D-MREG.
+- Backend hiện được chạy từ bản sao tạm bên ngoài repo SUT để giữ nguyên DB thật. Giữ terminal/process hiện tại chạy; không khởi động lại backend trong repo SUT vì `database.js` reset dữ liệu khi server khởi động.
+- Nếu Expo chưa chạy, mở terminal Mobile:
 
 ```bash
 cd /home/zinn/zinn/test/hw02/eshop-sut/frontend-mobile
-npm ci
 npx expo start
 ```
 
-- [ ] Mở Expo Go/quét QR hoặc chạy emulator. Xác nhận màn hình app hiện; chụp ảnh và ghi thiết bị, OS, phiên bản Expo/ứng dụng. Giữ Metro/backend đang chạy.
-- [ ] Nếu không có điện thoại/emulator, báo tôi. Có thể tiếp tục thiết kế và chạy API phụ trợ, nhưng D-MREG UI phải ghi Blocked; không gọi API test là Mobile UI pass.
+Nếu cần mở thủ công, dùng emulator đang chạy, chạy `adb reverse tcp:8081 tcp:8081`, rồi mở `exp://127.0.0.1:8081` trong Expo Go. Giữ Expo Metro và backend đang chạy.
+
+### Nếu chạy điện thoại thật
+
+- [ ] Cho điện thoại và máy tính vào cùng Wi-Fi; trên máy tính dùng `hostname -I` và xác định IP Wi-Fi.
+- [ ] Trên điện thoại mở `http://IP-CUA-MAY:3000/api/products`; chỉ tiếp tục nếu JSON mở được.
+- [ ] Đổi `API_URL` sang IP LAN của máy tính, giữ scheme/port/`/api`; ghi cấu hình vào `reports/environment.md`.
+- [ ] Mở Metro, quét QR bằng Expo Go tương thích SDK; ghi loại thiết bị, OS và phiên bản app. Giữ backend/Metro chạy.
+
+- [ ] Nếu không có thiết bị thật hoặc emulator, báo tôi. Có thể tiếp tục thiết kế và chạy API phụ trợ, nhưng D-MREG UI phải ghi Blocked; không gọi API test là Mobile UI pass.
 
 ## 13. Làm đăng ký Mobile — D-MREG
 
@@ -345,7 +356,7 @@ Phạm vi là đăng ký trong ứng dụng Mobile: FR-20 xác định chức n�
 
 - [ ] Gửi prompt:
 
-> Tạo `features/D-MREG/03-domain-cases.md` cho ca trên Mobile thật, mỗi ca `D-DT-nnn`. Ghi thiết bị/OS, trạng thái app, account/email đã tồn tại hay chưa, dữ liệu từng trường, từng thao tác tap/nhập/ẩn-hiện bàn phím/submit, expected, D-EC, D-R và evidence. Bao gồm: form có đủ bốn trường; đăng ký thành công bằng dữ liệu hợp lệ và email mới; tên rỗng; email rỗng/sai format/trùng; password rỗng; từng lỗi password độc lập (thiếu hoa, thường, số, ký tự đặc biệt); confirm sai/rỗng; xác nhận không tạo account khi bị từ chối; sau thành công chuyển về Login và có thể thấy account được tạo. Ca âm chỉ vi phạm một điều kiện, giữ các trường khác hợp lệ. Mỗi ca thành công phải dùng email riêng; không ghi mật khẩu thật. Nếu form thiếu trường bắt buộc, tạo ca kiểm tra sự hiện diện với ảnh; các ca cần field đó đánh dấu phụ thuộc/blocked, nhưng tiếp tục các ca độc lập có thể làm. Ghi thông báo lỗi dự kiến theo ý nghĩa yêu cầu, không bịa câu chữ. Chưa chạy và chưa điền actual. Ghi audit và commit riêng.
+> Tạo `features/D-MREG/03-domain-cases.md` cho ca trên Android Emulator hoặc thiết bị Mobile thật, mỗi ca `D-DT-nnn`. Ghi loại thiết bị/AVD, OS/API level, trạng thái app, account/email đã tồn tại hay chưa, dữ liệu từng trường, từng thao tác tap/nhập/ẩn-hiện bàn phím/submit, expected, D-EC, D-R và evidence. Bao gồm: form có đủ bốn trường; đăng ký thành công bằng dữ liệu hợp lệ và email mới; tên rỗng; email rỗng/sai format/trùng; password rỗng; từng lỗi password độc lập (thiếu hoa, thường, số, ký tự đặc biệt); confirm sai/rỗng; xác nhận không tạo account khi bị từ chối; sau thành công chuyển về Login và có thể thấy account được tạo. Ca âm chỉ vi phạm một điều kiện, giữ các trường khác hợp lệ. Mỗi ca thành công phải dùng email riêng; không ghi mật khẩu thật. Nếu form thiếu trường bắt buộc, tạo ca kiểm tra sự hiện diện với ảnh; các ca cần field đó đánh dấu phụ thuộc/blocked, nhưng tiếp tục các ca độc lập có thể làm. Ghi thông báo lỗi dự kiến theo ý nghĩa yêu cầu, không bịa câu chữ. Chưa chạy và chưa điền actual. Ghi audit và commit riêng.
 
 ### 13.4. Thiết kế BVA D-MREG
 

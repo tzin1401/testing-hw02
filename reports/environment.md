@@ -94,3 +94,12 @@ Nguồn: output terminal do sinh viên gửi trong AI-003; chưa phải kết qu
 - Bước tiếp theo: 5.1 — phân tích yêu cầu A-FR02, chưa thực thi test chức năng.
 
 Quan sát Git sau bước mở Admin: SUT vẫn ở commit baseline, nhưng `backend/database.sqlite` đã thay đổi và `backend/node_modules/` chưa được theo dõi. Đây là trạng thái sau cài/chạy, khác working tree sạch lúc chuẩn bị; các mục này không được đưa vào commit tài liệu.
+
+## Cập nhật môi trường Mobile Emulator — AI-037
+
+- Android Studio Rabbit 1, phiên bản hiển thị `2026.2.1`, đã cài cùng Android Emulator và Android SDK Platform-Tools. AVD tạo và chạy: **Pixel 9, Android 15, API 35, x86_64**.
+- Cài Expo Go Android dành cho **SDK 54** từ trang `expo.dev/go` với lựa chọn Android emulator. Emulator được hệ thống nhận là `emulator-5554`.
+- Expo Metro chạy từ `eshop-sut/frontend-mobile` bằng `npx expo start --localhost` tại cổng 8081. Terminal báo package Expo `54.0.34`, trong khi mong đợi `~54.0.37`; không thay dependency. Metro bundle được 686 modules, app mở trên emulator và màn hình danh sách sản phẩm xuất hiện. Có cảnh báo SafeAreaView deprecated. Chưa kiểm tra các ca D-MREG.
+- `frontend-mobile/App.js` hiện được cấu hình `API_URL = "http://10.0.2.2:3000/api"`, địa chỉ host dành cho Android Emulator. Trước đó file có `192.168.1.11`; cần đổi lại IP LAN nếu quay về chạy trên iPhone thật.
+- Backend được chạy trên cổng 3000 từ bản sao tạm `/tmp/hw02-mobile-backend-safe` để tránh khởi động `eshop-sut/backend/server.js` trên DB của repo. Bản sao dùng cùng source SUT và tự khởi tạo dữ liệu seed trong DB bản sao; DB gốc không bị reset bởi lần chạy emulator này. Giữ process backend/Metro hiện tại chạy trong lúc sử dụng emulator.
+- Ghi nhận này chỉ xác nhận môi trường và app mở được. Không phải kết quả Pass của test case. Chưa lưu screenshot setup vào repo evidence.
