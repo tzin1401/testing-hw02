@@ -791,3 +791,21 @@ Dựa trên review thực tế của tôi, cập nhật 05-review-coverage.md ch
 - **Output:** [`features/C-FR14/06-execution.md`](features/C-FR14/06-execution.md), [`features/C-FR14/07-bugs-and-ai-gaps.md`](features/C-FR14/07-bugs-and-ai-gaps.md), cập nhật [`reports/work-progress.md`](reports/work-progress.md) và evidence run ở trên.
 - **Issue:** hai draft có title, environment, steps, expected/actual, severity/priority, TC IDs, labels và evidence theo slide; chưa đăng GitHub Issue.
 - **Giới hạn:** Chưa kiểm tra trực tiếp user thường/khách truy cập Admin UI (coverage gap C-R01). Không đặt expected cho whitespace, GET access, nonexistent ID, uniqueness, upper bound, dialog, hoặc HTTP response chưa đặc tả. Không sửa SUT.
+
+
+## Interaction AI-035 — Đối chiếu bug C-FR14
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi nhận:** 2026-10-15T06:29:34Z (13:29:34 UTC+07); thời điểm ghi audit, không phải timestamp prompt chính xác.
+- **Prompt nguyên văn:**
+
+```text
+Đối chiếu bug C-FR14 đã có evidence với SRS. Cập nhật 07-bugs-and-ai-gaps.md, gộp test fail cùng nguyên nhân, tách lỗi độc lập; chuẩn bị title/body issue với bước tái hiện, expected/actual, severity có lý do, TC ID và ảnh cần đính kèm. Chỉ nêu AI gap có bằng chứng. Không tự đăng GitHub Issue; ghi audit và commit riêng phần báo cáo bug.
+```
+
+- **Đã đối chiếu:** SRS `eshop-sut/README.md` FR-12 (dòng 174–179) yêu cầu JWT hợp lệ và role admin cho API ghi `/api/categories`; FR-14 (dòng 186–189) yêu cầu Admin thêm/xem/xóa và tên bắt buộc, không rỗng. So sánh với evidence của C-DT-003/C-BV-001/C-DT-014/C-DT-018 trong Run `20261015T055119Z-CFR14`; không dùng code làm nguồn expected.
+- **Gộp/tách:** C-DT-003 + C-BV-001 được gộp thành một issue do cùng lỗi chấp nhận tên rỗng. C-DT-014 + C-DT-018 được gộp thành một issue do cùng lỗi role user ghi được API category. Hai nhóm giữ riêng do expected/ảnh hưởng khác nhau.
+- **Severity/priority:** tên rỗng `minor/P2` vì cần phiên admin, sai validation nhưng không gây mất dữ liệu khác; thiếu role authorization `major/P1` vì user thường có thể thêm/xóa dữ liệu quản trị. Gắn labels `type: bug`, `severity`, `priority`, `status: new`, `module` theo slide.
+- **AI gap có evidence:** lần click UI đầu nhắm dòng ngoài viewport, được phát hiện qua ảnh/state; bằng chứng tên rỗng ban đầu chưa thấy dòng mới nên có capture bổ sung; API evidence cho C-DT-018 lặp cùng một POST setup record do runner lưu response hai lần—không phải hai request độc lập. Các điểm được ghi rõ trong bug report; không suy diễn thêm bug SUT.
+- **Output:** [`features/C-FR14/07-bugs-and-ai-gaps.md`](features/C-FR14/07-bugs-and-ai-gaps.md); snapshot tại [`audit/AI-035-cfr14-bug-report-output.md`](audit/AI-035-cfr14-bug-report-output.md).
+- **Không đăng issue:** theo yêu cầu, chỉ chuẩn bị title/body và evidence cần đính kèm. Issue API là ca API-only nên dùng network log redacted, không tạo ảnh UI không phản ánh thao tác API.
