@@ -36,7 +36,7 @@
 - Tạo/cập nhật GitHub issues cho findings mới và đính screenshot/log thật; cập nhật issue #8 khi có thể gắn evidence phù hợp. Không coi JSON link là screenshot.
 - Đã xuất lại main report, AI Critique và AI Audit PDF từ Markdown; còn cần cập nhật commit log sau commit.
 - Đã commit bộ tài liệu/evidence đối chiếu tại `668c7c2`, không stage `eshop-sut`.
-- ZIP draft trước commit log đã CRC pass; sau khi làm mới commit log sẽ tái tạo draft. Sinh viên tự chọn điểm 3 chữ số và điền README trước ZIP cuối.
+- Đã làm mới commit log và tái tạo ZIP draft; kiểm tra CRC thành công. Sinh viên tự chọn điểm 3 chữ số và điền README trước ZIP cuối.
 - Skill/video tạm ngoài phạm vi hiện tại.
 
 Không sửa logic SUT, không restart backend, không ghi DB thật; DB clone chỉ được truy vấn chỉ đọc. D automation dừng trước khi kết luận. Không có review/phê duyệt mới từ sinh viên.
