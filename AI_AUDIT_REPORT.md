@@ -909,3 +909,15 @@ Dựa trên review thực tế của tôi, cập nhật 05-review-coverage.md ch
 - **Gap:** tool không đưa được app qua nút Login; không kết luận đó là bug SUT. Trang chi tiết báo network error khi backend cũ dừng; không gán thành bug D-MREG. Chưa có evidence UI form.
 - **Output:** [`features/D-MREG/06-execution.md`](features/D-MREG/06-execution.md), [`07-bugs-and-ai-gaps.md`](features/D-MREG/07-bugs-and-ai-gaps.md), cập nhật [`reports/work-progress.md`](reports/work-progress.md) và evidence run.
 - **Giới hạn:** 20 ca UI chưa chạy; execution còn cần thaoć động bằng tay trong emulator theo các bước đầy đủ trong design files. Issue chưa đăng; SUT unchanged.
+
+## Interaction AI-044 — Đối chiếu bug và chuẩn bị issue D-MREG
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi audit:** 2026-10-15T15:02:22Z (2026-10-15 22:02:22 +07:00).
+- **Prompt nguyên văn và output:** [AI-044-dmreg-bug-report-output.md](audit/AI-044-dmreg-bug-report-output.md).
+- **Nguồn oracle:** FR-01 trong `eshop-sut/README.md`; endpoint `POST /api/register` trong `eshop-sut/api_specification.md`. FR-01 yêu cầu email duy nhất, còn API specification không định nghĩa status/body lỗi duplicate.
+- **Evidence:** `api-registration-duplicate-isolated.json` ghi hai POST tuần tự trong backend copy cô lập, HTTP 200/ID 3 và ID 4, count 0 → 1 → 2; password đã che.
+- **Kết quả:** cập nhật `features/D-MREG/07-bugs-and-ai-gaps.md`, giữ một bug API độc lập; không gộp UI Blocked thành bug, không suy ra UI từ API. Issue title/body có bước tái hiện, expected/actual, severity rationale, D-R04/API-only scope, labels và yêu cầu evidence. Không đăng issue. Không có screenshot phù hợp cho finding API; không tạo ảnh minh họa.
+- **AI gap:** chưa có bằng chứng về lỗi nội dung do AI sinh. ADB không mở được Login được ghi nhận là execution/tooling limitation có ảnh/log, không quy thành bug SUT hoặc AI content gap.
+- **Giới hạn:** không chạy thêm test, không sửa SUT, không tạo dữ liệu ngoài DB bản sao, không đăng issue. Mobile TCs vẫn Blocked.
+- **Commit:** `COMMIT_ID` (báo cáo bug và audit בלבד).

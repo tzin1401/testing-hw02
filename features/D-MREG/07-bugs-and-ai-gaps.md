@@ -1,66 +1,73 @@
-# D-MREG — Bugs, issue draft và AI/execution gaps
+# D-MREG — Báo cáo bug, issue draft và AI/execution gaps
 
 **SUT baseline:** `85af3ba875c88283615e22cb108f13e2fccaf0e9`
-**Run:** [`06-execution.md`](06-execution.md), `20261015T1303Z-DMREG`
-**Nguyên tắc:** bug phải có evidence và expected từ SRS/API. Không suy ra Mobile UI từ API.
+**Run:** `20261015T1303Z-DMREG` — chi tiết thực thi tại [`06-execution.md`](06-execution.md)
+**Đối chiếu oracle:** FR-01 trong `eshop-sut/README.md`; endpoint `POST /api/register` trong `eshop-sut/api_specification.md`.
+**Nguyên tắc:** chỉ báo bug có bằng chứng và expected từ tài liệu. Không suy ra lỗi Mobile UI từ API.
 
-## Bug có bằng chứng — API chấp nhận email trùng
+## Bug có bằng chứng: API tạo nhiều tài khoản cùng email
 
-- **Title draft:** `[BUG][API] Đăng ký API tạo nhiều tài khoản cùng email`
-- **Requirement / TC:** D-R04; API-only supplemental evidence. Mobile D-DT-006 vẫn **Blocked**, không phải Fail.
-- **Nguồn expected:** FR-01 yêu cầu email phải duy nhất. Không đặt HTTP status/body cụ thể cho request trùng vì API spec không định nghĩa response lỗi.
-- **Môi trường:** Android host Linux, Node backend chạy từ bản sao cô lập `/tmp/hw02-dmreg-isolated-run`, source `server.js` byte-match SUT baseline; database là DB của bản sao, không phải database trong repo SUT.
-- **Steps:**
-  1. Đọc count email `vinh.dmreg.api-fixture01@example.com` bằng SQLite read-only; count ban đầu là 0.
-  2. Gửi `POST /api/register` với name test, email trên và một password giả đã che; response là HTTP 200, `id=3`; count thành 1.
-  3. Gửi lại cùng email bằng request POST thứ hai; response là HTTP 200, `id=4`; count thành 2.
-- **Expected:** email đã có account thì không tạo account thứ hai. SRS không yêu cầu status/body cụ thể.
-- **Actual:** endpoint trả success cho cả hai POST; DB test có hai account cùng email.
-- **Severity / Priority draft:** `major / P1`: uniqueness là yêu cầu định danh account; duplicate có thể gây nhập nhằng khi đăng nhập/tìm user. Chỉ phát sinh trên test DB cô lập; chưa có dữ liệu người dùng bị ảnh hưởng.
-- **Labels đề xuất:** `type: bug`, `severity: major`, `priority: P1`, `status: new`, `module: api` (dùng đúng tên label trong repo nếu khác).
-- **Evidence:** [`api-registration-duplicate-isolated.json`](../../evidence/D-MREG/full-runs/20261015T1303Z-DMREG/api-registration-duplicate-isolated.json), gồm redacted request/response, UTC/monotonic timestamps và DB count 0→1→2. Không có screenshot Mobile/API thích hợp; **chưa đăng issue** theo yêu cầu chờ ảnh khi thiếu ảnh.
+Đây là **một lỗi độc lập** được xác nhận trong run này. Không có thêm lỗi API/Mobile nào đủ bằng chứng để tách thành bug khác. Các ca Mobile chưa thực hiện vẫn Blocked, không được gộp vào lỗi này.
 
-### Body đề xuất cho issue
+- **Title đề xuất:** `[BUG][API] Đăng ký tạo tài khoản mới dù email đã tồn tại`
+- **Requirement:** D-R04 — FR-01 yêu cầu email là duy nhất trong hệ thống.
+- **TC / nguồn phát hiện:** API-only supplemental check liên quan D-R04; không phải kết quả Mobile của D-DT-006. Không gán một TC UI là Fail.
+- **Expected có căn cứ:** Sau khi email đã được dùng để tạo tài khoản, lần đăng ký tiếp theo không được tạo thêm tài khoản cùng email. FR-01 không nêu HTTP status hoặc câu chữ response lỗi cụ thể; API specification chỉ mô tả response thành công.
+- **Môi trường và phạm vi:** baseline `85af3ba875c88283615e22cb108f13e2fccaf0e9`; Linux host; backend `server.js` byte-match baseline, chạy trên bản sao test cô lập `/tmp/hw02-dmreg-isolated-run`; database của bản sao, không phải DB trong repo. Đây là kiểm tra API tuần tự, không phải thử race condition.
+- **Severity / Priority đề xuất:** `major / P1`. Lý do: vi phạm trực tiếp tính duy nhất của email—định danh tài khoản theo FR-01—và tạo các bản ghi có cùng email, có thể gây nhập nhằng khi đăng nhập/tìm user. Bằng chứng chỉ dùng DB test cô lập; chưa có ảnh hưởng dữ liệu người dùng thật được ghi nhận.
+- **Labels đề xuất:** `type: bug`, `severity: major`, `priority: P1`, `status: new`, `module: api` (đối chiếu tên label hiện có của repo trước khi đăng).
+
+### Body đề xuất cho GitHub Issue
 
 ```markdown
-## Mô tả lỗi
-`POST /api/register` tạo thêm một tài khoản khi email đã tồn tại, trái với FR-01 yêu cầu email duy nhất.
+## Mô tả
+`POST /api/register` tạo thêm tài khoản khi email đó đã được đăng ký trước, trái với yêu cầu email duy nhất tại FR-01.
 
 ## Môi trường
-SUT baseline 85af3ba875c88283615e22cb108f13e2fccaf0e9; backend source khớp baseline, chạy trong bản sao test cô lập; Linux; API `http://127.0.0.1:3000/api/register`. Không dùng DB thật của repo.
+- SUT baseline: `85af3ba875c88283615e22cb108f13e2fccaf0e9`
+- Backend source: `server.js` khớp baseline; chạy trong bản sao test cô lập trên Linux.
+- Endpoint: `POST http://127.0.0.1:3000/api/register`
+- Database: DB của bản sao test, không phải database làm việc của SUT.
+- Run ID: `20261015T1303Z-DMREG`
 
-## Steps to reproduce
-1. Xác minh email test chưa tồn tại (count 0).
-2. POST `/api/register` với dữ liệu test hợp lệ và email `vinh.dmreg.api-fixture01@example.com`.
-3. Gửi lại POST với chính email đó.
-4. Đọc count email trong DB test ở chế độ chỉ đọc.
+## Bước tái hiện
+1. Dùng email test mới `vinh.dmreg.api-fixture01@example.com`; xác minh count ban đầu bằng truy vấn chỉ đọc là 0.
+2. Gửi `POST /api/register` với họ tên test, email này và mật khẩu hợp lệ (mật khẩu đã được che trong evidence).
+3. Xác minh request đầu tạo một tài khoản: HTTP 200, ID 3, count là 1.
+4. Gửi lại cùng request với chính email đó.
+5. Đọc count bằng truy vấn chỉ đọc.
 
-## Expected result
-Không tạo account thứ hai cho một email đã có theo FR-01. Không quy định HTTP status/body lỗi.
+## Kết quả mong đợi
+Request thứ hai không tạo tài khoản khác cho email đã tồn tại theo FR-01. FR-01/API specification không quy định HTTP status hoặc body lỗi cụ thể, nên issue không yêu cầu một status/message riêng.
 
-## Actual result
-Cả hai POST trả HTTP 200 và `User registered successfully`; lần lượt tạo ID 3 và ID 4. Count email tăng 0 → 1 → 2.
+## Kết quả thực tế
+Request thứ hai cũng trả HTTP 200 với `User registered successfully`, ID 4; count email tăng từ 1 lên 2. Tổng count quan sát: 0 → 1 → 2.
 
-## Test / phạm vi
-D-R04, API-only supplemental run. Mobile D-DT-006 chưa chạy và vẫn Blocked; không suy rộng API result thành UI result.
+## Test và phạm vi
+- Requirement: D-R04 / FR-01.
+- Phát hiện: API-only supplemental check trong run `20261015T1303Z-DMREG`.
+- Mobile `D-DT-006` vẫn Blocked vì chưa mở được màn hình Register; kết quả API không đại tính cho UI.
+- Hai POST tuần tự; chưa kiểm thử race condition.
 
-## Severity / Priority
-Major / P1: email là định danh tài khoản; bản ghi trùng gây nhập nhằng trong đăng nhập/tìm tài khoản. Reproduction dùng DB bản sao test.
+## Severity / Priority đề xuất
+Major / P1, vì vi phạm ràng buộc duy nhất của email và tạo định danh tài khoản trùng. Chỉ tái hiện trên DB test cô lập; chưa có dữ liệu người dùng thật bị ảnh hưởng.
 
-## Evidence
-Đính kèm `api-registration-duplicate-isolated.json` (request/response đã che password, timestamp và state count trước/sau). Chưa có screenshot Mobile.
+## Evidence đính kèm
+- `evidence/D-MREG/full-runs/20261015T1303Z-DMREG/api-registration-duplicate-isolated.json` — request/response đã che password, timestamp UTC/monotonic và count DB trước/sau.
+- Ảnh UI: không có ảnh phù hợp cho API-only lỗi này. Không đính kèm ảnh emulator đang Blocked vì ảnh đó không chứng minh API response. Nếu quy trình nhóm bắt buộc có ảnh, cần chụp ảnh terminal/API client thật hiển thị hai response và che thông tin nhạy cảm; không tạo ảnh minh họa giả.
 ```
 
-## AI / execution gaps có evidence
+**Trạng thái issue:** chỉ chuẩn bị draft, chưa đăng theo yêu cầu. Evidence chính hiện là JSON request/response, không phải screenshot.
 
-- **Không tiếp cận được Register bằng điều khiển ADB:** emulator và ADB kết nối; UI tree có node `Đăng nhập`, nhưng các lần tap không mở Login. Một tap vào nút sản phẩm mở trang chi tiết, chứng minh một phần touch automation hoạt động; trang chi tiết sau đó báo `TypeError: Network request failed` khi backend cũ đã dừng. Các ảnh điều hướng nằm trong run directory. Đây là blocker của execution/tooling, chưa đủ căn cứ để gọi là bug SUT.
-- **Backend cũ đã dừng:** cổng 3000 từ chối kết nối tại 13:04:41Z. Không restart backend có thể reset dữ liệu. Đã dùng bản sao cô lập được tạo từ test clone và xác minh hash source giống baseline. Đây là giới hạn môi trường được xử lý an toàn, không phải AI-generated false result.
-- **Không phát hiện AI gap nội dung có bằng chứng** trong expected/case design từ lượt chạy này. Không có test Mobile nào hoàn tất để đánh giá độ chính xác của kết quả UI.
+## AI / execution gaps có bằng chứng
+
+- **Blocker điều khiển Mobile UI:** run evidence có ảnh trước/sau thao tác và log ghi ADB/emulator kết nối, nhưng tap vào header “Đăng nhập” không mở Login; Register không được mở. Vì vậy các ca UI chưa chạy. Đây là giới hạn điều khiển trong run, chưa đủ căn cứ kết luận SUT có lỗi điều hướng.
+- **Backend ban đầu không chạy:** log run ghi port 3000 từ chối kết nối tại `2026-10-15T13:04:41Z`. Để tránh restart backend có thể làm mất state, lượt chạy dùng bản sao cô lập và kiểm tra source hash. Đây là giới hạn môi trường đã được xử lý, không phải lỗi chức năng.
+- **Không có AI content gap được xác nhận:** evidence hiện có không chỉ ra AI đã bịa expected, bỏ sót lỗi đã quan sát, hoặc báo sai trạng thái UI. Chỉ ghi nhận giới hạn thao tác UI nêu trên; không suy diễn thành AI gap nội dung.
 
 ## Chưa kết luận / không phải bug đã xác nhận
 
-- Không kết luận form thiếu confirmation field vì Register chưa mở được trên thiết bị; mã nguồn không được dùng thay bằng chứng UI.
-- Không kết luận API error wording/status, password API validation, network retry hay hành vi giữ form khi lỗi vì oracle hoặc checkpoint chưa đủ.
-- Không tạo issue cho checkpoint UI blocked hoặc lỗi chi tiết API request ban đầu khi backend tắt.
-
-**Issue chưa đăng.** API duplicate draft có request/response evidence nhưng chưa có ảnh; chờ quyết định/ảnh theo quy trình nhóm trước khi đăng.
+- Các ca `D-DT-001–013` và `D-BV-001–007` trên Mobile đều **Blocked**; chưa có actual UI để báo lỗi.
+- Không kết luận form thiếu trường xác nhận vì chưa mở được Register. Không dùng mã nguồn thay evidence giao diện.
+- Không kết luận API status/message lỗi, validation password API, xử lý network/retry, race condition, whitespace/trim hoặc navigation sau đăng ký; chưa có evidence phù hợp hoặc oracle cụ thể.
+- Lỗi `TypeError: Network request failed` xuất hiện ở trang chi tiết sản phẩm khi backend cũ đã dừng, ngoài luồng đăng ký; không báo thành bug D-MREG.
