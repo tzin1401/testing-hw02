@@ -756,3 +756,22 @@ Tạo `features/C-FR14/04-boundary-cases.md` theo slide. Với tên danh mục, 
 - **ID:** tồn tại dùng ID của category test do case tạo; không tồn tại là probe xác minh bằng GET trước, không đặt ID cực đại và không gán expected response. Ghi rõ ID không có thứ tự/giới hạn được nêu nên đây là state-boundary probe, không phải BVA số học.
 - **Phân biệt Domain/BVA:** Unicode/whitespace-only và role/token được giữ ở Domain cases, không gọi là điểm BVA có thứ tự.
 - **Giới hạn:** Không chạy test, không điền actual/status/human review; không dùng hoặc xóa dữ liệu mẫu.
+
+
+## Interaction AI-033 — Review và coverage C-FR14
+
+- **Tên công cụ:** Codex trong phiên chat hiện tại.
+- **Ngày giờ ghi nhận:** 2026-10-15 (UTC+07:00); không suy đoán giờ gửi phản hồi chính xác.
+- **Phản hồi review nguyên văn:** “Tôi đã đọc qua từng ca kiểm thử và hiểu rõ hoàn toàn”.
+- **Prompt nguyên văn:**
+
+```text
+Tôi đã đọc qua từng ca kiểm thử và hiểu rõ hoàn toàn
+Dựa trên review thực tế của tôi, cập nhật 05-review-coverage.md cho C-FR14, truy vết C-R → C-EC/biên → C-DT/C-BV. Ghi rõ các oracle cần hỏi thêm và những phần tôi chưa duyệt. Sửa file liên quan nếu cần, không suy ra tôi đã chấp thuận. Ghi audit và commit riêng.
+```
+
+- **Đã đọc/đối chiếu:** `features/C-FR14/01-requirements.md`, `02-domains.md`, `03-domain-cases.md`, `04-boundary-cases.md` cùng SRS/API sources được tham chiếu ở đó.
+- **Output:** [`features/C-FR14/05-review-coverage.md`](features/C-FR14/05-review-coverage.md); snapshot tại [`audit/AI-033-cfr14-review-coverage-output.md`](audit/AI-033-cfr14-review-coverage-output.md). Ma trận truy vết C-R01–C-R06 tới C-EC, BVA points, C-DT và C-BV.
+- **Ghi nhận phản hồi:** người dùng nói đã đọc và hiểu 18 ca Domain, 5 ca BVA/probe; không nêu ca nào chưa hiểu. Không ghi đây là chấp thuận expected, giả định, độ bao phủ hoặc phê duyệt thiết kế.
+- **Coverage gap:** C-R01 chưa có ca trực tiếp kiểm tra user thường/khách vào Admin Web; API write denial không thay thế kiểm tra UI access. Các oracle whitespace-only, GET authorization, delete ID không tồn tại, category đang được tham chiếu, dialog/Hủy và HTTP status/body được liệt kê cần hỏi thêm.
+- **Giới hạn:** Không sửa requirements/cases khi chưa có yêu cầu cụ thể; chưa chạy SUT, chưa ghi actual/status/Pass/Fail.

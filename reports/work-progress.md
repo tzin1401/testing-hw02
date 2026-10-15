@@ -20,7 +20,7 @@
 |---|---|---|---|---|---|---|---|
 | A-FR02 — Đăng nhập/khóa Web | Requirements A-R01–A-R11 (AI-007) | Các EC đã ghi (AI-008) | 24 ca thiết kế (AI-009) | 12 ca thiết kế (AI-010) | Sinh viên nói đã đọc/hiểu (AI-011); chưa xác nhận phê duyệt thiết kế | Run 001 user-reported; Run 003 API, Run 004 UI, Run 005 ảnh bổ sung; 33/36 TC có actual/checkpoint, 3 mốc clock Not run; xem 06-execution | 3 bug đã đăng Issue #1–#3 có ảnh/labels; AI gaps trong harness ở 07 |
 | B-FR07 — Giỏ hàng Web | Requirements B-R01–B-R13 (AI-020); câu hỏi mở được đánh dấu | EC B-EC-01–B-EC-41 (AI-021); các lớp chưa rõ giữ dạng thăm dò | 20 ca B-DT-001–020 (AI-022) | 6 ca B-BV-001–006 (AI-023) | Người dùng xác nhận đã hiểu toàn bộ ca (AI-024); chưa phê duyệt expected | Run `20261014T191645Z-BFR07-UI`: 1 Pass / 2 Fail / 23 Blocked / 0 Not run; xem `features/B-FR07/06-execution.md` | 2 issue draft chưa đăng; AI gaps và side effect API ghi ở `07-bugs-and-ai-gaps.md` (AI-025) |
-| C-FR14 — Danh mục Admin | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
+| C-FR14 — Danh mục Admin | C-R01–C-R06 (AI-028) | C-EC-01–C-EC-15 (AI-029) | 18 ca C-DT-001–018 (AI-031) | 3 name-boundary cases + 2 ID probes (AI-032) | Người dùng nói đã đọc/hiểu; chưa phê duyệt expected (AI-033). Coverage có gap C-R01 UI access. | Chưa chạy | Chưa ghi nhận |
 | D-MREG — Đăng ký Mobile | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận |
 
 Không chuyển một ô thành hoàn thành chỉ vì AI đã đề xuất nội dung. Review chỉ ghi khi có nhận xét thật của sinh viên; execution chỉ ghi khi có lần chạy và bằng chứng.
@@ -110,3 +110,5 @@ A-FR02 đã có execution table và GitHub Issues #1–#3 có ảnh. Còn review
 - [x] AI-026: đối chiếu B-FR07 bug với SRS, tách 2 lỗi độc lập và chuẩn bị issue draft; chưa đăng GitHub.
 
 - [x] AI-027: đăng hai GitHub Issue B-FR07 kèm ảnh, xác minh body/labels/URL; #4 và #5 đang OPEN.
+
+- [x] AI-033: ghi nhận người dùng hiểu các ca C-FR14 và tạo ma trận review/coverage; không xem là phê duyệt.
