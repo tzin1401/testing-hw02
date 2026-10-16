@@ -109,13 +109,13 @@ Run 003 JSONL cũng chứa một lượt UI ban đầu bị nhiễm state: profi
 | A-BV-003 | Hai lần sai làm 0→2→4/khóa; password đúng probe bị 403 | Fail — A-R04/A-R05 |
 | A-BV-004 | Khóa ở lần sai thứ hai; lần ba và probe đều 403 | Fail — A-R04/A-R05 |
 | A-BV-005 | Khóa trước lần ba; lần sai thứ tư bị 403 khi đang khóa | Fail — ngưỡng/setup; request thứ tư bị từ chối |
-| A-BV-006 | 29.0598–29.0711s, probe bị 403; khóa đã phát sinh sớm ở lần sai thứ hai | Blocked cho luồng ngưỡng chuẩn; diagnostic bị chặn trước 30s |
-| A-BV-007 | Không có clock/harness điều khiển tại điểm server so sánh đúng 30.000s | Not run |
+| A-BV-006 | Clock fixture tại elapsed 29s trả 403; natural setup thực tế khóa sớm ở lần sai thứ hai | Partial: time checkpoint khớp expected; setup chuỗi 3 lần sai chưa đạt |
+| A-BV-007 | Clock fixture tại đúng 30.000s ở phép so sánh; login đúng trả 200 | Pass cho checkpoint toán tử; fixture không kiểm chứng thời lượng khóa tự nhiên |
 | A-BV-008 | 31.0707–31.0814s, probe vẫn 403; locked_until cho thấy khoảng khóa runtime 180s | Fail — A-R06 (kèm setup threshold fail) |
-| A-BV-009 | 10.0610–10.0706s, probe 403; khóa phát sinh sớm | Blocked cho luồng ngưỡng chuẩn; diagnostic bị chặn trong khóa |
+| A-BV-009 | Clock fixture tại elapsed 10s trả 403; natural setup thực tế khóa sớm ở lần sai thứ hai | Partial: time checkpoint khớp expected; setup chuỗi 3 lần sai chưa đạt |
 | A-BV-010 | 40.0876–40.0969s, probe vẫn 403; khóa phát sinh sớm và còn hiệu lực | Fail — A-R06 (kèm setup threshold fail) |
-| A-BV-011 | Không có clock/harness 1ms tại điểm server so sánh | Not run |
-| A-BV-012 | Không có clock/harness 1ms tại điểm server so sánh | Not run |
+| A-BV-011 | Clock fixture tại 29.999s; login bị chặn 403 | Pass cho checkpoint toán tử trước mốc |
+| A-BV-012 | Clock fixture tại 30.001s; login đúng trả 200 | Pass cho checkpoint toán tử sau mốc |
 
 “Pass” ở hàng có ghi checkpoint nghĩa là chỉ checkpoint expected đã nêu được chứng minh; phần oracle đang mở không được suy ra. Với các ca trạng thái/timing, bảng ghi Fail/Blocked ở cả setup lẫn phần phụ thuộc khi cần, không coi lỗi setup là bằng chứng cho mọi checkpoint.
 
@@ -132,3 +132,20 @@ Run 003/004 đã tạo 46 tài khoản test mới với tiền tố email `a-fr0
 - **A-BUG-003:** email `not-an-email` được gửi từ form Web; validity của input `type=text` là true và POST login trả 401. Ảnh: [A-BUG-003](../../evidence/A-FR02/issue-evidence/20261014T183925Z-fa22ee4e/A-BUG-003-invalid-email-submitted.png).
 - Ảnh chỉ giữ email test và kết quả giao diện; ô mật khẩu được xóa trước khi chụp. Không có token/mật khẩu trong ảnh hoặc log. Một lượt chụp sơ bộ trước đó bị hủy vì ô mật khẩu của SUT thực tế là `type=text`; ảnh lượt đó đã xóa và không được dùng làm bằng chứng.
 - Sau khi xác minh ảnh, ba lỗi đã được đăng riêng với ảnh đính kèm: [A-BUG-001 #1](https://github.com/tzin1401/testing-hw02/issues/1), [A-BUG-002 #2](https://github.com/tzin1401/testing-hw02/issues/2), [A-BUG-003 #3](https://github.com/tzin1401/testing-hw02/issues/3).
+
+
+## Run 006 — Clock fixture cho ba điểm biên
+
+- **Run ID:** `20261016T-clock-A-FR02`; baseline `85af3ba875c88283615e22cb108f13e2fccaf0e9`.
+- **Môi trường:** bản clone cô lập trong `/tmp/hw02-a-clock-20261016`, backend riêng port 3001. Business source từ baseline; chỉ preload ngoài repo thay `Date.now()`/`new Date()` bằng clock fixture đọc từ file. Không sửa source SUT. Mỗi điểm dùng tài khoản fixture riêng, `login_attempts=3`, `locked_until=2026-10-16T08:00:30.000Z`; gửi đúng password.
+- **Kết quả:** A-BV-011 tại 29.999s trả 403 và trạng thái khóa còn; A-BV-007 tại đúng 30.000s trả 200, DB read-only sau request cho `locked_until=null`; A-BV-012 tại 30.001s trả 200, DB read-only sau request cho `locked_until=null`. Các lần request độc lập, UTC/monotonic round-trip được ghi trong JSON.
+- **Verdict:** Pass cho các checkpoint so sánh thời gian của fixture ở 29.999/30.000/30.001 giây. Bằng chứng kiểm tra toán tử thời hạn của baseline với clock điều khiển; không chứng minh luồng tạo khóa tự nhiên bắt đầu đúng thời điểm, cũng không thay đổi finding khóa 180 giây do logic baseline.
+- **Bằng chứng:** [clock fixture JSON đã che bí mật](../../evidence/A-FR02/full-runs/20261016T-clock-A-FR02.json). Response password và token đã loại/che; SQLite clone chỉ đọc sau từng request.
+
+
+## Run 007 — Clock fixture cho mốc 10s và 29s
+
+- **Run ID:** `20261016T-clock-A-FR02-midpoints`; clone và preload clock ngoài source như Run 006, baseline giữ nguyên. Hai user fixture riêng có `locked_until=08:00:30.000Z`, `login_attempts=3`; clock tại phép so sánh lần lượt đặt elapsed 10s (A-BV-009) và 29s (A-BV-006).
+- **Actual:** cả hai request password đúng trả 403; trạng thái DB clone read-only sau request vẫn khóa. Hai mốc nằm hẳn trước 30s theo clock fixture.
+- **Verdict:** Partial cho từng TC: expected về active lock được xác nhận bằng fixture, nhưng không hoàn tất chuỗi tự nhiên ba lần sai vì baseline thực tế kích hoạt khóa ở lần sai thứ hai (đã ghi Fail threshold ở các TC khác).
+- **Evidence:** [clock midpoints JSON](../../evidence/A-FR02/full-runs/20261016T-clock-A-FR02-midpoints.json). Mật khẩu/token đã che; timestamp UTC và monotonic ghi trong file.

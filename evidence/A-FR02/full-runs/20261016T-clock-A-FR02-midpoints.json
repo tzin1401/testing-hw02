@@ -1,0 +1,65 @@
+{
+  "run_id": "20261016T-clock-A-FR02-midpoints",
+  "baseline": "85af3ba875c88283615e22cb108f13e2fccaf0e9",
+  "runtime": "isolated baseline clone, controlled Date preload, port 3001",
+  "fixture": "two independent users; locked_until=2026-10-16T08:00:30.000Z; correct password; fake comparison clock set to +10s and +29s respectively",
+  "limitations": "Checks active-lock interval only; does not exercise three wrong login sequence or natural lock creation.",
+  "cases": [
+    {
+      "tc": "A-BV-009",
+      "fixture_elapsed_ms": 10000,
+      "request": {
+        "method": "POST",
+        "path": "/api/login",
+        "email": "a-bv-10@example.test",
+        "password": "[REDACTED]"
+      },
+      "expected": "blocked before 30 seconds",
+      "response": {
+        "status": 403,
+        "body": {
+          "error": "Tài khoản đã bị khóa. Vui lòng thử lại sau."
+        }
+      },
+      "read_only_state_after": {
+        "login_attempts": 3,
+        "locked_until": "2026-10-16T08:00:30.000Z"
+      },
+      "timestamps": {
+        "utc_start": "2026-10-16T07:51:52.210+00:00",
+        "utc_end": "2026-10-16T07:51:52.243+00:00",
+        "monotonic_start_ns": 4944190418951,
+        "monotonic_end_ns": 4944224242630,
+        "round_trip_ms": 33.823679
+      }
+    },
+    {
+      "tc": "A-BV-006",
+      "fixture_elapsed_ms": 29000,
+      "request": {
+        "method": "POST",
+        "path": "/api/login",
+        "email": "a-bv-29@example.test",
+        "password": "[REDACTED]"
+      },
+      "expected": "blocked before 30 seconds",
+      "response": {
+        "status": 403,
+        "body": {
+          "error": "Tài khoản đã bị khóa. Vui lòng thử lại sau."
+        }
+      },
+      "read_only_state_after": {
+        "login_attempts": 3,
+        "locked_until": "2026-10-16T08:00:30.000Z"
+      },
+      "timestamps": {
+        "utc_start": "2026-10-16T07:51:52.244+00:00",
+        "utc_end": "2026-10-16T07:51:52.247+00:00",
+        "monotonic_start_ns": 4944224656174,
+        "monotonic_end_ns": 4944228213424,
+        "round_trip_ms": 3.55725
+      }
+    }
+  ]
+}

@@ -53,3 +53,10 @@ Không kết luận uniqueness, whitespace policy, max length, hành vi xóa ID 
 | C-SUP-UI-USER-VALID | Dùng credentials hợp lệ của account role user ở trang Admin Login; không cấp dashboard/token Admin. | Login API HTTP 200; giao diện hiện alert “Bạn không phải là admin!”, vẫn ở Admin Login; `adminTokenPresent=false`. | Pass cho việc user thường không vào được Admin UI. Đây là kiểm tra bổ sung C-R01, tách khỏi API POST/DELETE C-DT-014/018. | `supplement-runs/20261016T003500Z-CUI-user/{before,credentials-entered,after-submit}.png`, `result.json`, `events.jsonl`, `fixture-state-readonly.json`. |
 
 Lần thử trước trong `20261015T154202360Z-supp` nhập `test@eshop.com` và nhận alert generic “Đăng nhập thất bại”; lần đó vẫn là inconclusive, không dùng làm evidence Pass. Run mới này dùng đúng fixture `supp-…` đã xác minh role và credentials thành công qua login API. Database dùng là clone cô lập; không restart backend, không thay đổi DB trong repo.
+
+
+## Run bổ sung 20261016 — đối chiếu API role-user
+
+Trên backend clone cô lập (baseline `85af3ba875c88283615e22cb108f13e2fccaf0e9`), tạo fixture role `user`, đăng nhập để lấy JWT trong bộ nhớ, đồng thời dùng JWT admin chỉ để chuẩn bị target test. Hai lượt automation Admin UI cùng giờ không hoàn tất user login vì selector không tìm thấy form field; không dùng các lượt đó cho UI verdict; log/screenshot guest nằm trong `evidence/C-FR14/supplement-runs/20261016T072910588Z-supp/` và `.../20261016T074533896Z-supp/`. POST `/api/categories` với JWT user trả HTTP 200, tạo ID 4; truy vấn SQLite chỉ đọc xác nhận tên test xuất hiện. Sau khi lưu response, ID 4 được dọn bằng JWT admin. DELETE `/api/categories/5` với JWT user trả HTTP 200 và xóa category ID 5 do test vừa tạo bằng admin. GET danh sách trả HTTP 200 cho guest/user, không gán quyền cấm GET. Target ID 5 đã bị xóa đúng theo ca; category mẫu ID 1–3 vẫn nguyên.
+
+Đây là run API bổ sung củng cố C-DT-014/C-DT-018; verdict vẫn Fail. Token/mật khẩu không ghi vào artifact. Xem [api-role-check.json](../../evidence/C-FR14/supplement-runs/20261016T-user-role-api/api-role-check.json). Không dùng kết quả API để suy ra Admin UI.

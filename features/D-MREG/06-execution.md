@@ -73,3 +73,8 @@ Các lượt sau được giữ lại để minh bạch về lỗi công cụ nh
 - [Issue #14](https://github.com/tzin1401/testing-hw02/issues/14): ba probe name/email invalid được gộp trong cùng nhóm validation; ảnh before/response riêng cho từng probe đã đính kèm. Full TC bốn trường vẫn Partial/Fail/Blocked như bảng trên, không đổi verdict do issue được tạo.
 
 Issue #8 ảnh là bản trình bày từ JSON API log, không phải screenshot Mobile UI. Mobile variant vẫn là observation bổ sung, không thay thế full D-DT-006.
+
+
+## Run 20261016 — emulator navigation retry
+
+Pixel 9 / Android 15 API 35 / Expo Go SDK 54 successfully opened the baseline Mobile app from a temporary clone. The product list loaded. “Đăng nhập” is drawn under/overlapped by Android status-bar icons; repeated ADB taps in its visible area did not open Login, while a tap on the product detail control did navigate. Therefore this attempt did not reach Register or submit a Mobile test. It is a tooling/UI navigation blocker, not a pass/fail for registration requirements. D-BV-006/007 remain Not run; D-DT cases requiring Register remain Blocked/Partial as already recorded. Diagnostic screenshot and note: `evidence/D-MREG/supplement-runs/20261016T-emulator-navigation-blocked/`. Backend was the isolated clone; no SUT DB or logic was modified.

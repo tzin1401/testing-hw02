@@ -1,0 +1,117 @@
+{
+  "run_id": "20261016T-clock-A-FR02",
+  "sut_baseline": "85af3ba875c88283615e22cb108f13e2fccaf0e9",
+  "runtime": "isolated baseline clone; temporary controlled-clock preload; separate port 3001",
+  "fixture": "three independent users, each locked_until=2026-10-16T08:00:30.000Z, login_attempts=3; response clock set immediately before request",
+  "cases": [
+    {
+      "tc": "A-BV-011",
+      "controlled_server_epoch_ms": 1792137629999,
+      "expected": "403 locked before 30s",
+      "request": {
+        "method": "POST",
+        "path": "/api/login",
+        "email": "a-bv-29@example.test",
+        "password": "[REDACTED]"
+      },
+      "response": {
+        "status": 403,
+        "body": {
+          "error": "Tài khoản đã bị khóa. Vui lòng thử lại sau."
+        }
+      },
+      "db_read_only_after": {
+        "login_attempts": 3,
+        "locked_until": "2026-10-16T08:00:30.000Z"
+      },
+      "timestamps": {
+        "utc_start": "2026-10-16T07:41:17.074+00:00",
+        "utc_end": "2026-10-16T07:41:17.098+00:00",
+        "monotonic_start_ns": 4309054512086,
+        "monotonic_end_ns": 4309078539944,
+        "round_trip_ms": 24.027858
+      }
+    },
+    {
+      "tc": "A-BV-007",
+      "controlled_server_epoch_ms": 1792137630000,
+      "expected": "200 unlocked at/after 30s",
+      "request": {
+        "method": "POST",
+        "path": "/api/login",
+        "email": "a-bv-30@example.test",
+        "password": "[REDACTED]"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "message": "Login successful",
+          "token": "[REDACTED]",
+          "user": {
+            "id": 4,
+            "name": "a-bv-30@example.test",
+            "email": "a-bv-30@example.test",
+            "role": "user",
+            "login_attempts": 3,
+            "locked_until": "2026-10-16T08:00:30.000Z",
+            "reset_token": null,
+            "shipping_address": null,
+            "phone": null
+          }
+        }
+      },
+      "db_read_only_after": {
+        "login_attempts": 0,
+        "locked_until": null
+      },
+      "timestamps": {
+        "utc_start": "2026-10-16T07:41:17.098+00:00",
+        "utc_end": "2026-10-16T07:41:17.103+00:00",
+        "monotonic_start_ns": 4309078923887,
+        "monotonic_end_ns": 4309083640994,
+        "round_trip_ms": 4.717107
+      }
+    },
+    {
+      "tc": "A-BV-012",
+      "controlled_server_epoch_ms": 1792137630001,
+      "expected": "200 unlocked at/after 30s",
+      "request": {
+        "method": "POST",
+        "path": "/api/login",
+        "email": "a-bv-31@example.test",
+        "password": "[REDACTED]"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "message": "Login successful",
+          "token": "[REDACTED]",
+          "user": {
+            "id": 5,
+            "name": "a-bv-31@example.test",
+            "email": "a-bv-31@example.test",
+            "role": "user",
+            "login_attempts": 3,
+            "locked_until": "2026-10-16T08:00:30.000Z",
+            "reset_token": null,
+            "shipping_address": null,
+            "phone": null
+          }
+        }
+      },
+      "db_read_only_after": {
+        "login_attempts": 0,
+        "locked_until": null
+      },
+      "timestamps": {
+        "utc_start": "2026-10-16T07:41:17.103+00:00",
+        "utc_end": "2026-10-16T07:41:17.106+00:00",
+        "monotonic_start_ns": 4309083906703,
+        "monotonic_end_ns": 4309086473202,
+        "round_trip_ms": 2.566499
+      }
+    }
+  ],
+  "limitations": "Diagnostic server-side Date comparison only. Does not test natural lock-duration creation, UI, or real wall-clock elapsed time. Business logic source remained baseline."
+}

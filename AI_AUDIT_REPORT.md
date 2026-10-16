@@ -1049,3 +1049,7 @@ AI-049/AI-050 entries were already present in this report before AI-052. Their c
 - **Evidence nuance:** #9–#14 đính ảnh UI từ run đã lưu. #7/#8 là API-only; ảnh đính kèm là excerpt dựng từ log JSON đã redact, ghi rõ không phải screenshot UI và giữ JSON gốc làm nguồn.
 - **Giới hạn:** không chạy lại SUT, không sửa logic/DB; D probes là variant trên form thiếu confirmation, không kết luận full TC. Không ghi human review.
 - **Git safety:** không stage submodule `eshop-sut`, draft ZIP, slides hoặc videos. Push commit-ready được người dùng cho phép; kiểm tra ahead commits sẽ được ghi rõ trước khi push.
+
+## Interaction AI-056 — Hoàn tất các kiểm thử còn thiếu
+
+Chi tiết prompt, thao tác, verdict và giới hạn: [audit/AI-056-incomplete-test-execution-output.md](audit/AI-056-incomplete-test-execution-output.md). A-BV-011/007/012 được kiểm tra bằng clock fixture ngoài source; B quantity UI được chạy lại; C role-user API được tái khẳng định trên clone; D emulator không tới được Login nên không submit. Không sửa SUT/DB thật, không đăng issue, không ghi human review.

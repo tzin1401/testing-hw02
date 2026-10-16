@@ -13,11 +13,11 @@
 
 | Feature | TC thiết kế | Pass | Fail | Partial/Observation | Blocked/Not run | Chi tiết |
 |---|---:|---:|---:|---:|---:|---|
-| A-FR02 | 36 | 14 | 15 | 2 | 5 | [Execution](../features/A-FR02/06-execution.md) |
-| B-FR07 | 26 | 1 | 2 | 0 | 23 | Run supplement có findings riêng, không nâng TC gốc; [Execution](../features/B-FR07/06-execution.md) |
+| A-FR02 | 36 | 17 | 15 | 4 | 0 | [Execution](../features/A-FR02/06-execution.md) |
+| B-FR07 | 26 | 4 | 12 | 2 | 8 | quantity UI đã được chạy lại; 8 ca phụ thuộc còn Blocked; [Execution](../features/B-FR07/06-execution.md) |
 | C-FR14 | 23 | 15 | 4 | 3 | 1 | UI role-user đã được kiểm chứng trên fixture; [Execution](../features/C-FR14/06-execution.md) |
 | D-MREG | 20 | 0 | 1 | 15 | 4 | 15 là variant partial trên form thiếu confirmation; [Execution](../features/D-MREG/06-execution.md) |
-| **Tổng** | **105** | **30** | **22** | **20** | **33** | Partial/observation không phải kết quả hoàn chỉnh. |
+| **Tổng** | **105** | **36** | **32** | **24** | **13** | Partial/observation không phải kết quả hoàn chỉnh. |
 
 ## Việc AI đã sửa trong lần rà soát gần nhất
 
@@ -40,3 +40,12 @@
 - Skill/video tạm ngoài phạm vi hiện tại. Phần còn thiếu ưu tiên xử lý tiếp là mục 6 theo hướng dẫn bài tập.
 
 Không sửa logic SUT, không restart backend, không ghi DB thật; DB clone chỉ được truy vấn chỉ đọc. D automation dừng trước khi kết luận. Không có review/phê duyệt mới từ sinh viên.
+
+## Cập nhật thực thi kiểm thử còn thiếu — 16/10/2026
+
+- A-FR02: chạy riêng clock fixture tại thời điểm server so sánh cho A-BV-011 (29.999s), A-BV-007 (30.000s), A-BV-012 (30.001s). Cả ba checkpoint khớp expected; không thay thế kết quả thời lượng tự nhiên và không xóa finding 180 giây. A-BV-006/009 được kiểm tra active-lock bằng fixture nhưng giữ Partial vì natural setup khóa sớm tại lần sai thứ hai; không còn ca timing Not run/Blocked.
+- B-FR07: chạy lại UI quantity với bước bấm thứ hai sau quan sát lần bấm đầu. B-DT-016/017/018/019 và B-BV-001 Fail; B-BV-002/003 Pass. B hiện 4 Pass, 12 Fail, 2 Observation (tổng amount oracle/API oracle), 8 Blocked (control/dialog phụ thuộc). Bằng chứng và từng giá trị có trong execution/evidence run `20261016T074533896Z-supp`.
+- C-FR14: API clone xác nhận bổ sung user-token POST/DELETE vẫn thay đổi state, củng cố C-DT-014/018 Fail; category test do lượt POST thêm đã được dọn bằng admin token; category mẫu ID 1–3 giữ nguyên. Không dùng API run làm bằng chứng UI.
+- D-MREG: mở app trên emulator được nhưng header đăng nhập chồng vùng status bar; nhiều lần tap không mở Login. Không submit registration; D-BV-006/007 Not run và các TC cần form vẫn Blocked/Partial. Ảnh obstruction được lưu để chỉ rõ lý do.
+
+**Còn thiếu thực tế:** các ca Mobile D cần vào Register (và kiểm thử xác nhận mật khẩu) chưa thể hoàn tất vì đường điều hướng không thao tác được trên emulator hiện tại, đồng thời form baseline chỉ có ba trường thay vì bốn. Ca B phụ thuộc +/- và confirmation dialog vẫn Blocked do controls không tồn tại; đã ghi riêng Fail cho sự hiện diện. A-BV-006/009 vẫn Partial do active-lock được xác nhận bằng fixture nhưng setup threshold tự nhiên sai (khóa sớm từ lần sai thứ hai). Đây là các giới hạn SUT/setup có bằng chứng; không gán Pass để đạt đủ số lượng.

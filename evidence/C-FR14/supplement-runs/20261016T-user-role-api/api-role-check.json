@@ -1,0 +1,76 @@
+{
+  "run_id": "20261016T-user-role-api",
+  "baseline": "85af3ba875c88283615e22cb108f13e2fccaf0e9",
+  "environment": "isolated backend clone localhost:3000; API only; tokens and passwords redacted",
+  "fixture_account": {
+    "email": "c-fr14-user-role-20261016@example.test",
+    "password": "[REDACTED]",
+    "role": "user"
+  },
+  "cases": [
+    {
+      "tc": "C-DT-014-like POST with ordinary user token",
+      "request": {
+        "method": "POST",
+        "path": "/categories",
+        "body": {
+          "name": "C14-role-denied-20261016"
+        },
+        "authorization": "Bearer [REDACTED]"
+      },
+      "expected": "write denied; category absent",
+      "actual": {
+        "status": 200,
+        "body": {
+          "message": "Category created",
+          "id": 4
+        }
+      },
+      "read_only_count_after": 1
+    },
+    {
+      "tc": "C-DT-018-like DELETE with ordinary user token",
+      "request": {
+        "method": "DELETE",
+        "path": "/categories/5",
+        "authorization": "Bearer [REDACTED]"
+      },
+      "expected": "write denied; admin-created target remains",
+      "actual": {
+        "status": 200,
+        "body": {
+          "message": "Category deleted"
+        }
+      },
+      "read_only_target_count_after": 0
+    },
+    {
+      "tc": "GET list guest/user separation probe",
+      "expected": "GET is not write-restricted by FR-12; no claim customers should be denied",
+      "actual": {
+        "guest_status": 200,
+        "user_status": 200,
+        "guest_has_data": true,
+        "user_has_data": true
+      }
+    }
+  ],
+  "admin_fixture_create": {
+    "status": 200,
+    "body": {
+      "message": "Category created",
+      "id": 5
+    }
+  },
+  "admin_fixture_cleanup": null,
+  "timestamps_utc": "2026-10-16T07:42:33.398+00:00",
+  "cleanup_ai_created_post_fixture": {
+    "method": "DELETE /categories/4",
+    "authorization": "admin fixture JWT [REDACTED]",
+    "response_status": 200,
+    "response": {
+      "message": "Category deleted"
+    },
+    "read_only_count_after": 0
+  }
+}

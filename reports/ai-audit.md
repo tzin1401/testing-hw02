@@ -1047,3 +1047,13 @@ AI-049/AI-050 entries were already present in this report before AI-052. Their c
 - **Output snapshot:** [AI-055-issue-publication-output.md](../audit/AI-055-issue-publication-output.md).
 - **Kết quả:** cập nhật #7/#8; tạo #9–#14 cho findings B-FR07/D-MREG, đồng bộ bug reports và progress. Tất cả issue có labels theo slide, evidence tương ứng.
 - **Giới hạn:** #7/#8 là ảnh excerpt từ API logs đã che bí mật, không phải UI screenshot; D probes là variant do form thiếu confirmation. Không chạy lại SUT, không sửa logic/DB, không ghi review sinh viên.
+
+## Interaction AI-056 — Hoàn tất các kiểm thử còn thiếu
+
+- **Tool/time:** Codex; 2026-10-16T07:30–07:50Z (UTC; khoảng thời gian thực thi).
+- **Prompt nguyên văn:** “ý là phần có các kiểm thử chưa hoàn tất á. Hoàn tất tất cà các kiểm thử còn thiếu đi”.
+- **Output snapshot:** [AI-056-incomplete-test-execution-output.md](../audit/AI-056-incomplete-test-execution-output.md).
+- **Output/evidence:** A clock fixture ba điểm; B quantity UI; C role-user API clone; D emulator navigation diagnostic. Xem execution files và evidence được liên kết trong snapshot.
+- **Status changes:** A-BV-011/007/012 được chấm Pass cho phép so sánh thời gian với fixture; A-BV-006/009 có checkpoint fixture tại 29s/10s nhưng full TC giữ Partial vì natural setup lệch; B execution được cập nhật thành 4 Pass/12 Fail/2 Observation/8 Blocked; C role-user API được tái khẳng định; D UI không submit được, giữ Blocked/Partial/Not run đúng từng nhóm.
+- **Safety:** không sửa SUT hoặc DB trong repo; dùng clone riêng, dọn các category/cart fixtures do lượt mới tạo, không xóa dữ liệu mẫu; không đăng issue; không ghi human review.
+- **Giới hạn còn lại:** A-BV-006/009 phụ thuộc setup threshold chuẩn nhưng SUT khóa sớm; B control/dialog không tồn tại; D Register không tới được trên emulator và form thiếu confirmation field. Các ca này không thể được đánh dấu hoàn tất bằng evidence hiện có.
