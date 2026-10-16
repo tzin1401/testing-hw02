@@ -92,7 +92,7 @@
   Major / P1: tài khoản thường có thể thay đổi hoặc xóa dữ liệu danh mục, trái kiểm soát truy cập; target kiểm thử là dữ liệu test riêng.
 
   ## Evidence
-  Đính kèm api-evidence.json, gồm request/response và snapshot state trước/sau cho hai TC. Đây là ca API-only; không có ảnh UI mô tả được quyền API, nên dùng network log redacted làm evidence theo slide.
+  GitHub Issue #7 có đính kèm ảnh excerpt từ API log redacted và liên kết tới `api-evidence.json`, gồm request/response và snapshot state trước/sau cho hai TC. Đây là bằng chứng API-only, không phải ảnh UI.
   ```
 
 - **Steps to reproduce:**
@@ -106,7 +106,7 @@
 - **TC liên quan:** C-DT-014, C-DT-018. Không dùng UI Admin để suy ra API permission.
 - **Severity / Priority:** `severity: major`, `priority: P1`. Role user không được phép thay đổi danh mục; có thể làm sai dữ liệu quản trị hoặc xóa category. Target trong lần test là dữ liệu test riêng, không phải category mẫu.
 - **Labels đề xuất:** `type: bug`, `severity: major`, `priority: P1`, `status: new`, `module: api`.
-- **Evidence đã đăng trong body:** request/response và snapshot redacted từ `api-evidence.json`, mục `C-DT-014` và `C-DT-018`. Đây là ca API-only; không có ảnh UI thích hợp nên body chứa network transcript thực tế, không tạo ảnh giả.
+- **Evidence đã đăng trong body:** ảnh excerpt từ log và request/response/snapshot redacted cho `C-DT-014` và `C-DT-018`; [Issue #7](https://github.com/tzin1401/testing-hw02/issues/7). Ảnh excerpt chỉ minh họa log API, không phải screenshot UI; JSON gốc vẫn là nguồn chi tiết.
 
 ## Phân loại các ca chưa thành bug
 
@@ -125,7 +125,7 @@
 ## Coverage gap (không phải AI gap)
 
 - C-R01 về quyền truy cập **Admin UI** của user thường/khách chưa được kiểm tra trực tiếp. API POST/DELETE role user là phép thử riêng, không thay thế UI access test.
-- Đã đăng hai issue theo cấu trúc slide: title, environment, steps, expected/actual, TC ID, severity/priority, evidence và labels. Issue #6 có hai ảnh UI; issue #7 có network transcript redacted trong body vì là lỗi API-only. Không upload/push code hoặc SUT trong thao tác đăng issue.
+- Issues #6 và #7 OPEN, có labels và evidence; #7 hiện có ảnh trích từ API log đính kèm, bên cạnh JSON nguồn. C-R01 UI role-user được ghi riêng theo run xác minh; không nhập nhằng UI với API write. Không push code hoặc SUT trong thao tác issue.
 
 ## Đính chính checkpoint Admin UI bổ sung
 

@@ -1,0 +1,23 @@
+# AI-055 — Hoàn tất GitHub Issues cho bug findings B/C/D
+
+- **Prompt:** “Giờ bỏ qua phần report rồi này kia đi. Phần cần xử lý bây giờ là 3 và 6. Giờ hãy giải quyết phần 3 trước nào. Có thể push lên github những commit được rồi”
+- **Thời điểm ghi audit:** 2026-10-16 14:15:21 +07:00 (2026-10-16T07:15:21Z).
+- **Phạm vi:** xử lý mục 3 trước; kiểm tra findings đã có evidence, tạo/cập nhật GitHub Issues, đính kèm evidence và đồng bộ hồ sơ bug/progress/audit. Không làm mục 6.
+- **Nguồn đã đối chiếu:** SRS trong `eshop-sut/README.md` cho FR-01/FR-07; requirements và execution/bug reports A/B/C/D; evidence PNG, JSON và event logs trong `evidence/`; slide quản lý GitHub issue.
+- **GitHub:** repository `tzin1401/testing-hw02`. Issues #1–#8 đã tồn tại. Cập nhật #7 (C-FR14 API role-user write) và #8 (D-MREG API duplicate registration); tạo #9–#12 cho B-FR07; tạo #13–#14 cho D-MREG. Tất cả mở, có labels theo slide (`type: bug`, `status: new`, severity, priority, module).
+- **Issue links:**
+  - #7 https://github.com/tzin1401/testing-hw02/issues/7
+  - #8 https://github.com/tzin1401/testing-hw02/issues/8
+  - #9 https://github.com/tzin1401/testing-hw02/issues/9
+  - #10 https://github.com/tzin1401/testing-hw02/issues/10
+  - #11 https://github.com/tzin1401/testing-hw02/issues/11
+  - #12 https://github.com/tzin1401/testing-hw02/issues/12
+  - #13 https://github.com/tzin1401/testing-hw02/issues/13
+  - #14 https://github.com/tzin1401/testing-hw02/issues/14
+- **Evidence:** #9–#14 có screenshot UI phù hợp đính kèm. #7/#8 là API-only; đính ảnh excerpt được dựng từ log JSON đã lưu và che bí mật, có ghi rõ là log excerpt chứ không phải ảnh UI; nguồn JSON gốc vẫn được giữ trong `evidence/C-FR14/full-runs/20261015T055119Z-CFR14/api-evidence.json` và `evidence/D-MREG/full-runs/20261015T1303Z-DMREG/api-registration-duplicate-isolated.json`. Các ảnh excerpt cũng nằm trong `evidence/C-FR14/issue-attachments/` và `evidence/D-MREG/issue-attachments/`.
+- **Cách gộp:** B findings được tách theo hành vi độc lập: dòng trùng, thiếu +/- controls, thiếu xác nhận xóa, sai nhãn tổng. D validation họ tên/email được gộp trong #14 do cùng nhóm validation form, nhưng từng probe và giới hạn form thiếu confirmation được ghi rõ. #13 là lỗi độc lập về trường confirmation bị thiếu. #8 được cập nhật với quan sát Mobile duplicate là biến thể, không nâng full TC bốn trường thành Fail.
+- **Giới hạn:** không chạy lại SUT, không sửa logic hoặc DB; không tuyên bố các ca UI được suy ra từ API. Các probe D diễn ra trên form ba trường đang thiếu confirmation nên không chứng minh toàn bộ luồng bốn trường. #7/#8 có ảnh trích xuất log, không phải screenshot UI.
+- **Tệp đồng bộ:** `features/B-FR07/06-execution.md`, `features/B-FR07/07-bugs-and-ai-gaps.md`, `features/C-FR14/07-bugs-and-ai-gaps.md`, `features/D-MREG/06-execution.md`, `features/D-MREG/07-bugs-and-ai-gaps.md`, `reports/bug-report.md`, `reports/work-progress.md`.
+- **SUT safety:** không sửa/commit `eshop-sut`; worktree submodule đang có thay đổi cục bộ và bị loại khỏi staging. Không stage draft ZIP, slide không liên quan hoặc videos.
+- **Push:** được người dùng cho phép push các commit đã sẵn sàng; push cần kiểm tra lịch sử local ahead trước khi thực hiện vì sẽ cập nhật các commit đã có trên `main`, không chỉ commit mới của lượt này.
+- **Human review:** không ghi nhận phê duyệt mới từ sinh viên.

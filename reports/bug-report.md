@@ -2,38 +2,38 @@
 
 **SUT baseline:** `85af3ba875c88283615e22cb108f13e2fccaf0e9`
 **Nguồn expected:** SRS/API specification theo từng feature; không lấy code SUT làm oracle.
+**Trạng thái kiểm tra GitHub:** 16/10/2026 UTC+07; Issues #1–#14 đang OPEN.
 
-## Issue hiện có
+## Issues đã đăng
 
-| Issue | Finding | TCs/requirement | Hiện trạng bằng chứng |
+| Issue | Finding | TC/requirement | Evidence trên GitHub |
 |---:|---|---|---|
-| #1 | Login counter tăng hai thay vì một | A-FR02, A-R04 | Issue có screenshot theo hồ sơ A. |
-| #2 | Thời gian khóa không khớp 30 giây | A-FR02, A-R06 | Issue có screenshot; các biên đúng thời điểm server comparison vẫn chưa chạy. |
-| #3 | Input email Web không dùng type=email | A-FR02, A-R10 | Issue có screenshot. |
-| #4 | Thêm hàng hợp lệ từ chi tiết không cập nhật giỏ | B-DT-002 | Issue có screenshot. Findings khác sau đó không được gộp vào issue này. |
-| #5 | Empty cart thiếu illustration | B-DT-001 | Issue có screenshot. |
-| #6 | Tạo category với tên rỗng | C-DT-003, C-BV-001 | Issue có ảnh trước/sau. |
-| #7 | API cho role user POST/DELETE categories | C-DT-014, C-DT-018 | CLI đọc body/comments: có request/response JSON nhưng không có ảnh GitHub attachment. |
-| #8 | API tạo duplicate email | D-R04 | CLI đọc body/comments: không có ảnh attachment; body hiện vẫn ghi Mobile blocked dù đã có Mobile variant count 1→2, cần cập nhật có giới hạn. |
+| [#1](https://github.com/tzin1401/testing-hw02/issues/1) | Login counter tăng 2 thay vì 1 | A-FR02, A-R04 | Có ảnh UI |
+| [#2](https://github.com/tzin1401/testing-hw02/issues/2) | Tài khoản vẫn khóa quá 30 giây | A-FR02, A-R06 | Có ảnh UI; biên đúng thời điểm server comparison chưa chạy |
+| [#3](https://github.com/tzin1401/testing-hw02/issues/3) | Email sai format vẫn được gửi từ form login Web | A-FR02, A-R10 | Có ảnh UI |
+| [#4](https://github.com/tzin1401/testing-hw02/issues/4) | Thêm sản phẩm hợp lệ không cập nhật giỏ | B-DT-002 | Có ảnh UI |
+| [#5](https://github.com/tzin1401/testing-hw02/issues/5) | Empty cart thiếu hình minh họa | B-DT-001 | Có ảnh UI |
+| [#6](https://github.com/tzin1401/testing-hw02/issues/6) | Tạo danh mục với tên rỗng | C-DT-003, C-BV-001 | Có ảnh UI trước/sau |
+| [#7](https://github.com/tzin1401/testing-hw02/issues/7) | JWT role user vẫn POST/DELETE categories | C-DT-014, C-DT-018 | Có ảnh trích xuất từ log JSON API; JSON gốc được dẫn trong issue |
+| [#8](https://github.com/tzin1401/testing-hw02/issues/8) | API cho tạo account thứ hai cùng email | D-R04 | Có ảnh trích xuất từ log JSON API; JSON gốc được dẫn trong issue |
+| [#9](https://github.com/tzin1401/testing-hw02/issues/9) | Thêm lại cùng sản phẩm tạo dòng trùng | B-DT-004-SUP | Có ảnh UI giỏ hàng |
+| [#10](https://github.com/tzin1401/testing-hw02/issues/10) | Giỏ hàng thiếu nút tăng/giảm quantity | B-DT-006–010-SUP | Có ảnh UI giỏ hàng |
+| [#11](https://github.com/tzin1401/testing-hw02/issues/11) | Xóa hàng không hiện dialog xác nhận | B-DT-011–013-SUP | Có ảnh UI trước/sau |
+| [#12](https://github.com/tzin1401/testing-hw02/issues/12) | Nhãn tổng tiền sai (“Tổng tạm tính”) | B-DT-015-SUP | Có ảnh UI giỏ hàng |
+| [#13](https://github.com/tzin1401/testing-hw02/issues/13) | Form Mobile thiếu trường xác nhận mật khẩu | D-DT-001, D-R07 | Có ảnh UI form đăng ký |
+| [#14](https://github.com/tzin1401/testing-hw02/issues/14) | Mobile chấp nhận họ tên/email rỗng hoặc email sai format | D-DT-003/004/005 variants; D-R01/02/03 | Có ảnh UI before/response cho từng probe |
 
-## Findings bổ sung đã có local UI evidence nhưng chưa được xác nhận đã đăng
+Tất cả issue mới #9–#14 dùng title `[BUG][Module]`, có môi trường, steps, expected/actual, TC ID, severity/priority có lý do và labels `type: bug`, `status: new`, severity, priority, module. Nội dung và ảnh của #7/#8 đã được cập nhật; bằng chứng API được ghi rõ là trích xuất từ run log JSON, không mô tả thành screenshot UI.
 
-| Finding | Case/evidence | Expected / actual |
-|---|---|---|
-| Cart duplicate product thành hai dòng | B-DT-004-SUP, `evidence/B-FR07/supplement-runs/20261015T154202360Z-supp/B-DT-004-SUP-duplicate-product.png` | FR-07 cần gộp cùng product; UI tạo hai dòng P1. |
-| Không có nút `+/-` | B-DT-006–010-SUP và B-BV-004–006-SUP; ảnh controls | Yêu cầu controls; UI chỉ có Xóa. Presence fail; interaction cases blocked. |
-| Xóa không có xác nhận | B-DT-011–013-SUP; ảnh before/after | Expected confirm dialog; row bị xóa ngay, `dialogs: []`; cancel branch blocked. |
-| Total label mismatch | B-DT-015-SUP | Expected “Tổng cộng”; actual “Tổng tạm tính”. |
-| Form Mobile thiếu confirm field | D-DT-001; `D-DT-001-register-form.png` | FR-01 bắt buộc confirmation và matching; form chỉ có 3 fields. |
-| Mobile accepts blank name | D-DT-003 variant; ảnh before/response | Alert success, DB count 0→1; full four-field TC partial vì confirmation absent. |
-| Mobile accepts blank/malformed email | D-DT-004/005 variants; ảnh before/response | Cả hai được success và count 0→1; full cases partial vì confirmation absent. |
+## Giới hạn verdict liên quan
 
-Các finding mới có ảnh local nhưng issue chưa được tạo/ảnh chưa được kiểm chứng trên GitHub. Việc tạo issue cần dùng đúng template trong slide: title, environment, steps, expected, actual, severity/priority có lý do, TC ID, labels, ảnh thật. Bản audit này không khẳng định việc upload đã hoàn tất.
+- Issue #4 và các run bổ sung khác nhau về đường setup; không dùng một biến thể để xóa verdict của TC gốc.
+- Issue #10 chỉ kết luận thiếu control `+/-`; các thao tác cần control đó vẫn Blocked.
+- Issue #11 chỉ kết luận dialog xác nhận vắng mặt; nhánh Hủy không thực hiện được.
+- Issue #13/#14: form thiếu confirmation khiến các full TC bốn trường chưa hoàn tất. #14 ghi rõ các probe trên ba trường là biến thể; không đổi partial thành verdict full TC.
+- Issue #8 là hai POST tuần tự, không phải kiểm thử race condition. Mobile duplicate là observation trên form thiếu confirmation, tách biệt với bằng chứng API.
+- Các oracle chưa rõ như whitespace/trim, max length, persistence, race condition và thời điểm clock server không được báo thành bug.
 
-## Findings không nâng thành bug
+## AI gaps có bằng chứng
 
-- C-FR14 login thử đầu dùng `test@eshop.com` không đủ căn cứ; lần bổ sung sau dùng fixture role user đã xác minh, API login HTTP 200, Admin UI báo “Bạn không phải là admin!” và không cấp admin token. Đây là UI evidence riêng với API POST/DELETE Issue #7.
-- D-MREG D-BV-002 length 8: `Network request failed`; không đủ để kết luận boundary.
-- Whitespace, GET permission, xóa ID không tồn tại, max length, persistence, race, và các oracle mở khác không bị kết luận bug.
-
-Chi tiết repro, expected/actual, severity và AI gaps của từng feature: [A](../features/A-FR02/07-bugs-and-ai-gaps.md), [B](../features/B-FR07/07-bugs-and-ai-gaps.md), [C](../features/C-FR14/07-bugs-and-ai-gaps.md), [D](../features/D-MREG/07-bugs-and-ai-gaps.md).
+Chi tiết từng lỗi/giới hạn của AI ở [A](../features/A-FR02/07-bugs-and-ai-gaps.md), [B](../features/B-FR07/07-bugs-and-ai-gaps.md), [C](../features/C-FR14/07-bugs-and-ai-gaps.md), [D](../features/D-MREG/07-bugs-and-ai-gaps.md). Chỉ các sai lệch đã đối chiếu với log/evidence được nêu là AI gap; blocker công cụ không tự động được coi là bug AI.

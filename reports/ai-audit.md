@@ -1039,3 +1039,11 @@ AI-049/AI-050 entries were already present in this report before AI-052. Their c
 - **Result:** lượt đầu có process chồng/input lệch; lượt kế tiếp dừng khi xác minh field sai; lượt manual rời Expo Go về Home trước response. D-BV-006/007 giữ Not run; không kết luận SUT.
 - **Updates:** D `06/07`, main report, readiness, work-progress; invalid artifacts được giữ lại và ghi rõ là không dùng verdict.
 - **Safety/limits:** DB clone và SQLite read-only; không đổi SUT/DB thật, không restart backend, không tạo issue/push. Cần lượt Mobile UI mới nếu muốn hoàn tất.
+
+## Interaction AI-055 — Đăng/cập nhật GitHub Issues cho findings B/C/D
+
+- **Tool/time:** Codex; 2026-10-16 14:15:21 +07:00 (2026-10-16T07:15:21Z).
+- **Prompt:** “Giờ bỏ qua phần report rồi này kia đi. Phần cần xử lý bây giờ là 3 và 6. Giờ hãy giải quyết phần 3 trước nào. Có thể push lên github những commit được rồi”
+- **Output snapshot:** [AI-055-issue-publication-output.md](../audit/AI-055-issue-publication-output.md).
+- **Kết quả:** cập nhật #7/#8; tạo #9–#14 cho findings B-FR07/D-MREG, đồng bộ bug reports và progress. Tất cả issue có labels theo slide, evidence tương ứng.
+- **Giới hạn:** #7/#8 là ảnh excerpt từ API logs đã che bí mật, không phải UI screenshot; D probes là variant do form thiếu confirmation. Không chạy lại SUT, không sửa logic/DB, không ghi review sinh viên.

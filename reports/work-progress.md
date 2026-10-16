@@ -24,19 +24,19 @@
 - Đồng bộ B/C/D execution logs theo evidence, tách test case thiết kế khỏi biến thể bổ sung.
 - Sửa review coverage D và bug/gap reports B/C/D.
 - Sửa README và báo cáo tổng hợp để bỏ tuyên bố sẵn sàng/100 điểm không có căn cứ; bảng tự chấm hiện để trống.
-- Ghi rõ issue #1–#8 theo hồ sơ; findings B/D mới chưa đăng/đính ảnh được xác minh.
+- Đối chiếu và đăng các findings B-FR07/D-MREG có bằng chứng: Issues #9–#14; cập nhật #7/#8 và bổ sung ảnh trích xuất từ log API đã lưu. Issue #1–#14 hiện mở; bảng chi tiết ở [bug report](bug-report.md).
 - Ghi audit AI-052, gồm các tuyên bố AI-049/050 không được chứng cứ gốc hỗ trợ.
 - Bổ sung C-R01 role-user bằng fixture xác thực trên DB clone; UI hiện “Bạn không phải là admin!” và không cấp admin token.
 - Thử bổ sung D-BV-006/007; automation lỗi focus/text entry và rời Expo Go về Home. Lưu lượt lỗi, đánh dấu invalid; hai ca vẫn Not run.
-- Kiểm tra GitHub trực tiếp: #7/#8 mở, đúng labels; body/comments không có ảnh user-attachment. #8 còn nội dung cũ ghi Mobile Blocked.
+- Kiểm tra GitHub trực tiếp sau cập nhật: #7–#14 mở, có labels theo slide và ảnh đính kèm; #7/#8 dùng ảnh trích xuất từ log JSON đã che bí mật, không phải ảnh UI. Các finding D #13/#14 là probe trên form thực tế thiếu confirmation; không thay thế full TC bốn trường.
 
 ## Còn thiếu trước khi nộp
 
 - Đối chiếu lại status và draft AI Critique bằng góc nhìn thực tế của sinh viên.
-- Tạo/cập nhật GitHub issues cho findings mới và đính screenshot/log thật; cập nhật issue #8 khi có thể gắn evidence phù hợp. Không coi JSON link là screenshot.
+- Chụp bổ sung ảnh UI cho các issue B/D nếu muốn có ảnh giao diện; #7/#8 hiện có ảnh minh họa trích xuất từ log API và liên kết tới JSON gốc.
 - Đã xuất lại main report, AI Critique và AI Audit PDF từ Markdown; còn cần cập nhật commit log sau commit.
 - Đã commit bộ tài liệu/evidence đối chiếu tại `668c7c2`, không stage `eshop-sut`.
 - Đã làm mới commit log và tái tạo ZIP draft; kiểm tra CRC thành công. Sinh viên tự chọn điểm 3 chữ số và điền README trước ZIP cuối.
-- Skill/video tạm ngoài phạm vi hiện tại.
+- Skill/video tạm ngoài phạm vi hiện tại. Phần còn thiếu ưu tiên xử lý tiếp là mục 6 theo hướng dẫn bài tập.
 
 Không sửa logic SUT, không restart backend, không ghi DB thật; DB clone chỉ được truy vấn chỉ đọc. D automation dừng trước khi kết luận. Không có review/phê duyệt mới từ sinh viên.

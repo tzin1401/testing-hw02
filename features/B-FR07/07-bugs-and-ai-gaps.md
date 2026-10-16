@@ -2,7 +2,7 @@
 
 **Run:** `20261014T191645Z-BFR07-UI`
 **SUT baseline:** `85af3ba875c88283615e22cb108f13e2fccaf0e9`
-**Đối chiếu oracle:** `eshop-sut/README.md`, FR-06 và FR-07. Hai TC Fail được giữ thành hai issue draft vì chúng kiểm tra hai đầu ra độc lập: thêm sản phẩm vào giỏ và empty state. Chưa tạo issue trên GitHub.
+**Đối chiếu oracle:** `eshop-sut/README.md`, FR-06 và FR-07. Hai lỗi gốc có đầu ra độc lập và đã được đăng riêng thành Issue [#4](https://github.com/tzin1401/testing-hw02/issues/4) (thêm sản phẩm) và [#5](https://github.com/tzin1401/testing-hw02/issues/5) (empty state).
 
 ## B-BUG-001 — Thêm sản phẩm hợp lệ không cập nhật giỏ hoặc phản hồi trên Web
 
@@ -92,9 +92,9 @@
 
 ## Fail đã gộp và các ca chưa kết luận
 
-Hai hành vi cùng luồng của B-DT-002 — không thấy phản hồi trực quan sau click và sản phẩm không xuất hiện trong giỏ — được gộp trong một draft vì cùng xảy ra sau một lần thao tác Thêm với quantity hợp lệ. Đây là nhóm triệu chứng theo bằng chứng; nguyên nhân kỹ thuật chưa xác định. B-DT-001 là lỗi độc lập về empty state nên có draft riêng.
+Hai hành vi cùng luồng của B-DT-002 — không thấy phản hồi trực quan sau click và sản phẩm không xuất hiện trong giỏ — được gộp ở Issue #4 vì cùng xảy ra sau một lần thao tác Thêm với quantity hợp lệ. Đây là nhóm triệu chứng theo bằng chứng; nguyên nhân kỹ thuật chưa xác định. B-DT-001 là lỗi độc lập về empty state, Issue #5.
 
-Các ca +/- / xóa / dialog / cột / tổng tiền không tạo issue: không thể quan sát chúng do chưa thiết lập được giỏ có hàng bằng Web; các TC đó là Blocked, không phải Fail. Không suy ra lỗi hay kết quả cho giới hạn chưa có trong SRS.
+Run chính ban đầu chưa lập được giỏ có hàng, nên các TC tương tác bị Blocked. Run supplement sau đó xác nhận một số finding độc lập trên UI; các finding đó đã được đăng #9–#12 như bảng dưới đây, nhưng không nâng các TC gốc thành Pass/Fail khi setup/run khác. Các nhánh phụ thuộc control/dialog vắng mặt vẫn Blocked. Không suy ra lỗi cho giới hạn chưa có trong SRS.
 
 ## AI gaps có bằng chứng
 
@@ -116,15 +116,17 @@ Lượt chạy bổ sung `20261015T154202360Z-supp` đã dùng đường thêm t
 5. **Tính toán số học hợp lệ (`B-DT-005-SUP`):** Khi có hai sản phẩm trong giỏ, đơn giá × số lượng của từng dòng và tổng số tiền được tính toán và hiển thị chính xác (Pass).
 
 
-## Findings bổ sung chưa có issue riêng
+## Findings bổ sung đã đăng thành GitHub Issues
 
-Run `20261015T154202360Z-supp` có ảnh và event trực tiếp cho các hành vi dưới đây. Chúng không thuộc hai issue #4/#5 đã đăng và cần issue riêng nếu báo cáo hết lỗi theo đề:
+Các finding có evidence trong run supplement đã được đăng riêng theo biểu hiện và yêu cầu. Ảnh gốc được upload lên từng issue; run supplement không thay verdict các TC thiết kế bị blocked.
 
-| Candidate | TC/evidence | Expected / Actual | Lưu ý |
-|---|---|---|---|
-| Thêm cùng sản phẩm không gộp dòng | B-DT-004-SUP, `B-DT-004-SUP-duplicate-product.png` | FR-07 yêu cầu gộp; thực tế thành hai dòng P1 quantity 1. | Finding độc lập với lỗi click đầu Issue #4. |
-| Thiếu điều khiển tăng/giảm quantity | B-DT-006–010-SUP, ảnh controls | Yêu cầu có `+/-`; trên dòng chỉ có Xóa. | Fail sự hiện diện; thao tác phụ thuộc Blocked. Có thể một issue bao trùm cả hai control. |
-| Xóa không có dialog xác nhận | B-DT-011–013-SUP, ảnh before/after, `dialogs: []` | Expected dialog; actual xóa ngay. | Nhánh cancel Blocked; hình ảnh cho thấy không có dialog. |
-| Nhãn tổng tiền không đúng | B-DT-015-SUP, `B-DT-015-SUP-total-label.png` | Expected “Tổng cộng”; actual “Tổng tạm tính”. | Bug UI độc lập. |
+| Finding | TC/evidence | Issue | Trạng thái |
+|---|---|---:|---|
+| Thêm cùng sản phẩm tạo hai dòng thay vì tăng quantity | B-DT-004-SUP; `B-DT-004-SUP-duplicate-product.png` | [#9](https://github.com/tzin1401/testing-hw02/issues/9) | OPEN; ảnh đính kèm |
+| Không có nút `+/-` | B-DT-006–010-SUP; ảnh `B-DT-006-SUP-controls.png` | [#10](https://github.com/tzin1401/testing-hw02/issues/10) | OPEN; ảnh đính kèm; interaction cases vẫn Blocked |
+| Xóa ngay, không có dialog xác nhận | B-DT-011–013-SUP; ảnh before/after và `dialogs: []` | [#11](https://github.com/tzin1401/testing-hw02/issues/11) | OPEN; hai ảnh đính kèm; nhánh cancel vẫn Blocked |
+| Nhãn “Tổng tạm tính” thay vì “Tổng cộng” | B-DT-015-SUP; `B-DT-015-SUP-total-label.png` | [#12](https://github.com/tzin1401/testing-hw02/issues/12) | OPEN; ảnh đính kèm |
 
-Các issue trên chưa được khẳng định đã đăng; local evidence chưa đồng nghĩa ảnh đính kèm trên GitHub. B-DT-005-SUP phép tính đúng không phải bug. Bảng issue cần được đồng bộ sau khi issue thực sự được tạo/đính kèm.
+B-DT-005-SUP phép tính đúng không phải bug. Không kết luận về UB, tồn kho hoặc validation quantity app-level khi chưa có oracle/evidence đủ rõ.
+
+Issues #9–#12 đã được kiểm tra lại trên GitHub: nội dung có expected/actual, TC/run, severity/priority, labels theo slide và ảnh thật từ run UI. Issue #4/#5 vẫn độc lập, OPEN.

@@ -64,3 +64,12 @@ Các lượt sau được giữ lại để minh bạch về lỗi công cụ nh
 - `20261015T174259Z-D-MREG-manual-probe`: ảnh trước submit xác nhận tên `V`, email riêng và password được che; thao tác tiếp theo rời Expo Go về màn hình Home, không lưu được response UI đáng tin cậy. DB clone được truy vấn chỉ đọc và không thấy account email fixture (`0`), nhưng không có checkpoint response của app nên không kết luận rejection.
 
 Đây là lỗi thao tác/điều khiển của AI, không phải lỗi SUT. D-BV-006/007 vẫn **Not run**. Cần mở lại app, làm từng trường và xác nhận response trên app trước khi gọi lượt mới là test.
+
+
+## GitHub Issues đã đăng/cập nhật
+
+- [Issue #8](https://github.com/tzin1401/testing-hw02/issues/8): API duplicate email; cập nhật mô tả Mobile variant có giới hạn và đính kèm ảnh trích từ API run log.
+- [Issue #13](https://github.com/tzin1401/testing-hw02/issues/13): form thiếu trường confirmation; ảnh form UI đã đính kèm.
+- [Issue #14](https://github.com/tzin1401/testing-hw02/issues/14): ba probe name/email invalid được gộp trong cùng nhóm validation; ảnh before/response riêng cho từng probe đã đính kèm. Full TC bốn trường vẫn Partial/Fail/Blocked như bảng trên, không đổi verdict do issue được tạo.
+
+Issue #8 ảnh là bản trình bày từ JSON API log, không phải screenshot Mobile UI. Mobile variant vẫn là observation bổ sung, không thay thế full D-DT-006.

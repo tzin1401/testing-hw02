@@ -45,4 +45,4 @@ Run bổ sung đã dọn các dòng giỏ test qua UI; event log ghi rõ fixture
 
 ## Kết luận
 
-Các biến thể mới đủ bằng chứng cho một số hành vi bổ sung của UI, gồm duplicate line, thiếu điều khiển `+/-`, thiếu dialog, nhãn tổng và số học. Chúng không làm biến mất lỗi setup của 23 TC gốc. B-R04 và các yêu cầu điều khiển/dialog/nhãn có findings cần đưa vào bug report; chỉ Issue #4/#5 đã tồn tại trên GitHub trong bộ issue hiện tại. Không kết luận về UB, tồn kho, persistence, hay validation quantity phía ứng dụng khi setup không chứng minh được.
+Các biến thể mới đủ bằng chứng cho một số hành vi bổ sung của UI, gồm duplicate line, thiếu điều khiển `+/-`, thiếu dialog, nhãn tổng và số học. Chúng không làm biến mất lỗi setup của 23 TC gốc. B-R04 và các yêu cầu điều khiển/dialog/nhãn có issue tương ứng #9–#12; Issue #4/#5 giữ cho hai finding của run chính. Liên kết và tình trạng ảnh được ghi trong `07-bugs-and-ai-gaps.md`. Không kết luận về UB, tồn kho, persistence, hay validation quantity phía ứng dụng khi setup không chứng minh được.
